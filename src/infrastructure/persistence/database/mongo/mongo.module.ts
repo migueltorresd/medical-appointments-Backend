@@ -10,10 +10,7 @@ import {
   HealthcareProviderSchema,
   HealthcareProviderSchemaMongo,
 } from './schemas/healthcare-provider.schema';
-import {
-  AssignmentSchema,
-  AssignmentSchemaMongo,
-} from './schemas/assignment.schema';
+import { CalendarSchema, CalendarSchemaMongo } from './schemas/calendar.schema';
 import { PatientMongoService } from './services/patient-mongo.service';
 import { PatientRepository } from './repositories/patient-repository.mongo';
 import { AppointmentRepository } from './repositories/appointment-repository.mongo';
@@ -32,8 +29,8 @@ import { AppointmentMongoService } from './services/appointment-mongo.service';
         name: HealthcareProviderSchemaMongo.name,
       },
       {
-        schema: AssignmentSchema,
-        name: AssignmentSchemaMongo.name,
+        schema: CalendarSchema,
+        name: CalendarSchemaMongo.name,
       },
     ]),
   ],

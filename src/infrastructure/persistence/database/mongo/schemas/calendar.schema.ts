@@ -3,8 +3,8 @@ import { HealthcareProviderSchemaMongo } from './healthcare-provider.schema';
 import { HydratedDocument, Schema as newSchema } from 'mongoose';
 import { AppointmentSchemaMongo } from './appointment.schema';
 
-@Schema({ collection: 'Assignment', versionKey: false })
-export class AssignmentSchemaMongo {
+@Schema({ collection: 'Calendar', versionKey: false })
+export class CalendarSchemaMongo {
   @Prop({ required: true })
   calendarDate: Date;
 
@@ -25,7 +25,5 @@ export class AssignmentSchemaMongo {
   })
   appointment: AppointmentSchemaMongo[];
 }
-export const AssignmentSchema = SchemaFactory.createForClass(
-  AssignmentSchemaMongo,
-);
-export type assignmentDocument = HydratedDocument<AssignmentSchemaMongo>;
+export const CalendarSchema = SchemaFactory.createForClass(CalendarSchemaMongo);
+export type assignmentDocument = HydratedDocument<CalendarSchemaMongo>;
