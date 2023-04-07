@@ -3,7 +3,7 @@ import { HealthcareProviderDomainModel } from 'src/domain/models/healthcare-prov
 import { IHealthcareProviderDomainService } from 'src/domain/services/healthcare-provider-domain.service';
 import { IUseCase } from '../interface/use-case.interface';
 
-export class UpdateHealthcareProviderUseCase implements IUseCase {
+export class DeleteHealthcareProviderUseCase implements IUseCase {
   constructor(
     private readonly healthcareProviderService: IHealthcareProviderDomainService,
   ) {}
