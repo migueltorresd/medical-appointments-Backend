@@ -1,11 +1,12 @@
+import { HealthcareProviderDomainModel } from './healthcare-provider-domain.models';
 import { IAppointmentDomain } from './interface/appointment-domain.interface';
+import { PatientDomainModel } from './patient-domain.models';
 
 export class AppointmentDomainModel implements IAppointmentDomain {
+  appointmentDate: Date;
+  hour: string;
+  Patient: PatientDomainModel;
   raeson: string;
-  date: Date;
-  time: string;
-  documentPatient: string;
-  reason: string;
   status: string;
-  healthcareProviderId: string;
+  healthcareProvider: HealthcareProviderDomainModel;
 }

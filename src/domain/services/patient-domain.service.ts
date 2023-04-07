@@ -1,14 +1,12 @@
 import { Observable } from 'rxjs';
+import { PatientDomainModel } from '../models/patient-domain.models';
 
-export interface IPatientDomainService<PatientDomainModel> {
-  createPatient(
-    patienModel: PatientDomainModel,
-  ): Observable<PatientDomainModel>;
-  updatePatient(
-    patienModel: PatientDomainModel,
-  ): Observable<PatientDomainModel>;
-  deletePatient(
-    patienModel: PatientDomainModel,
-  ): Observable<PatientDomainModel>;
-  getPatient(patienModel: PatientDomainModel): Observable<PatientDomainModel>;
+export interface IPatientDomainService<
+  Entity extends PatientDomainModel = PatientDomainModel,
+> {
+  create(entity: Entity): Observable<Entity>;
+  update(id: string, patient: Entity): Observable<Entity>;
+  delete(id: string): Observable<Entity>;
+  findById(id: string): Observable<Entity>;
+  findAll(): Observable<Entity[]>;
 }

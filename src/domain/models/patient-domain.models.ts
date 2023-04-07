@@ -1,3 +1,4 @@
+import { AppointmentDomainModel } from './appointment-domain.models';
 import { IPatientDomain } from './interface';
 
 export class PatientDomainModel implements IPatientDomain {
@@ -8,5 +9,5 @@ export class PatientDomainModel implements IPatientDomain {
   email: string;
   phone: string;
   state: string;
-  medicalhistory?: string;
+  appointments?: AppointmentDomainModel[];
 }

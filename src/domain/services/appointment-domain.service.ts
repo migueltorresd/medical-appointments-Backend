@@ -1,16 +1,12 @@
 import { Observable } from 'rxjs';
+import { AppointmentDomainModel } from '../models';
 
-export interface IAppointmentDomainService<AppointmentDomainModel> {
-  createAppointment(
-    appointment: AppointmentDomainModel,
-  ): Observable<AppointmentDomainModel>;
-  updateAppointment(
-    appointment: AppointmentDomainModel,
-  ): Observable<AppointmentDomainModel>;
-  deleteAppointment(
-    appointment: AppointmentDomainModel,
-  ): Observable<AppointmentDomainModel>;
-  getAppointment(
-    appointment: AppointmentDomainModel,
-  ): Observable<AppointmentDomainModel>;
+export interface IAppointmentDomainService<
+  Entity extends AppointmentDomainModel = AppointmentDomainModel,
+> {
+  create(entity: Entity): Observable<Entity>;
+  update(id: string, patient: Entity): Observable<Entity>;
+  delete(id: string): Observable<Entity>;
+  findById(id: string): Observable<Entity>;
+  findAll(): Observable<Entity[]>;
 }

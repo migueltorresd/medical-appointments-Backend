@@ -1,3 +1,5 @@
+import { Appointment } from 'src/infrastructure/persistence/database/mongo/schemas/appointment.schema';
+
 export interface IPatientDomain {
   name: string;
   documentPatient: string;
@@ -6,5 +8,5 @@ export interface IPatientDomain {
   email: string;
   phone: string;
   state: string;
-  medicalhistory?: string;
+  appointments?: Appointment[];
 }
