@@ -1,18 +1,12 @@
 import { Observable } from 'rxjs';
+import { HealthcareProviderDomainModel } from '../models/healthcare-provider-domain.models';
 
 export interface IHealthcareProviderDomainService<
-  HealthcareProviderDomainModel,
+  Entity extends HealthcareProviderDomainModel = HealthcareProviderDomainModel,
 > {
-  createHealthcareProvider(
-    HealthcareProviderModel: HealthcareProviderDomainModel,
-  ): Observable<HealthcareProviderDomainModel>;
-  updateHealthcareProvider(
-    HealthcareProviderModel: HealthcareProviderDomainModel,
-  ): Observable<HealthcareProviderDomainModel>;
-  deleteHealthcareProvider(
-    HealthcareProviderModel: HealthcareProviderDomainModel,
-  ): Observable<HealthcareProviderDomainModel>;
-  getHealthcareProvider(
-    HealthcareProviderModel: HealthcareProviderDomainModel,
-  ): Observable<HealthcareProviderDomainModel>;
+  create(entity: Entity): Observable<Entity>;
+  update(id: string, patient: Entity): Observable<Entity>;
+  delete(id: string): Observable<Entity>;
+  findById(id: string): Observable<Entity>;
+  findAll(): Observable<Entity[]>;
 }

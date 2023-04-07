@@ -3,7 +3,8 @@ import { AppointmentSchemaMongo } from '../schemas/appointment.schema';
 import { IBase } from './interface/base.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { Observable, from } from 'rxjs';
-
+import { Injectable } from '@nestjs/common';
+@Injectable()
 export class AppointmentRepository implements IBase<AppointmentSchemaMongo> {
   constructor(
     @InjectModel(AppointmentSchemaMongo.name)

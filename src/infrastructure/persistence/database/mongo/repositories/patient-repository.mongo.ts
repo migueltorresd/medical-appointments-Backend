@@ -4,7 +4,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Observable, from } from 'rxjs';
 import { IBase } from './interface/base.interface';
-
+import { Injectable } from '@nestjs/common';
+@Injectable()
 export class PatientRepository implements IBase<PatientSchemaMongo> {
   constructor(
     @InjectModel(PatientSchemaMongo.name)

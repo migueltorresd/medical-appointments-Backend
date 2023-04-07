@@ -1,9 +1,7 @@
+import { Observable } from 'rxjs';
 import { IPatientDomainService } from 'src/domain/services/patient-domain.service';
 import { PatientSchemaMongo } from '../schemas/patient.schema';
 import { PatientRepository } from '../repositories/patient-repository.mongo';
-import { Observable } from 'rxjs';
-import { PatientDomainModel } from 'src/domain/models/patient-domain.models';
-
 export class PatientMongoService implements IPatientDomainService {
   constructor(private readonly patientRepository: PatientRepository) {}
   create(entity: PatientSchemaMongo): Observable<PatientSchemaMongo> {
@@ -18,10 +16,10 @@ export class PatientMongoService implements IPatientDomainService {
   delete(id: string): Observable<PatientSchemaMongo> {
     return this.patientRepository.delete(id);
   }
-  findById(id: string): Observable<PatientDomainModel> {
+  findById(id: string): Observable<PatientSchemaMongo> {
     return this.patientRepository.findById(id);
   }
-  findAll(): Observable<PatientDomainModel[]> {
+  findAll(): Observable<PatientSchemaMongo[]> {
     return this.patientRepository.findAll();
   }
 }
