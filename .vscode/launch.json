@@ -2,17 +2,10 @@
 "version": "0.2.0",
 "configurations": [
   {
-    "name": "Launch via NPM",
+    "command": "npm run star:medical-appointment",
+    "name": "Run npm start medical-appointment",
     "request": "launch",
-    "runtimeArgs": [
-      "run",
-      "start:dev"
-    ],
-    "runtimeExecutable": "npm",
-    "skipFiles": [
-      "<node_internals>/**"
-    ],
-    "type": "node"
+    "type": "node-terminal"
   }
 ]
 }

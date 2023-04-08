@@ -14,14 +14,12 @@ export class CalendarSchemaMongo {
   @Prop({
     type: newSchema.Types.ObjectId,
     ref: 'HealthcareProviderSchemaMongo',
-    default: [],
   })
   healthcareProviderSchemaMongo: HealthcareProviderSchemaMongo[];
 
   @Prop({
     type: newSchema.Types.ObjectId,
     ref: 'AppointmentSchemaMongo',
-    default: [],
   })
   appointment: AppointmentSchemaMongo[];
 }

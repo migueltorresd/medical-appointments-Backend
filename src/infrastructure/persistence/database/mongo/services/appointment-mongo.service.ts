@@ -2,7 +2,8 @@ import { Observable } from 'rxjs';
 import { IAppointmentDomainService } from 'src/domain/services/appointment-domain.service';
 import { AppointmentRepository } from '../repositories/appointment-repository.mongo';
 import { AppointmentSchemaMongo } from '../schemas/appointment.schema';
-
+import { Injectable } from '@nestjs/common';
+@Injectable()
 export class AppointmentMongoService implements IAppointmentDomainService {
   constructor(private readonly appointmentRepository: AppointmentRepository) {}
   create(entity: AppointmentSchemaMongo): Observable<AppointmentSchemaMongo> {

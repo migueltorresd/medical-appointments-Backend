@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { healthcareProviderDelegate } from 'src/application/delegate/healthcare-provider.delegate';
 import { HealthcareProviderService } from '../services/healthcare-provider.service';
 import { HealthcareProviderDto } from '../dto/healthcare-provider.dto';
@@ -21,5 +21,26 @@ export class HealthcareProviderController {
   ): Observable<HealthcareProviderDomainModel> {
     this.useCase.toCreateHealthcareProviderUseCase();
     return this.useCase.execute(healthcareProvider);
+  }
+
+  @Get(':id')
+  findById(@Param('id') id: string): Observable<HealthcareProviderDomainModel> {
+    this.useCase.toGetHealthcareProviderUseCase();
+    return this.useCase.execute(id);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: string): Observable<HealthcareProviderDomainModel> {
+    this.useCase.toDeleteHealthcareProviderUseCase();
+    return this.useCase.execute(id);
+  }
+
+  @Put(':id')
+  updateHealthcareProvider(
+    @Param('id') id: string,
+    @Body() healthcareProviderUpdates: Partial<HealthcareProviderDto>,
+  ): Observable<HealthcareProviderDomainModel> {
+    this.useCase.toUpdateHealthcareProviderUseCase();
+    return this.useCase.execute(id, healthcareProviderUpdates);
   }
 }

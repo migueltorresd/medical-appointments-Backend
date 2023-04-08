@@ -14,9 +14,9 @@ export class AppointmentDto {
   @IsString()
   status: string;
 
-  @IsArray()
-  patient: PatientDto[];
+  @IsString()
+  patient: string;
 
-  @IsArray()
-  healthcareProvider: HealthcareProviderDto[];
+  @IsString()
+  healthcareProvider: string;
 }

@@ -4,9 +4,9 @@ import { IUseCase } from '../use-case/interface/use-case.interface';
 import { CreatePatientUseCase } from '../use-case/patient/create-patient-case';
 import { DeletePatientUseCase } from '../use-case/patient/delete.patient-case';
 import { UpdatePatientUseCase } from '../use-case/patient/update-patient-case';
-import { GetPatienUseCase } from '../use-case/patient/get-patient-case';
+import { GetPatientUseCase } from '../use-case/patient/get-patient-case';
 
-export class PatiendtDelegate implements IUseCase {
+export class PatientDelegate implements IUseCase {
   private delegate: IUseCase;
   constructor(private readonly patientService: IPatientDomainService) {}
 
@@ -14,19 +14,19 @@ export class PatiendtDelegate implements IUseCase {
     return this.delegate.execute(...args);
   }
 
-  toCreatepatient() {
+  toCreatePatient() {
     this.delegate = new CreatePatientUseCase(this.patientService);
   }
 
-  toUpdatepatient() {
+  toUpdatePatient() {
     this.delegate = new UpdatePatientUseCase(this.patientService);
   }
 
-  toDeletepatient() {
+  toDeletePatient() {
     this.delegate = new DeletePatientUseCase(this.patientService);
   }
 
-  toGetpatient() {
-    this.delegate = new GetPatienUseCase(this.patientService);
+  toGetPatient() {
+    this.delegate = new GetPatientUseCase(this.patientService);
   }
 }

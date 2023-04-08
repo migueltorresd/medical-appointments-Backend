@@ -5,7 +5,7 @@ export interface IAppointmentDomain {
   appointmentDate: Date;
   hour: string;
   Patient: PatientDomainModel;
-  raeson: string;
+  reason: string;
   status: string;
   healthcareProvider: HealthcareProviderDomainModel;
 }

@@ -3,7 +3,7 @@ import { IPatientDomain } from './interface';
 
 export class PatientDomainModel implements IPatientDomain {
   name: string;
-  documentPatient: string;
+  document: string;
   birthDate: Date;
   gender: string;
   email: string;

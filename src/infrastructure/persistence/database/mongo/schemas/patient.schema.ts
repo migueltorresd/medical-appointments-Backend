@@ -12,7 +12,7 @@ export class PatientSchemaMongo extends PatientDomainModel {
   document: string;
 
   @Prop({ required: true })
-  birthdate: Date;
+  birthDate: Date;
 
   @Prop({ required: true })
   gender: string;
@@ -26,15 +26,11 @@ export class PatientSchemaMongo extends PatientDomainModel {
   @Prop({ required: true })
   state: string;
 
-  @Prop({ required: true })
-  medicalhistory: string;
-
   @Prop({
     type: newSchema.Types.ObjectId,
-    ref: 'AppointmentSchemaMongo',
-    default: [],
+    ref: 'AppointmentSchemaMongo'
   })
-  appointment: AppointmentSchemaMongo[];
+  appointment?: AppointmentSchemaMongo['_id'][];
 }
 
 export const PatientSchema = SchemaFactory.createForClass(PatientSchemaMongo);

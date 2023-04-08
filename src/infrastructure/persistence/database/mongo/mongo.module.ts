@@ -15,6 +15,8 @@ import { PatientMongoService } from './services/patient-mongo.service';
 import { PatientRepository } from './repositories/patient-repository.mongo';
 import { AppointmentRepository } from './repositories/appointment-repository.mongo';
 import { AppointmentMongoService } from './services/appointment-mongo.service';
+import { HealthcareProviderRepository } from './repositories/healthcare-provider-repository.mongo';
+import { HealthcareProviderMongoService } from './services/healthcare-provider-mongo.service';
 
 @Module({
   imports: [
@@ -41,12 +43,16 @@ import { AppointmentMongoService } from './services/appointment-mongo.service';
     AppointmentMongoService,
     PatientRepository,
     AppointmentRepository,
+    HealthcareProviderRepository,
+    HealthcareProviderMongoService,
   ],
   exports: [
     PatientMongoService,
     AppointmentMongoService,
     PatientRepository,
     AppointmentRepository,
+    HealthcareProviderRepository,
+    HealthcareProviderMongoService,
   ],
 })
 export class MongoModule {}

@@ -5,5 +5,5 @@ export interface IHealthcareProviderDomain {
   email: string;
   phone: string;
   specialty: string;
-  appointments: AppointmentDomainModel[];
+  appointments?: AppointmentDomainModel[];
 }

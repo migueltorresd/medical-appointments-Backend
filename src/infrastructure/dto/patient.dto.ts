@@ -6,7 +6,7 @@ export class PatientDto {
   name: string;
 
   @IsString()
-  documentPatient: string;
+  document: string;
 
   @IsDate()
   birthDate: Date;

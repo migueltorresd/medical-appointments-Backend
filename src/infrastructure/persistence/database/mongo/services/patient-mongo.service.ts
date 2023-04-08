@@ -2,6 +2,8 @@ import { Observable } from 'rxjs';
 import { IPatientDomainService } from 'src/domain/services/patient-domain.service';
 import { PatientSchemaMongo } from '../schemas/patient.schema';
 import { PatientRepository } from '../repositories/patient-repository.mongo';
+import { Injectable } from '@nestjs/common';
+@Injectable()
 export class PatientMongoService implements IPatientDomainService {
   constructor(private readonly patientRepository: PatientRepository) {}
   create(entity: PatientSchemaMongo): Observable<PatientSchemaMongo> {
