@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { PatientSchemaMongo } from './patient.schema';
 import { HydratedDocument, SchemaType, SchemaTypeOptions, SchemaTypes, Schema as newSchema } from 'mongoose';
 import { HealthcareProviderSchemaMongo } from './healthcare-provider.schema';
-import { AppointmentDomainModel } from 'src/domain/models';
+import { AppointmentDomainModel } from '../../../../../domain/models/appointment-domain.models';
 
 @Schema({ collection: 'Appointment', versionKey: false })
 export class AppointmentSchemaMongo extends AppointmentDomainModel {

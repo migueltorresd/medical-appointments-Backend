@@ -9,4 +9,12 @@ export class HealthcareProviderDomainModel
   email: string;
   phone: string;
   specialty: string;
+
+  constructor(data: IHealthcareProviderDomain) {
+    this.name = data.name;
+    this.email = data.email;
+    this.phone = data.phone;
+    this.specialty = data.specialty;
+    this.appointments = data.appointments || [];
+  }
 }

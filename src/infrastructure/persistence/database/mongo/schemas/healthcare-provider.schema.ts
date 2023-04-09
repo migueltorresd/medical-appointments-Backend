@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { AppointmentSchemaMongo } from './appointment.schema';
 import { HydratedDocument, SchemaTypes, Schema as newSchema } from 'mongoose';
-import { HealthcareProviderDomainModel } from 'src/domain/models/healthcare-provider-domain.models';
+import { HealthcareProviderDomainModel } from '../../../../../domain/models/healthcare-provider-domain.models';
 
 @Schema({ collection: 'HealthcareProviderSchemaMongo', versionKey: false })
 export class HealthcareProviderSchemaMongo extends HealthcareProviderDomainModel {

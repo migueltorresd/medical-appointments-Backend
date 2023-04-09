@@ -10,4 +10,15 @@ export class PatientDomainModel implements IPatientDomain {
   phone: string;
   state: string;
   appointments?: AppointmentDomainModel[];
+
+  constructor(data: IPatientDomain) {
+    this.name = data.name;
+    this.document = data.document;
+    this.birthDate = data.birthDate;
+    this.gender = data.gender;
+    this.email = data.email;
+    this.phone = data.phone;
+    this.state = data.state;
+    this.appointments = data.appointments || [];
+  }
 }
