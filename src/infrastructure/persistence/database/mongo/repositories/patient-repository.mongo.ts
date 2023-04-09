@@ -1,4 +1,4 @@
-import { PatientDomainModel } from 'src/domain/models/patient-domain.models';
+import { PatientDomainModel } from '../../../../../domain/models/patient-domain.models';
 import { PatientSchemaMongo } from '../schemas/patient.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';

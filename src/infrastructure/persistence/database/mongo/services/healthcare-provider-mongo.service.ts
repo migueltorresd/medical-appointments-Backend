@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { IHealthcareProviderDomainService } from 'src/domain/services/healthcare-provider-domain.service';
+import { IHealthcareProviderDomainService } from '../../../../../domain/services/healthcare-provider-domain.service';
 import { HealthcareProviderSchemaMongo } from '../schemas/healthcare-provider.schema';
 import { HealthcareProviderRepository } from '../repositories/healthcare-provider-repository.mongo';
 import { Injectable } from '@nestjs/common';

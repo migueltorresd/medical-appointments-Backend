@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { PatientDomainModel } from 'src/domain/models/patient-domain.models';
-import { IPatientDomainService } from 'src/domain/services/patient-domain.service';
+import { IPatientDomainService } from '../../../domain/services/patient-domain.service';
 import { IUseCase } from '../interface/use-case.interface';
+import { PatientDomainModel } from '../../../domain/models/patient-domain.models'
 
 export class GetPatientUseCase implements IUseCase {
   constructor(private readonly patientService: IPatientDomainService) {}

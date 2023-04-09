@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { IAppointmentDomainService } from 'src/domain/services/appointment-domain.service';
+import { IAppointmentDomainService } from '../../../../../domain/services/appointment-domain.service';
 import { AppointmentRepository } from '../repositories/appointment-repository.mongo';
 import { AppointmentSchemaMongo } from '../schemas/appointment.schema';
 import { Injectable } from '@nestjs/common';

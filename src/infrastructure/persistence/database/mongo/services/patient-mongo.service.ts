@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { IPatientDomainService } from 'src/domain/services/patient-domain.service';
+import { IPatientDomainService } from '../../../../../domain/services/patient-domain.service';
 import { PatientSchemaMongo } from '../schemas/patient.schema';
 import { PatientRepository } from '../repositories/patient-repository.mongo';
 import { Injectable } from '@nestjs/common';
