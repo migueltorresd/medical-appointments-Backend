@@ -2,14 +2,16 @@ import { PatientDomainModel } from '../../../../../domain/models/patient-domain.
 import { PatientSchemaMongo } from '../schemas/patient.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Observable, from } from 'rxjs';
+import { Observable, from, map } from 'rxjs';
 import { IBase } from './interface/base.interface';
 import { Injectable } from '@nestjs/common';
+import { patientDocument } from '../schemas/patient.schema';
+import { catchError } from 'rxjs/operators';
 @Injectable()
 export class PatientRepository implements IBase<PatientSchemaMongo> {
   constructor(
     @InjectModel(PatientSchemaMongo.name)
-    private readonly patientRepository: Model<PatientSchemaMongo>,
+    private readonly patientRepository: Model<patientDocument>,
   ) {}
 
   create(patientModel: PatientDomainModel): Observable<PatientSchemaMongo> {
@@ -20,7 +22,11 @@ export class PatientRepository implements IBase<PatientSchemaMongo> {
     _id: string,
     entity: PatientDomainModel,
   ): Observable<PatientSchemaMongo> {
-    return from(this.patientRepository.findByIdAndUpdate(_id, entity));
+    console.log('updateddddddddd', _id, entity);
+    return from(
+      this.patientRepository.findOneAndUpdate({_id}, {appointments: entity.appointments}, {new: true})
+      .exec(),
+    );
   }
 
   delete(_id: string): Observable<PatientSchemaMongo> {

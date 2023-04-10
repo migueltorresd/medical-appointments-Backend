@@ -21,7 +21,8 @@ export class HealthcareProviderRepository
     _id: string,
     entity: HealthcareProviderSchemaMongo,
   ): Observable<HealthcareProviderSchemaMongo> {
-    return from(this.appointmentRepository.findByIdAndUpdate(_id, entity));
+    return from(this.appointmentRepository.findOneAndUpdate({_id},{appointments: entity.appointments}, {new: true })
+      .exec());
   }
 
   delete(_id: string): Observable<HealthcareProviderSchemaMongo> {

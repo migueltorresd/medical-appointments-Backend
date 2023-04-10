@@ -58,7 +58,7 @@ export class MongooseConfigService implements MongooseOptionsFactory {
 
    * @type 
    */
-  database = this.configService.get('DB_NAME_BOOK');
+  database = this.configService.get('DB_NAME_MEDICAL');
   /**
    * este metodo es el encargado de crear las opciones de conexion
    *

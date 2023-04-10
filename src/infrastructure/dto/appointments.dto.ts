@@ -9,7 +9,7 @@ export class AppointmentDto {
   @IsString()
   hour: string;
   @IsString()
-  raeson: string;
+  reason: string;
 
   @IsString()
   status: string;

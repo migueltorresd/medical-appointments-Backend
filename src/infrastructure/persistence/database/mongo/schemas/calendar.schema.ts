@@ -15,13 +15,13 @@ export class CalendarSchemaMongo {
     type: newSchema.Types.ObjectId,
     ref: 'HealthcareProviderSchemaMongo',
   })
-  healthcareProviderSchemaMongo: HealthcareProviderSchemaMongo[];
+  healthcareProviderSchemaMongo: HealthcareProviderSchemaMongo[][];
 
   @Prop({
     type: newSchema.Types.ObjectId,
     ref: 'AppointmentSchemaMongo',
   })
-  appointment: AppointmentSchemaMongo[];
+  appointment: AppointmentSchemaMongo[][];
 }
 export const CalendarSchema = SchemaFactory.createForClass(CalendarSchemaMongo);
 export type assignmentDocument = HydratedDocument<CalendarSchemaMongo>;

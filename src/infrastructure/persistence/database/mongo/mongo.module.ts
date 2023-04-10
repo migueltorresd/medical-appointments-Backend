@@ -49,10 +49,10 @@ import { HealthcareProviderMongoService } from './services/healthcare-provider-m
   exports: [
     PatientMongoService,
     AppointmentMongoService,
+    HealthcareProviderMongoService,
     PatientRepository,
     AppointmentRepository,
     HealthcareProviderRepository,
-    HealthcareProviderMongoService,
   ],
 })
 export class MongoModule {}

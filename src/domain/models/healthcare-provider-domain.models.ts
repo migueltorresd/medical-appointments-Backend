@@ -4,7 +4,8 @@ import { AppointmentDomainModel } from './appointment-domain.models';
 export class HealthcareProviderDomainModel
   implements IHealthcareProviderDomain
 {
-  appointments?: AppointmentDomainModel[];
+  _id: string;
+  appointments?: AppointmentDomainModel['_id'][];
   name: string;
   email: string;
   phone: string;
@@ -15,6 +16,6 @@ export class HealthcareProviderDomainModel
     this.email = data.email;
     this.phone = data.phone;
     this.specialty = data.specialty;
-    this.appointments = data.appointments || [];
+    this.appointments = data.appointments['_id'];
   }
 }

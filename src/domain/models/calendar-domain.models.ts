@@ -5,6 +5,5 @@ import { ICalendarDomain } from './interface';
 export class calendarDomainModel implements ICalendarDomain {
   calendarDate: Date;
   healthcareProvider: HealthcareProviderDomainModel;
-  hour: string[];
   appointment: AppointmentDomainModel[];
 }

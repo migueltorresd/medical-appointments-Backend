@@ -4,7 +4,7 @@ import { HydratedDocument, SchemaType, SchemaTypeOptions, SchemaTypes, Schema as
 import { HealthcareProviderSchemaMongo } from './healthcare-provider.schema';
 import { AppointmentDomainModel } from '../../../../../domain/models/appointment-domain.models';
 
-@Schema({ collection: 'Appointment', versionKey: false })
+@Schema({ collection: 'Appointments', versionKey: false })
 export class AppointmentSchemaMongo extends AppointmentDomainModel {
   @Prop({
   type: SchemaTypes.ObjectId,
@@ -25,16 +25,16 @@ export class AppointmentSchemaMongo extends AppointmentDomainModel {
   status: string;
 
   @Prop({
-    type: newSchema.Types.String,
+    type: newSchema.Types.ObjectId,
     ref: 'PatientSchemaMongo',
   })
-  patient: PatientSchemaMongo['document'];
+  patient: PatientSchemaMongo['_id'];
 
   @Prop({
     type: newSchema.Types.ObjectId,
     ref: 'HealthcareProviderSchemaMongo',
   })
-  healthcareProviderSchemaMongo: HealthcareProviderSchemaMongo['_id'];
+  healthcareProviderSchemaMongo: HealthcareProviderSchemaMongo['_id'][];
 }
 export const AppointmentSchema = SchemaFactory.createForClass(
   AppointmentSchemaMongo,
