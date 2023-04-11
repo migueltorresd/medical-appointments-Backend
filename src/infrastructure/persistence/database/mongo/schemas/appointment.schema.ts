@@ -34,7 +34,7 @@ export class AppointmentSchemaMongo extends AppointmentDomainModel {
     type: newSchema.Types.ObjectId,
     ref: 'HealthcareProviderSchemaMongo',
   })
-  healthcareProviderSchemaMongo: HealthcareProviderSchemaMongo['_id'][];
+  healthcareProviderSchemaMongo: HealthcareProviderSchemaMongo['_id'];
 }
 export const AppointmentSchema = SchemaFactory.createForClass(
   AppointmentSchemaMongo,

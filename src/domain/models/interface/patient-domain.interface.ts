@@ -9,5 +9,5 @@ export interface IPatientDomain {
   email: string;
   phone: string;
   state: string;
-  appointments?: AppointmentDomainModel['_id'][];
+  appointments?: AppointmentDomainModel[];
 }

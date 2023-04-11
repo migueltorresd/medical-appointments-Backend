@@ -8,9 +8,11 @@ import { AppointmentService } from './services/appointment.service';
 import { HealthcareProviderService } from './services/healthcare-provider.service';
 import { PatientService } from './services/patient.service';
 import { MongoModule } from './persistence/database/mongo/mongo.module';
+import { AuthService } from './utils/service/auth.service';
+import { persistenceModule } from './persistence/persistence.module';
 
 @Module({
-  imports: [MongoModule],
+  imports: [persistenceModule],
   controllers: [
     HealthcareProviderController,
     PatientController,
@@ -21,10 +23,7 @@ import { MongoModule } from './persistence/database/mongo/mongo.module';
       provide: APP_FILTER,
       useClass: MongoServerErrorExceptionFilter,
     },
-    AppointmentService,
-    HealthcareProviderService,
-    PatientService,
   ],
-  exports: [AppointmentService, HealthcareProviderService, PatientService],
+  exports: [],
 })
 export class InfrastructureModule {}

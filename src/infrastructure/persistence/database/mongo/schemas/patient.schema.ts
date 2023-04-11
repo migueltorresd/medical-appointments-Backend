@@ -33,10 +33,10 @@ export class PatientSchemaMongo extends PatientDomainModel {
   state: string;
 
   @Prop({
-    type: SchemaTypes.ObjectId,
-    ref: AppointmentSchemaMongo.name,
+    type:[{ type: SchemaTypes.ObjectId,
+    ref: 'AppointmentSchemaMongo'}]
   })
-  appointments?: AppointmentSchemaMongo['_id'][];
+  appointments?: AppointmentSchemaMongo[];
 }
 
 export const PatientSchema = SchemaFactory.createForClass(PatientSchemaMongo);

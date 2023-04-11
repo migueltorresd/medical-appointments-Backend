@@ -8,5 +8,5 @@ export interface IAppointmentDomain {
   Patient: PatientDomainModel;
   reason: string;
   status: string;
-  healthcareProvider: HealthcareProviderDomainModel['_id'][];
+  healthcareProvider: HealthcareProviderDomainModel;
 }

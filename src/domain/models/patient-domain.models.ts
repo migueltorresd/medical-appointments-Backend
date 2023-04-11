@@ -10,7 +10,7 @@ export class PatientDomainModel implements IPatientDomain {
   email: string;
   phone: string;
   state: string;
-  appointments?: AppointmentDomainModel['_id'][];
+  appointments?: AppointmentDomainModel[];
 
   constructor(data: IPatientDomain) {
     this.name = data.name;
@@ -20,5 +20,6 @@ export class PatientDomainModel implements IPatientDomain {
     this.email = data.email;
     this.phone = data.phone;
     this.state = data.state;
+    this.appointments = [];
   }
 }

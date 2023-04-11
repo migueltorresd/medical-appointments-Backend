@@ -19,6 +19,7 @@ export class HealthcareProviderMongoService
     id: string,
     entity: HealthcareProviderSchemaMongo,
   ): Observable<HealthcareProviderSchemaMongo> {
+
     return this.healthcareProviderRepository.update(id, entity);
   }
   delete(id: string): Observable<HealthcareProviderSchemaMongo> {

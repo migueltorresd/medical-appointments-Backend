@@ -9,4 +9,5 @@ export interface IPatientDomainService<
   delete(id: string): Observable<Entity>;
   findById(id: string): Observable<Entity>;
   findAll(): Observable<Entity[]>;
+ 
 }

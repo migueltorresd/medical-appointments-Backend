@@ -9,7 +9,7 @@ export class AppointmentDomainModel implements IAppointmentDomain {
   Patient: PatientDomainModel;
   reason: string;
   status: string;
-  healthcareProvider: HealthcareProviderDomainModel['_id'][];
+  healthcareProvider: HealthcareProviderDomainModel;
 
   constructor(data: IAppointmentDomain) {
     this.appointmentDate = data.appointmentDate;

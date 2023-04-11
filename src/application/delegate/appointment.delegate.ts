@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { IAppointmentDomainService } from 'src/domain/services/appointment-domain.service';
 import { UpdateAppointmentUseCase } from '../use-case/appointment/Update-appointment-case';
 import { CreateAppointmentUseCase } from '../use-case/appointment/create-appointment-case';
-import { DeleteAppointmentUseCase } from '../use-case/appointment/appointment';
+import { DeleteAppointmentUseCase } from '../use-case/appointment/delete.appointment';
 import { GetAppointmentUseCase } from '../use-case/appointment/get-appointment-case';
 import { IUseCase } from '../use-case/interface/use-case.interface';
 import {
