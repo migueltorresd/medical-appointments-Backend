@@ -4,12 +4,12 @@ import {
   HealthcareProviderDomainModel,
   PatientDomainModel,
 } from 'src/domain/models';
-import { IAppointmentDomainService } from 'src/domain/services/appointment-domain.service';
+import { IAppointmentDomainService } from '../../../domain/services/appointment-domain.service';
 import { IUseCase } from '../interface/use-case.interface';
 import {
   IHealthcareProviderDomainService,
   IPatientDomainService,
-} from 'src/domain/services';
+} from '../../../domain/services';
 
 export class CreateAppointmentUseCase implements IUseCase {
   constructor(

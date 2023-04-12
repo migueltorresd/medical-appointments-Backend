@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { IUseCase } from '../interface/use-case.interface';
-import { IAppointmentDomainService } from 'src/domain/services/appointment-domain.service';
-import { AppointmentDomainModel } from 'src/domain/models';
+import { IAppointmentDomainService } from '../../../domain/services/appointment-domain.service';
+import { AppointmentDomainModel } from '../../../domain/models';
 
 export class UpdateAppointmentUseCase implements IUseCase {
   constructor(private readonly appointmentService: IAppointmentDomainService) {}

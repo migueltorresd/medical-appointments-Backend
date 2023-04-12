@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { PatientDomainModel } from 'src/domain/models/patient-domain.models';
-import { IPatientDomainService } from 'src/domain/services/patient-domain.service';
+import { PatientDomainModel } from '../../../domain/models/patient-domain.models';
+import { IPatientDomainService } from '../../../domain/services/patient-domain.service';
 import { IUseCase } from '../interface/use-case.interface';
 
 export class DeletePatientUseCase implements IUseCase {

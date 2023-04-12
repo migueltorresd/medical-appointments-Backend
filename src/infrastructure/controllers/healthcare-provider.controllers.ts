@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { healthcareProviderDelegate } from 'src/application/delegate/healthcare-provider.delegate';
+import { HealthcareProviderDelegate } from 'src/application/delegate/healthcare-provider.delegate';
 import { HealthcareProviderService } from '../services/healthcare-provider.service';
 import { HealthcareProviderDto } from '../dto/healthcare-provider.dto';
 import { Observable } from 'rxjs';
@@ -7,12 +7,12 @@ import { HealthcareProviderDomainModel } from 'src/domain/models/healthcare-prov
 
 @Controller('Healthcare-Provider')
 export class HealthcareProviderController {
-  private readonly useCase: healthcareProviderDelegate;
+  private readonly useCase: HealthcareProviderDelegate;
 
   constructor(
     private readonly healthcareProviderService: HealthcareProviderService,
   ) {
-    this.useCase = new healthcareProviderDelegate(healthcareProviderService);
+    this.useCase = new HealthcareProviderDelegate(healthcareProviderService);
   }
 
   @Post()

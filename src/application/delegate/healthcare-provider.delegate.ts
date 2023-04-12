@@ -6,7 +6,7 @@ import { GetHealthcareProviderUseCase } from '../use-case/healthcare-provider/ge
 import { UpdateHealthcareProviderUseCase } from '../use-case/healthcare-provider/update-healthcare-provider.case';
 import { DeleteHealthcareProviderUseCase } from '../use-case/healthcare-provider/delete-healthcare-provuder.case';
 
-export class healthcareProviderDelegate implements IUseCase {
+export class HealthcareProviderDelegate implements IUseCase {
   private delegate: IUseCase;
 
   constructor(
