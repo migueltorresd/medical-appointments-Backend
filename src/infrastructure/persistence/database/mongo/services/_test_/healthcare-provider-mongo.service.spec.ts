@@ -139,7 +139,73 @@ describe('HealthcareProviderMongoService', () => {
       });
     });
   });
+  describe('updateHealthcareProvider', () => {
+    const id = 'healthcareProviderId123';
+    const updatedHealthcareProvider: HealthcareProviderSchemaMongo = {
+      rol: 'healthcareProvider',
+      _id: id,
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      phone: '555-555-5555',
+      specialty: 'Cardiology',
+      appointments: [],
+    };
 
+    it('should update a healthcare provider successfully', (done) => {
+      // Arrange
+      jest
+        .spyOn(healthcareProviderRepository, 'updateHealthcareProvider')
+        .mockReturnValue(of(updatedHealthcareProvider));
+
+      // Act
+      const result: Observable<HealthcareProviderSchemaMongo> =
+        healthcareProviderMongoService.updateHealthcareProvider(
+          id,
+          updatedHealthcareProvider,
+        );
+
+      // Assert
+      result.subscribe((response) => {
+        expect(response).toEqual(updatedHealthcareProvider);
+        expect(
+          healthcareProviderRepository.updateHealthcareProvider,
+        ).toHaveBeenCalledTimes(1);
+        expect(
+          healthcareProviderRepository.updateHealthcareProvider,
+        ).toHaveBeenCalledWith(id, updatedHealthcareProvider);
+        done();
+      });
+    });
+
+    it('should handle error when updating a healthcare provider', (done) => {
+      // Arrange
+      const error = new Error('Unable to update healthcare provider');
+      jest
+        .spyOn(healthcareProviderRepository, 'updateHealthcareProvider')
+        .mockReturnValueOnce(throwError(error));
+
+      // Act
+      const result: Observable<HealthcareProviderSchemaMongo> =
+        healthcareProviderMongoService.updateHealthcareProvider(
+          id,
+          updatedHealthcareProvider,
+        );
+
+      // Assert
+      result.subscribe({
+        error: (err) => {
+          expect(err).toEqual(error);
+          expect(
+            healthcareProviderRepository.updateHealthcareProvider,
+          ).toHaveBeenCalledTimes(1);
+          expect(
+            healthcareProviderRepository.updateHealthcareProvider,
+          ).toHaveBeenCalledWith(id, updatedHealthcareProvider);
+          done();
+        },
+      });
+    });
+  });
   describe('delete', () => {
     let healthcareProviderRepository: HealthcareProviderRepository;
     let healthcareProviderMongoService: HealthcareProviderMongoService;

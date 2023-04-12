@@ -2,6 +2,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { PatientRepository } from '../../repositories/patient-repository.mongo';
 import { PatientSchemaMongo } from '../../schemas/patient.schema';
 import { PatientMongoService } from '../patient-mongo.service';
+import { PatientDomainModel } from 'src/domain/models';
 
 describe('PatientMongoService', () => {
   let patientRepository: PatientRepository;
@@ -10,6 +11,7 @@ describe('PatientMongoService', () => {
   beforeEach(() => {
     patientRepository = {
       create: jest.fn(),
+      updatepatient: jest.fn(),
       update: jest.fn(),
       delete: jest.fn(),
       findById: jest.fn(),
@@ -102,6 +104,86 @@ describe('PatientMongoService', () => {
       });
     });
   });
+  describe('updatepatient', () => {
+    it('should update a patient successfully', (done) => {
+      // Arrange
+      const patientId = 'patientId123';
+      const patient: PatientSchemaMongo = {
+        rol: 'patient',
+        _id: '123456',
+        name: 'John Doe',
+        document: '123456789',
+        birthDate: new Date('1990-01-01'),
+        gender: 'male',
+        email: 'johndoe@example.com',
+        phone: '555-555-5555',
+        state: 'active',
+        appointments: [],
+      };
+      const updatedPatient: PatientSchemaMongo = {
+        ...patient,
+        name: 'John Updated',
+      };
+      jest
+        .spyOn(patientRepository, 'updatepatient')
+        .mockReturnValue(of(updatedPatient));
+
+      // Act
+      const result = patientMongoService.updatepatient(patientId, updatedPatient);
+
+      // Assert
+      result.subscribe((response) => {
+        expect(response).toEqual(updatedPatient);
+        expect(patientRepository.updatepatient).toHaveBeenCalledTimes(1);
+        expect(patientRepository.updatepatient).toHaveBeenCalledWith(
+          patientId,
+          updatedPatient,
+        );
+        done();
+      });
+    });
+
+    it('should handle error when updating a patient', (done) => {
+      // Arrange
+      const patientId = 'patientId123';
+      const patient: PatientDomainModel = {
+        rol: 'patient',
+        _id: '123456',
+        name: 'John Doe',
+        document: '123456789',
+        birthDate: new Date('1990-01-01'),
+        gender: 'male',
+        email: 'johndoe@example.com',
+        phone: '555-555-5555',
+        state: 'active',
+        appointments: [],
+      };
+      const error = new Error('Unable to update patient');
+      jest
+        .spyOn(patientRepository, 'updatepatient')
+        .mockReturnValueOnce(throwError(error));
+
+      // Act
+      const result = patientMongoService.updatepatient(patientId, patient);
+
+      // Assert
+      if (!result) {
+        throw new Error('Observable is undefined');
+      }
+      result.subscribe({
+        error: (err) => {
+          expect(err).toEqual(error);
+          expect(patientRepository.updatepatient).toHaveBeenCalledTimes(1);
+          expect(patientRepository.updatepatient).toHaveBeenCalledWith(
+            patientId,
+            patient,
+          );
+          done();
+        },
+      });
+    });
+  });
+
   describe('update', () => {
     let patientRepository: PatientRepository;
     let patientMongoService: PatientMongoService;

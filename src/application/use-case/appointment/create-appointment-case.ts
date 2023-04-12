@@ -34,18 +34,24 @@ export class CreateAppointmentUseCase implements IUseCase {
         return this.appointmentService.create(appointmentEntity).pipe(
           map((Entity) => {
             // Guardar la cita en la entidad del paciente
-            console.log('---------pendiente revisar crear el doctor con la peticion en el crear------');
+            console.log(
+              '---------pendiente revisar crear el doctor con la peticion en el crear------',
+            );
             patientEntity.appointments.push(Entity);
             this.patientService.update(patientId, patientEntity);
             //---------------------------------------------------------------------------------------------
 
             // Guardar la cita en la entidad del profesional de la salud
             healthcareProviderEntity.appointments.push(Entity);
-            this.healthcareProviderService.update(healthcareProviderId,healthcareProviderEntity);
+            this.healthcareProviderService.update(
+              healthcareProviderId,
+              healthcareProviderEntity,
+            );
             return Entity;
           }),
         );
       }),
     );
   }
+
 }
