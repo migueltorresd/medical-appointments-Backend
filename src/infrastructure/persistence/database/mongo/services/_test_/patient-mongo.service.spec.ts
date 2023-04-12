@@ -26,6 +26,7 @@ describe('PatientMongoService', () => {
     it('should create a patient successfully', (done) => {
       // Arrange
       const patient: PatientSchemaMongo = {
+        _id: '123456',
         name: 'John Doe',
         document: '123456789',
         birthDate: new Date('1990-01-01'),
@@ -37,6 +38,7 @@ describe('PatientMongoService', () => {
       };
       const createdPatient: PatientSchemaMongo = {
         ...patient,
+        _id: '123456',
         name: 'John Doe',
         document: '123456789',
         birthDate: new Date('1990-01-01'),
@@ -65,6 +67,7 @@ describe('PatientMongoService', () => {
     it('should handle error when creating a patient', (done) => {
       // Arrange
       const patient: PatientSchemaMongo = {
+        _id: '123456',
         name: 'John Doe',
         document: '123456789',
         birthDate: new Date('1990-01-01'),
@@ -119,6 +122,7 @@ describe('PatientMongoService', () => {
       // Arrange
       const patientId = 'patientId123';
       const patient: PatientSchemaMongo = {
+        _id: '123456',
         name: 'John Doe',
         document: '123456789',
         birthDate: new Date('1990-01-01'),
@@ -155,6 +159,7 @@ describe('PatientMongoService', () => {
       // Arrange
       const patientId = 'patientId123';
       const patient: PatientSchemaMongo = {
+        _id: '123456',
         name: 'John Doe',
         document: '123456789',
         birthDate: new Date('1990-01-01'),
@@ -254,6 +259,7 @@ describe('PatientMongoService', () => {
       // Arrange
       const patientId = 'patientId123';
       const patient: PatientSchemaMongo = {
+        _id: '123456',
         name: 'John Doe',
         document: '123456789',
         birthDate: new Date('1990-01-01'),

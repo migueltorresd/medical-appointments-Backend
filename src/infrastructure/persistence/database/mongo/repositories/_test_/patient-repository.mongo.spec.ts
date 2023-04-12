@@ -18,6 +18,7 @@ describe('PatientRepository', () => {
           provide: getModelToken(PatientSchemaMongo.name),
           useValue: {
             create: jest.fn(),
+            findOneAndUpdate: jest.fn(),
             findByIdAndUpdate: jest.fn(),
             findByIdAndDelete: jest.fn(),
             findById: jest.fn(),
@@ -37,6 +38,7 @@ describe('PatientRepository', () => {
     it('should create a patient and return the created patient', async () => {
       // Arrange
       const mockPatient = new PatientDomainModel({
+        _id: '11233',
         name: 'John Doe',
         document: '123456789',
         birthDate: new Date('1990-01-01'),
@@ -65,11 +67,12 @@ describe('PatientRepository', () => {
       expect(patientModel.create).toHaveBeenCalledWith(mockPatient);
     });
   });
-  describe('update', () => {
+  describe('updatepatient', () => {
     it('should update a patient and return the updated patient', async () => {
       // Arrange
-      const patientId = 'mockId';
+      const patientId = '11233';
       const mockPatient = new PatientDomainModel({
+        _id: '11233',
         name: 'John Doe',
         document: '123456789',
         birthDate: new Date('1990-01-01'),
@@ -91,7 +94,7 @@ describe('PatientRepository', () => {
 
       // Act
       const result = await patientRepository
-        .update(patientId, mockPatient)
+        .updatepatient(patientId, mockPatient)
         .toPromise();
 
       // Assert
@@ -99,6 +102,55 @@ describe('PatientRepository', () => {
       expect(patientModel.findByIdAndUpdate).toHaveBeenCalledTimes(1);
     });
   });
+  describe('update', () => {
+    it('should update a patient and return the updated patient', async () => {
+      // Arrange
+      const patientId = 'mockId';
+      const mockPatient = new PatientDomainModel({
+        _id: patientId,
+        name: 'John Doe',
+        document: '123456789',
+        birthDate: new Date('1990-01-01'),
+        gender: 'male',
+        email: 'johndoe@example.com',
+        phone: '555-555-5555',
+        state: 'active',
+        appointments: [],
+      });
+
+      const expectedPatient = {
+        ...mockPatient,
+        appointments: [
+          {
+            _id: 'mockAppointmentId',
+            date: new Date('2023-04-12T14:00:00.000Z'),
+            doctor: 'Dr. Smith',
+            reason: 'Annual check-up',
+          },
+        ],
+      };
+
+      jest
+      .spyOn(patientModel, 'findOneAndUpdate')
+      .mockReturnValueOnce({
+        exec: jest.fn().mockResolvedValueOnce(expectedPatient),
+      } as any);
+
+      // Act
+      const result = patientRepository
+        .update(patientId, mockPatient)
+        .toPromise();
+
+      // Assert
+      expect(patientModel.findOneAndUpdate).toHaveBeenCalledTimes(1);
+      expect(patientModel.findOneAndUpdate).toHaveBeenCalledWith(
+        { _id: patientId },
+        { appointments: mockPatient.appointments },
+        { new: true },
+      );
+    });
+  });
+
   describe('delete', () => {
     it('should delete a patient and return the deleted patient', async () => {
       // Arrange

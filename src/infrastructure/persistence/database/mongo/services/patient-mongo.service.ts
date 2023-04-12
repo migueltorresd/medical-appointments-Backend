@@ -3,6 +3,7 @@ import { IPatientDomainService } from '../../../../../domain/services/patient-do
 import { PatientSchemaMongo } from '../schemas/patient.schema';
 import { PatientRepository } from '../repositories/patient-repository.mongo';
 import { Injectable } from '@nestjs/common';
+import { PatientDomainModel } from 'src/domain/models';
 @Injectable()
 export class PatientMongoService implements IPatientDomainService {
   constructor(private readonly patientRepository: PatientRepository) {}
@@ -15,6 +16,10 @@ export class PatientMongoService implements IPatientDomainService {
   ): Observable<PatientSchemaMongo> {
     return this.patientRepository.update(id, entity);
   }
+updatepatient(id: string, patient: PatientDomainModel): Observable<PatientDomainModel> {
+    return this.patientRepository.updatepatient(id, patient);
+}
+  
   delete(id: string): Observable<PatientSchemaMongo> {
     return this.patientRepository.delete(id);
   }

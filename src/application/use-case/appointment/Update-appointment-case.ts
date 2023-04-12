@@ -4,12 +4,12 @@ import { IAppointmentDomainService } from 'src/domain/services/appointment-domai
 import { AppointmentDomainModel } from 'src/domain/models';
 
 export class UpdateAppointmentUseCase implements IUseCase {
-  constructor(private readonly patientService: IAppointmentDomainService) {}
+  constructor(private readonly appointmentService: IAppointmentDomainService) {}
 
   execute(
     _id: string,
     patientEntity: AppointmentDomainModel,
   ): Observable<AppointmentDomainModel> {
-    return this.patientService.update(_id, patientEntity);
+    return this.appointmentService.update(_id, patientEntity);
   }
 }

@@ -20,6 +20,7 @@ describe('HealthcareProviderRepository', () => {
             create: jest.fn(),
             findByIdAndUpdate: jest.fn(),
             findByIdAndDelete: jest.fn(),
+            findOneAndUpdate: jest.fn(),
             findById: jest.fn(),
             find: jest.fn(),
           },
@@ -77,7 +78,7 @@ describe('HealthcareProviderRepository', () => {
     it('should update a healthcare provider and return the updated healthcare provider', async () => {
       // Arrange
       const healthcareProviderId = 'mockId';
-      const mockHealthcareProvider = new HealthcareProviderSchemaMongo({
+      const mockHealthcareProvider = new HealthcareProviderDomainModel({
         name: 'John Doe',
         specialty: 'cardiologist',
         email: 'johndoe@example.com',
@@ -86,30 +87,79 @@ describe('HealthcareProviderRepository', () => {
       });
 
       const expectedHealthcareProvider = {
-        ...mockHealthcareProvider,
         _id: healthcareProviderId,
+        name: 'Jane Doe',
+        specialty: 'neurologist',
+        email: 'janedoe@example.com',
+        phone: '555-555-5555',
+        appointments: [
+          {
+            patientName: 'Joe Smith',
+            date: new Date(),
+            reason: 'checkup',
+          },
+        ],
       };
 
       jest
-        .spyOn(healthcareProviderModel, 'findByIdAndUpdate')
-        .mockReturnValueOnce(of(expectedHealthcareProvider) as any);
+        .spyOn(healthcareProviderModel, 'findOneAndUpdate')
+        .mockReturnValueOnce({
+          exec: jest.fn().mockResolvedValueOnce(expectedHealthcareProvider),
+        } as any);
 
       // Act
       const result = await healthcareProviderRepository
-        .update(healthcareProviderId, mockHealthcareProvider)
+        .update(
+          healthcareProviderId,
+          new HealthcareProviderSchemaMongo(mockHealthcareProvider),
+        )
         .toPromise();
 
       // Assert
       expect(result).toEqual(expectedHealthcareProvider);
-      expect(healthcareProviderModel.findByIdAndUpdate).toHaveBeenCalledTimes(
-        1,
-      );
-      expect(healthcareProviderModel.findByIdAndUpdate).toHaveBeenCalledWith(
-        healthcareProviderId,
-        mockHealthcareProvider,
+      expect(healthcareProviderModel.findOneAndUpdate).toHaveBeenCalledTimes(1);
+      expect(healthcareProviderModel.findOneAndUpdate).toHaveBeenCalledWith(
+        { _id: healthcareProviderId },
+        { appointments: mockHealthcareProvider.appointments },
+        { new: true },
       );
     });
   });
+
+  describe('updateHealthcareProvider', () => {
+    it('should update a healthcare provider and return the updated provider', async () => {
+      // Arrange
+      const providerId = '11233';
+      const mockProvider = new HealthcareProviderSchemaMongo({
+        name: 'John Doe',
+        specialty: 'cardiologist',
+        email: 'johndoe@example.com',
+        phone: '555-555-5555',
+        appointments: [],
+      });
+
+      const expectedProvider = {
+        ...mockProvider,
+        _id: providerId,
+      };
+
+      jest
+        .spyOn(healthcareProviderModel, 'findByIdAndUpdate')
+        .mockReturnValueOnce(of(expectedProvider) as any);
+
+      // Act
+      const result = await healthcareProviderRepository
+        .updateHealthcareProvider(providerId, mockProvider)
+        .toPromise();
+
+      // Assert
+      expect(result).toEqual(expectedProvider);
+      expect(healthcareProviderModel.findByIdAndUpdate).toHaveBeenCalledTimes(
+        1,
+      );
+    });
+  });
+
   describe('delete', () => {
     it('should delete a healthcare provider and return the deleted healthcare provider', async () => {
       // Arrange

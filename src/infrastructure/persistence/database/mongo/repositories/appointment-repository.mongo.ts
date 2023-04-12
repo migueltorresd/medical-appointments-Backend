@@ -4,6 +4,7 @@ import { IBase } from './interface/base.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { Observable, from } from 'rxjs';
 import { Injectable } from '@nestjs/common';
+import { AppointmentDomainModel } from 'src/domain/models';
 @Injectable()
 export class AppointmentRepository implements IBase<AppointmentSchemaMongo> {
   constructor(
@@ -19,9 +20,9 @@ export class AppointmentRepository implements IBase<AppointmentSchemaMongo> {
 
   update(
     _id: string,
-    entity: AppointmentSchemaMongo,
+    entity: AppointmentDomainModel,
   ): Observable<AppointmentSchemaMongo> {
-    return from(this.appointmentRepository.findByIdAndUpdate(_id, entity));
+    return from(this.appointmentRepository.findOneAndUpdate({ _id }, { $set: entity }, { new: true }));
   }
 
   delete(_id: string): Observable<AppointmentSchemaMongo> {

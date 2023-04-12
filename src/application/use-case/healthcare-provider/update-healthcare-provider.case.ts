@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { HealthcareProviderDomainModel } from 'src/domain/models/healthcare-provider-domain.models';
 import { IHealthcareProviderDomainService } from 'src/domain/services/healthcare-provider-domain.service';
 import { IUseCase } from '../interface/use-case.interface';
@@ -12,6 +12,6 @@ export class UpdateHealthcareProviderUseCase implements IUseCase {
     _id: string,
     healthcareProvider: HealthcareProviderDomainModel,
   ): Observable<HealthcareProviderDomainModel> {
-    return this.healthcareProviderService.update(_id, healthcareProvider);
+    return this.healthcareProviderService.updateHealthcareProvider(_id, healthcareProvider)
   }
 }

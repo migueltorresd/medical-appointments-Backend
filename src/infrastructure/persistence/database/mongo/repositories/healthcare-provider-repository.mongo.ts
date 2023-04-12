@@ -24,6 +24,12 @@ export class HealthcareProviderRepository
     return from(this.appointmentRepository.findOneAndUpdate({_id},{appointments: entity.appointments}, {new: true })
       .exec());
   }
+updateHealthcareProvider(
+    _id: string,
+    entity: HealthcareProviderSchemaMongo,
+  ): Observable<HealthcareProviderSchemaMongo> {
+return from(this.appointmentRepository.findByIdAndUpdate(_id, entity, {new: true }));
+  }
 
   delete(_id: string): Observable<HealthcareProviderSchemaMongo> {
     return from(this.appointmentRepository.findByIdAndDelete(_id));

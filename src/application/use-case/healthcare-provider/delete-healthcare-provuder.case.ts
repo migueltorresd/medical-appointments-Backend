@@ -12,6 +12,6 @@ export class DeleteHealthcareProviderUseCase implements IUseCase {
     _id: string,
     healthcareProvider: HealthcareProviderDomainModel,
   ): Observable<HealthcareProviderDomainModel> {
-    return this.healthcareProviderService.update(_id, healthcareProvider);
+    return this.healthcareProviderService.delete(_id);
   }
 }

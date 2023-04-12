@@ -3,7 +3,7 @@ import { TestingModule, Test } from '@nestjs/testing';
 import { Model } from 'mongoose';
 import { AppointmentSchemaMongo } from '../../schemas/appointment.schema';
 import { AppointmentRepository } from '../appointment-repository.mongo';
-import { of } from 'rxjs';
+import { from, of } from 'rxjs';
 import { AppointmentDomainModel } from 'src/domain/models';
 
 describe('AppointmentRepository', () => {
@@ -18,6 +18,11 @@ describe('AppointmentRepository', () => {
           provide: getModelToken(AppointmentSchemaMongo.name),
           useValue: {
             create: jest.fn(),
+            update: jest.fn(),
+            findOneAndUpdate: jest.fn(),
+            findByIdAndDelete: jest.fn(),
+            findById: jest.fn(),
+            find: jest.fn(),
           },
         },
       ],
@@ -70,48 +75,153 @@ describe('AppointmentRepository', () => {
         mockAppointmentModel,
       );
     });
+
+    describe('update', () => {
+      it('should update an appointment and return it', async () => {
+        // Arrange
+        const appointmentId = '123';
+        const updatedAppointment = {
+          _id: '1234',
+          appointmentDate: new Date(),
+          hour: '10:00',
+          patient: '1245',
+          reason: 'Consulta médica',
+          status: 'Scheduled',
+          healthcareProvider: {
+            name: 'John Doe',
+            email: 'johndoe@example.com',
+            phone: '555-555-5555',
+            specialty: 'Cardiology',
+            appointments: [],
+          },
+          healthcareProviderSchemaMongo: '',
+          Patient: undefined,
+        };
+        const expectedUpdatedAppointment = {
+          ...updatedAppointment,
+          save: jest.fn().mockResolvedValueOnce(updatedAppointment),
+        };
+
+        jest
+          .spyOn(appointmentModel, 'findOneAndUpdate')
+          .mockResolvedValueOnce(expectedUpdatedAppointment);
+
+        // Act
+        const result = await appointmentRepository.update(
+          appointmentId,
+          new AppointmentSchemaMongo(updatedAppointment),
+        );
+
+        // Assert
+        expect(appointmentModel.findOneAndUpdate).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('delete', () => {
+      it('should delete an appointment and return it', async () => {
+        // Arrange
+        const appointmentId = '123';
+        const expectedDeletedAppointment = {
+          _id: '123',
+          appointmentDate: new Date(),
+          hour: '10:00',
+          patient: '1245',
+          reason: 'Consulta médica',
+          status: 'Scheduled',
+          healthcareProvider: {
+            name: 'John Doe',
+            email: 'johndoe@example.com',
+            phone: '555-555-5555',
+            specialty: 'Cardiology',
+            appointments: [],
+          },
+          healthcareProviderSchemaMongo: '',
+          Patient: undefined,
+        };
+
+        jest
+          .spyOn(appointmentModel, 'findByIdAndDelete')
+          .mockResolvedValueOnce(expectedDeletedAppointment as any);
+
+        // Act
+        const result = await appointmentRepository
+          .delete(appointmentId)
+          .toPromise();
+
+        // Assert
+        expect(appointmentModel.findByIdAndDelete).toHaveBeenCalledTimes(1);
+        expect(appointmentModel.findByIdAndDelete).toHaveBeenCalledWith(
+          appointmentId,
+        );
+        expect(result).toEqual(expectedDeletedAppointment);
+      });
+    });
+
+    describe('findById', () => {
+      it('should call findById with the given _id', () => {
+        const id = 'mockId';
+        const expected = {} as AppointmentSchemaMongo;
+        appointmentModel.findById = jest.fn().mockReturnValueOnce(of(expected));
+
+        appointmentRepository.findById(id).subscribe((result) => {
+          expect(appointmentModel.findById).toHaveBeenCalledWith(id);
+          expect(result).toBe(expected);
+        });
+      });
+    });
+
+    describe('findAll', () => {
+      it('should return an array of appointments', async () => {
+        // Arrange
+        const mockAppointmentsArray = [
+          {
+            _id: 'appointmentId1',
+            appointmentDate: new Date(),
+            hour: '10:00',
+            patient: 'patientId1',
+            reason: 'Consulta médica',
+            status: 'Scheduled',
+            healthcareProvider: {
+              name: 'Dr. John Doe',
+              email: 'johndoe@example.com',
+              phone: '555-555-5555',
+              specialization: 'Cardiology',
+              appointments: [],
+            },
+            healthcareProviderSchemaMongo: '',
+            Patient: undefined,
+          },
+          {
+            _id: 'appointmentId2',
+            appointmentDate: new Date(),
+            hour: '11:00',
+            patient: 'patientId2',
+            reason: 'Consulta médica',
+            status: 'Scheduled',
+            healthcareProvider: {
+              name: 'Dr. Jane Doe',
+              email: 'janedoe@example.com',
+              phone: '555-555-5555',
+              specialization: 'Pediatrics',
+              appointments: [],
+            },
+            healthcareProviderSchemaMongo: '',
+            Patient: undefined,
+          },
+        ];
+
+        jest.spyOn(appointmentModel, 'find').mockReturnValueOnce({
+          exec: jest.fn().mockResolvedValueOnce(mockAppointmentsArray),
+        } as any);
+
+        // Act
+        const result = await appointmentRepository.findAll().toPromise();
+
+        // Assert
+        expect(result).toEqual(mockAppointmentsArray);
+        expect(appointmentModel.find).toHaveBeenCalledTimes(1);
+        expect(appointmentModel.find).toHaveBeenCalledWith();
+      });
+    });
   });
-  // describe('update', () => {
-  //   it('should update an appointment and return the updated appointment', async () => {
-  //     // Arrange
-  //     const expectedAppointment = {
-  //       ...mockAppointment,
-  //       _id: '1234',
-  //       appointmentDate: new Date(),
-  //       hour: '10:00',
-  //       patient: '1245',
-  //       reason: 'Consulta médica',
-  //       status: 'Scheduled',
-  //       healthcareProvider: {
-  //         name: 'John Doe',
-  //         email: 'johndoe@example.com',
-  //         phone: '555-555-5555',
-  //         specialty: 'Cardiology',
-  //         appointments: [],
-  //       },
-  //       healthcareProviderSchemaMongo: '',
-  //       Patient: undefined,
-  //     };
-
-  //     const appointmentModel = {
-  //       findByIdAndUpdate: jest.fn(),
-  //     };
-  //     jest
-  //       .spyOn(appointmentModel, 'findByIdAndUpdate')
-  //       .mockReturnValueOnce(of(expectedAppointment) as any);
-
-  //     // Act
-  //     const result = await appointmentRepository
-  //       .update(mockAppointment.reason, expectedAppointment)
-  //       .toPromise();
-
-  //     // Assert
-  //     expect(result).toEqual(expectedAppointment);
-  //     expect(appointmentModel.findByIdAndUpdate).toHaveBeenCalledTimes(1);
-  //     expect(appointmentModel.findByIdAndUpdate).toHaveBeenCalledWith(
-  //       mockAppointment.reason,
-  //       expectedAppointment,
-  //     );
-  //   });
-  // });
 });

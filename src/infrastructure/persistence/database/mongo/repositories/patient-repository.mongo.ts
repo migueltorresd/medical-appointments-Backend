@@ -29,6 +29,12 @@ export class PatientRepository implements IBase<PatientSchemaMongo> {
     );
   }
 
+  updatepatient(
+    _id: string,
+    entity: PatientDomainModel,
+  ): Observable<PatientSchemaMongo> {
+    return from(this.patientRepository.findByIdAndUpdate({_id}, entity, {new: true}))
+  }
   delete(_id: string): Observable<PatientSchemaMongo> {
     return from(this.patientRepository.findByIdAndDelete(_id));
   }

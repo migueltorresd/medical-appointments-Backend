@@ -5,6 +5,7 @@ describe('PatientSchemaMongo', () => {
     test('should create a new instance of PatientSchemaMongo with the provided data', () => {
       // Arrange
       const patientData = {
+        _id: '123456',
         name: 'John Doe',
         document: '123456',
         birthDate: new Date(),
@@ -12,7 +13,7 @@ describe('PatientSchemaMongo', () => {
         email: 'johndoe@example.com',
         phone: '1234567890',
         state: 'CA',
-        appointment: ['123', '456'],
+        appointments: [],
       };
 
       // Act
@@ -26,7 +27,7 @@ describe('PatientSchemaMongo', () => {
       expect(patient.email).toBe(patientData.email);
       expect(patient.phone).toBe(patientData.phone);
       expect(patient.state).toBe(patientData.state);
-      expect(patient.appointment).toBeDefined();
+      expect(patient.appointments).toBeDefined();
     });
   });
 });

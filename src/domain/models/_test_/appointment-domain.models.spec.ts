@@ -7,9 +7,11 @@ describe('AppointmentDomainModel', () => {
     test('should create an instance with the correct properties', () => {
       // Arrange
       const appointmentData = {
+        _id: null,
         appointmentDate: new Date('2023-04-10'),
         hour: '10:00 AM',
         Patient: new PatientDomainModel({
+          _id: 'mockId',
           name: 'John Doe',
           document: '123456',
           birthDate: new Date('1990-01-01'),
