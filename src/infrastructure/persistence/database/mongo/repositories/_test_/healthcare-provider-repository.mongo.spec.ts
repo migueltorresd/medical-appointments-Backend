@@ -40,6 +40,7 @@ describe('HealthcareProviderRepository', () => {
     it('should create a healthcare provider and return the created healthcare provider', async () => {
       // Arrange
       const mockHealthcareProvider = new HealthcareProviderDomainModel({
+        rol: 'healthcareProvider',
         name: 'John Doe',
         specialty: 'cardiologist',
         email: 'johndoe@example.com',
@@ -79,6 +80,7 @@ describe('HealthcareProviderRepository', () => {
       // Arrange
       const healthcareProviderId = 'mockId';
       const mockHealthcareProvider = new HealthcareProviderDomainModel({
+        rol: 'healthcareProvider',
         name: 'John Doe',
         specialty: 'cardiologist',
         email: 'johndoe@example.com',
@@ -87,6 +89,7 @@ describe('HealthcareProviderRepository', () => {
       });
 
       const expectedHealthcareProvider = {
+        rol: 'healthcareProvider',
         _id: healthcareProviderId,
         name: 'Jane Doe',
         specialty: 'neurologist',
@@ -131,6 +134,7 @@ describe('HealthcareProviderRepository', () => {
       // Arrange
       const providerId = '11233';
       const mockProvider = new HealthcareProviderSchemaMongo({
+        rol: 'healthcareProvider',
         name: 'John Doe',
         specialty: 'cardiologist',
         email: 'johndoe@example.com',
@@ -165,6 +169,7 @@ describe('HealthcareProviderRepository', () => {
       // Arrange
       const healthcareProviderId = 'mockId';
       const expectedHealthcareProvider = {
+        rol: 'healthcareProvider',
         _id: healthcareProviderId,
         name: 'John Doe',
         specialty: 'cardiologist',
@@ -206,6 +211,7 @@ describe('HealthcareProviderRepository', () => {
       // Arrange
       const providerId = 'mockId';
       const expectedProvider = {
+        rol: 'healthcareProvider',
         _id: providerId,
         name: 'Dr. John Doe',
         specialization: 'Pediatrics',
@@ -235,6 +241,7 @@ describe('HealthcareProviderRepository', () => {
       // Arrange
       const mockProvidersArray = [
         {
+          rol: 'healthcareProvider',
           _id: 'providerId1',
           name: 'Dr. John Doe',
           specialization: 'Pediatrics',
@@ -244,6 +251,7 @@ describe('HealthcareProviderRepository', () => {
           appointments: [],
         },
         {
+          rol: 'healthcareProvider',
           _id: 'providerId2',
           name: 'Dr. Jane Doe',
           specialization: 'Cardiology',

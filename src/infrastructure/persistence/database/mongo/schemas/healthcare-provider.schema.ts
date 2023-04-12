@@ -9,6 +9,9 @@ import { HealthcareProviderDomainModel } from '../../../../../domain/models/heal
   strict: false,
 })
 export class HealthcareProviderSchemaMongo extends HealthcareProviderDomainModel {
+  @Prop({ required: true })
+  rol: string;
+
   @Prop({
     type: SchemaTypes.ObjectId,
     auto: true,

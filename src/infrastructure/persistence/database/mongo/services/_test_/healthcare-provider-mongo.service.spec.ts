@@ -13,6 +13,7 @@ describe('HealthcareProviderMongoService', () => {
       delete: jest.fn(),
       findById: jest.fn(),
       findAll: jest.fn(),
+      updateHealthcareProvider: jest.fn(),
     } as unknown as HealthcareProviderRepository;
     healthcareProviderMongoService = new HealthcareProviderMongoService(
       healthcareProviderRepository,
@@ -25,6 +26,7 @@ describe('HealthcareProviderMongoService', () => {
 
   describe('create', () => {
     const healthcareProvider: HealthcareProviderSchemaMongo = {
+      rol: 'healthcareProvider',
       _id: '123', // agregue un _id
       name: 'John Doe',
       email: 'johndoe@example.com',
@@ -81,6 +83,7 @@ describe('HealthcareProviderMongoService', () => {
   describe('update', () => {
     const id = '123';
     const healthcareProvider: HealthcareProviderSchemaMongo = {
+      rol: 'healthcareProvider',
       _id: id,
       name: 'John Doe',
       email: 'johndoe@example.com',
@@ -136,6 +139,7 @@ describe('HealthcareProviderMongoService', () => {
       });
     });
   });
+
   describe('delete', () => {
     let healthcareProviderRepository: HealthcareProviderRepository;
     let healthcareProviderMongoService: HealthcareProviderMongoService;
@@ -243,6 +247,7 @@ describe('HealthcareProviderMongoService', () => {
       // Arrange
       const id = '123';
       const healthcareProvider: HealthcareProviderSchemaMongo = {
+        rol: 'healthcareProvider',
         _id: id,
         name: 'John Doe',
         email: 'johndoe@example.com',

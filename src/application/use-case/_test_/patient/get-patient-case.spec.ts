@@ -44,6 +44,7 @@ describe('GetPatientUseCase', () => {
     it('should return a patient when given a valid ID', () => {
       // Arrange
       const expectedPatient: PatientDomainModel = {
+        rol: 'patient',
         _id: '123',
         name: 'Test Patient',
         email: 'test@test.com',

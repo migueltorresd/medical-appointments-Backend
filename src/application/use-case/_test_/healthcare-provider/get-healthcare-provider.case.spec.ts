@@ -35,6 +35,7 @@ describe('GetHealthcareProviderUseCase', () => {
     it('should return a healthcare provider when given a valid ID', () => {
       // Arrange
       const expectedHealthcareProvider: HealthcareProviderDomainModel = {
+        rol: 'healthcareProvider',
         name: 'Test Healthcare Provider',
         email: '@jefe.com',
         phone: '555-555-5555',

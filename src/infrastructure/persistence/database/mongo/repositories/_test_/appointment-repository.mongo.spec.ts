@@ -47,6 +47,7 @@ describe('AppointmentRepository', () => {
         reason: 'Consulta médica',
         status: 'Scheduled',
         healthcareProvider: {
+          rol: 'healthcareProvider',
           name: 'John Doe',
           email: 'johndoe@example.com',
           phone: '555-555-5555',
@@ -88,6 +89,7 @@ describe('AppointmentRepository', () => {
           reason: 'Consulta médica',
           status: 'Scheduled',
           healthcareProvider: {
+            rol: 'healthcareProvider',
             name: 'John Doe',
             email: 'johndoe@example.com',
             phone: '555-555-5555',
@@ -129,6 +131,7 @@ describe('AppointmentRepository', () => {
           reason: 'Consulta médica',
           status: 'Scheduled',
           healthcareProvider: {
+            rol: 'healthcareProvider',
             name: 'John Doe',
             email: 'johndoe@example.com',
             phone: '555-555-5555',
@@ -182,6 +185,7 @@ describe('AppointmentRepository', () => {
             reason: 'Consulta médica',
             status: 'Scheduled',
             healthcareProvider: {
+              rol: 'healthcareProvider',
               name: 'Dr. John Doe',
               email: 'johndoe@example.com',
               phone: '555-555-5555',
@@ -199,6 +203,7 @@ describe('AppointmentRepository', () => {
             reason: 'Consulta médica',
             status: 'Scheduled',
             healthcareProvider: {
+              rol: 'healthcareProvider',
               name: 'Dr. Jane Doe',
               email: 'janedoe@example.com',
               phone: '555-555-5555',

@@ -18,6 +18,7 @@ describe('AuthService', () => {
   describe('generateToken', () => {
     it('should generate a token for the patient', (done) => {
       const patient: IPatientDomain = {
+        rol: 'patient',
         _id: '123',
         document: '12345678',
         name: 'John Doe',

@@ -38,6 +38,7 @@ describe('PatientRepository', () => {
     it('should create a patient and return the created patient', async () => {
       // Arrange
       const mockPatient = new PatientDomainModel({
+        rol: 'patient',
         _id: '11233',
         name: 'John Doe',
         document: '123456789',
@@ -72,6 +73,7 @@ describe('PatientRepository', () => {
       // Arrange
       const patientId = '11233';
       const mockPatient = new PatientDomainModel({
+        rol: 'patient',
         _id: '11233',
         name: 'John Doe',
         document: '123456789',
@@ -107,6 +109,7 @@ describe('PatientRepository', () => {
       // Arrange
       const patientId = 'mockId';
       const mockPatient = new PatientDomainModel({
+        rol: 'patient',
         _id: patientId,
         name: 'John Doe',
         document: '123456789',
@@ -130,9 +133,7 @@ describe('PatientRepository', () => {
         ],
       };
 
-      jest
-      .spyOn(patientModel, 'findOneAndUpdate')
-      .mockReturnValueOnce({
+      jest.spyOn(patientModel, 'findOneAndUpdate').mockReturnValueOnce({
         exec: jest.fn().mockResolvedValueOnce(expectedPatient),
       } as any);
 
@@ -156,6 +157,7 @@ describe('PatientRepository', () => {
       // Arrange
       const patientId = 'mockId';
       const expectedPatient = {
+        rol: 'patient',
         _id: patientId,
         name: 'John Doe',
         document: '123456789',
@@ -184,6 +186,7 @@ describe('PatientRepository', () => {
       // Arrange
       const patientId = 'mockId';
       const expectedPatient = {
+        rol: 'patient',
         _id: patientId,
         name: 'John Doe',
         document: '123456789',
@@ -213,6 +216,7 @@ describe('PatientRepository', () => {
       // Arrange
       const mockPatientArray = [
         {
+          rol: 'patient',
           _id: 'patientId1',
           name: 'John Doe',
           document: '123456789',
@@ -224,6 +228,7 @@ describe('PatientRepository', () => {
           appointments: [],
         },
         {
+          rol: 'patient',
           _id: 'patientId2',
           name: 'Jane Doe',
           document: '987654321',

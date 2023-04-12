@@ -11,6 +11,7 @@ describe('AppointmentDomainModel', () => {
         appointmentDate: new Date('2023-04-10'),
         hour: '10:00 AM',
         Patient: new PatientDomainModel({
+          rol: 'patient',
           _id: 'mockId',
           name: 'John Doe',
           document: '123456',
@@ -23,6 +24,7 @@ describe('AppointmentDomainModel', () => {
         reason: 'General checkup',
         status: 'Scheduled',
         healthcareProvider: new HealthcareProviderDomainModel({
+          rol: 'healthcareProvider',
           name: 'Dr. Jane Smith',
           email: 'janesmith@example.com',
           phone: '987-654-3210',

@@ -2,6 +2,7 @@ import { AppointmentDomainModel } from './appointment-domain.models';
 import { IPatientDomain } from './interface';
 
 export class PatientDomainModel implements IPatientDomain {
+  rol: string;
   _id: string;
   name: string;
   document: string;

@@ -36,8 +36,7 @@ export class PatientController {
 
   @Delete(':id')
   delete(@Param('id') id: string): Observable<PatientDomainModel> {
-    this.useCase.toDeletePatient();
-    return this.useCase.execute(id);
+    return this.patientService.delete(id);
   }
 
   @Put(':id')

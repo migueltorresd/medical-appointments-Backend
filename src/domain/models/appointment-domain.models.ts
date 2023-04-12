@@ -3,7 +3,7 @@ import { IAppointmentDomain } from './interface/appointment-domain.interface';
 import { PatientDomainModel } from './patient-domain.models';
 
 export class AppointmentDomainModel implements IAppointmentDomain {
-  _id: string
+  _id: string;
   appointmentDate: Date;
   hour: string;
   Patient: PatientDomainModel;

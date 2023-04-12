@@ -5,6 +5,9 @@ import { PatientDomainModel } from '../../../../../domain/models/patient-domain.
 
 @Schema({ collection: 'PatientMongo', versionKey: false, strict: false })
 export class PatientSchemaMongo extends PatientDomainModel {
+  @Prop({ required: true })
+  rol: string;
+
   @Prop({
     type: SchemaTypes.ObjectId,
     auto: true,
@@ -33,8 +36,7 @@ export class PatientSchemaMongo extends PatientDomainModel {
   state: string;
 
   @Prop({
-    type:[{ type: SchemaTypes.ObjectId,
-    ref: 'AppointmentSchemaMongo'}]
+    type: [{ type: SchemaTypes.ObjectId, ref: 'AppointmentSchemaMongo' }],
   })
   appointments?: AppointmentSchemaMongo[];
 }

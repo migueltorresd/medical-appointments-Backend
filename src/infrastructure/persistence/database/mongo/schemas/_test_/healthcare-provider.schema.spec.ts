@@ -29,6 +29,7 @@ describe('HealthcareProviderSchemaMongo', () => {
     it('should create a new instance of HealthcareProviderSchemaMongo with the provided data', () => {
       // Arrange
       const healthcareProviderData = {
+        rol: 'healthcareProvider',
         name: 'John Doe',
         email: 'johndoe@example.com',
         phone: '1234567890',

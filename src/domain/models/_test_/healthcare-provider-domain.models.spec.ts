@@ -7,6 +7,8 @@ describe('HealthcareProviderDomainModel', () => {
     test('should create an instance with default appointments array', () => {
       // Arrange
       const healthcareProviderData = {
+        rol: 'healthcareProvider',
+        _id: '123456',
         name: 'Dr. Jane Doe',
         email: 'janedoe@example.com',
         phone: '123-456-7890',

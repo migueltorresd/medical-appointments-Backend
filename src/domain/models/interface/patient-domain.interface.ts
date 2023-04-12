@@ -1,6 +1,7 @@
 import { AppointmentDomainModel } from '../appointment-domain.models';
 
 export interface IPatientDomain {
+  rol: string;
   _id: string;
   name: string;
   document: string;

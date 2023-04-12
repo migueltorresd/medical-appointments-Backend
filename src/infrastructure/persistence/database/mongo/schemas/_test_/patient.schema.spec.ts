@@ -5,6 +5,7 @@ describe('PatientSchemaMongo', () => {
     test('should create a new instance of PatientSchemaMongo with the provided data', () => {
       // Arrange
       const patientData = {
+        rol: 'patient',
         _id: '123456',
         name: 'John Doe',
         document: '123456',

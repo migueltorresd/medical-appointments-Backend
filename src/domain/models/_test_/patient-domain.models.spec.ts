@@ -5,6 +5,7 @@ describe('PatientDomainModel', () => {
     test('should create an instance with the correct properties', () => {
       // Arrange
       const patientData = {
+        rol: 'patient',
         _id: '123456',
         name: 'John Doe',
         document: '123456',
@@ -32,6 +33,7 @@ describe('PatientDomainModel', () => {
     test('should create an instance with default state and appointments array', () => {
       // Arrange
       const patientData = {
+        rol: 'patient',
         _id: '123456',
         name: 'John Doe',
         document: '123456',

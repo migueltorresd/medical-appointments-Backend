@@ -26,6 +26,7 @@ describe('PatientMongoService', () => {
     it('should create a patient successfully', (done) => {
       // Arrange
       const patient: PatientSchemaMongo = {
+        rol: 'patient',
         _id: '123456',
         name: 'John Doe',
         document: '123456789',
@@ -38,6 +39,7 @@ describe('PatientMongoService', () => {
       };
       const createdPatient: PatientSchemaMongo = {
         ...patient,
+        rol: 'patient',
         _id: '123456',
         name: 'John Doe',
         document: '123456789',
@@ -67,6 +69,7 @@ describe('PatientMongoService', () => {
     it('should handle error when creating a patient', (done) => {
       // Arrange
       const patient: PatientSchemaMongo = {
+        rol: 'patient',
         _id: '123456',
         name: 'John Doe',
         document: '123456789',
@@ -122,6 +125,7 @@ describe('PatientMongoService', () => {
       // Arrange
       const patientId = 'patientId123';
       const patient: PatientSchemaMongo = {
+        rol: 'patient',
         _id: '123456',
         name: 'John Doe',
         document: '123456789',
@@ -159,6 +163,7 @@ describe('PatientMongoService', () => {
       // Arrange
       const patientId = 'patientId123';
       const patient: PatientSchemaMongo = {
+        rol: 'patient',
         _id: '123456',
         name: 'John Doe',
         document: '123456789',
@@ -259,6 +264,7 @@ describe('PatientMongoService', () => {
       // Arrange
       const patientId = 'patientId123';
       const patient: PatientSchemaMongo = {
+        rol: 'patient',
         _id: '123456',
         name: 'John Doe',
         document: '123456789',
@@ -287,7 +293,9 @@ describe('PatientMongoService', () => {
       // Arrange
       const patientId = 'patientId123';
       const error = new Error('Unable to find patient');
-      jest.spyOn(patientRepository, 'findById').mockReturnValue(throwError(error));
+      jest
+        .spyOn(patientRepository, 'findById')
+        .mockReturnValue(throwError(error));
 
       // Act
       const result = patientMongoService.findById(patientId);

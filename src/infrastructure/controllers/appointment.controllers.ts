@@ -58,4 +58,9 @@ export class AppointmentController {
     this.useCase.toUpdateAppointment();
     return this.useCase.execute(id, appointmentUpdates);
   }
+
+  @Get()
+  findAll(): Observable<AppointmentDomainModel[]> {
+    return this.appointmentService.findAll();
+  }
 }
