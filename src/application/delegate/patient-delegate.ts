@@ -9,6 +9,9 @@ import { IAuthService } from 'src/domain/services/auth.service';
 import { AuthService } from 'src/infrastructure/utils/service/auth.service';
 
 export class PatientDelegate implements IUseCase {
+  static execute(execute: any) {
+    throw new Error('Method not implemented.');
+  }
   private delegate: IUseCase;
   constructor(private readonly patientService: IPatientDomainService, private readonly authService: AuthService) {}
 
