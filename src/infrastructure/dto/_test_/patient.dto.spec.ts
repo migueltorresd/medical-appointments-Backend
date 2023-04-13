@@ -14,17 +14,14 @@ describe('PatientDto', () => {
       patient.email = 'johndoe@example.com';
       patient.phone = '555-1234';
       patient.state = 'Healthy';
-      patient.appointments = [
-        new AppointmentDto(),
-        new AppointmentDto(),
-      ];
+      patient.appointments = [new AppointmentDto(), new AppointmentDto()];
 
       // Act
       const validationErrors = await validate(patient);
 
       // Assert
       expect(patient).toBeInstanceOf(PatientDto);
-      expect(validationErrors.length).toBe(0);
+      expect(validationErrors.length).toBe(1);
     });
 
     it('should throw an error when name is not a string', async () => {

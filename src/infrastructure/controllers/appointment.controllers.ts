@@ -8,8 +8,8 @@ import {
   Put,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { AppointmentDelegate } from 'src/application/delegate/appointment.delegate';
-import { AppointmentDomainModel } from 'src/domain/models';
+import { AppointmentDelegate } from '../../application/delegate/appointment.delegate';
+import { AppointmentDomainModel } from '../../domain/models/appointment-domain.models';
 import { AppointmentDto } from '../dto/appointments.dto';
 import { AppointmentService } from '../services/appointment.service';
 import { PatientService } from '../services/patient.service';

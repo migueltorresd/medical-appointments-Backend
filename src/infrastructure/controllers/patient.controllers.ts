@@ -8,11 +8,12 @@ import {
   Put,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { PatientDomainModel } from 'src/domain/models/patient-domain.models';
+import { PatientDomainModel } from '../../domain/models/patient-domain.models';
 import { PatientDto } from '../dto/patient.dto';
 import { PatientService } from '../services/patient.service';
-import { PatientDelegate } from 'src/application/delegate/patient-delegate';
+import { PatientDelegate } from '../../application/delegate/patient-delegate';
 import { AuthService } from '../utils/service/auth.service';
+
 
 
 @Controller('patient')

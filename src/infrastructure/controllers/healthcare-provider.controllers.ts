@@ -1,9 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { HealthcareProviderDelegate } from 'src/application/delegate/healthcare-provider.delegate';
+import { HealthcareProviderDelegate } from '../../application/delegate/healthcare-provider.delegate';
 import { HealthcareProviderService } from '../services/healthcare-provider.service';
 import { HealthcareProviderDto } from '../dto/healthcare-provider.dto';
 import { Observable } from 'rxjs';
-import { HealthcareProviderDomainModel } from 'src/domain/models/healthcare-provider-domain.models';
+import { HealthcareProviderDomainModel } from '../../domain/models/healthcare-provider-domain.models';
 
 @Controller('Healthcare-Provider')
 export class HealthcareProviderController {

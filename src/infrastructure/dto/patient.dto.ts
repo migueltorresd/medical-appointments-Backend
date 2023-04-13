@@ -3,6 +3,9 @@ import { AppointmentDto } from './appointments.dto';
 
 export class PatientDto {
   @IsString()
+  rol: string;
+  
+  @IsString()
   name: string;
 
   @IsString()
