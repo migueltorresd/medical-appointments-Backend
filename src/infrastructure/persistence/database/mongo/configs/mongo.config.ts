@@ -22,52 +22,10 @@ import {
  */
 @Injectable()
 export class MongooseConfigService implements MongooseOptionsFactory {
-  /**
-   * este contructor es el encargado de inyectar el servicio de configuracion
-   *
-   * @constructor
-   * @param {ConfigService} configService
-   */
-  constructor(private readonly configService: ConfigService) {}
-  /**
-   * host de la base de datos
-   *
-   * @type
-   */
-  host = this.configService.get('DB_HOST');
-  /**
-   * port de la base de datos
-   *
-   * @type
-   */
-  port = this.configService.get('DB_PORT');
-  /**
-   * username de la base de datos
-   *
-   * @type
-   */
-  username = this.configService.get('DB_USER');
-  /**
-   * password de la base de datos
-   *
-   * @type
-   */
-  password = this.configService.get('DB_PASSWORD');
-  /**
-   * database de la base de datos
-
-   * @type 
-   */
-  database = this.configService.get('DB_NAME_MEDICAL');
-  /**
-   * este metodo es el encargado de crear las opciones de conexion
-   *
-   * @returns {MongooseModuleOptions}
-   */
   createMongooseOptions(): MongooseModuleOptions {
     return {
-      uri: 'mongodb://root:password@localhost:27017',
-      dbName: this.database,
+      uri: 'mongodb://mongo:UkCMT4nyC03OOvsHmVr6@containers-us-west-102.railway.app:6594',
+      dbName: 'Appointment',
     };
   }
 }
