@@ -1,12 +1,18 @@
-import { TestingModule, Test } from "@nestjs/testing";
-import { of } from "rxjs";
-import { AppointmentDelegate } from "../../../application/delegate/appointment.delegate";
-import { AppointmentService, PatientService, HealthcareProviderService } from "../../../infrastructure/services";
-import { AppointmentController } from "../appointment.controllers";
+import { TestingModule, Test } from '@nestjs/testing';
+import { of } from 'rxjs';
+import { AppointmentDelegate } from '../../../application/delegate/appointment.delegate';
+import {
+  AppointmentService,
+  PatientService,
+  HealthcareProviderService,
+} from '../../../infrastructure/services';
+import { AppointmentController } from '../appointment.controllers';
+import { AppointmentSchemaMongo } from 'src/infrastructure/persistence';
+import { AppointmentDomainModel } from 'src/domain/models';
 
 describe('Appointment Controller', () => {
   let controller: AppointmentController;
-
+  let appointmentService: AppointmentService;
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppointmentController],
@@ -41,7 +47,7 @@ describe('Appointment Controller', () => {
       expect(controller).toBeDefined();
     });
   });
-  
+
   describe('create', () => {
     it('should create an appointment', () => {
       // Arrange
@@ -57,7 +63,9 @@ describe('Appointment Controller', () => {
         id: 'appointment-id',
         ...appointmentDto,
       };
-      jest.spyOn(controller['useCase'], 'execute').mockReturnValue(of(appointment));
+      jest
+        .spyOn(controller['useCase'], 'execute')
+        .mockReturnValue(of(appointment));
 
       // Act
       controller.create(appointmentDto).subscribe((result) => {
