@@ -6,11 +6,12 @@ export class PatientDomainModel implements IPatientDomain {
   _id: string;
   name: string;
   document: string;
-  birthDate: Date;
-  gender: string;
+  birthDate?: Date;
+  gender?: string;
   email: string;
+  password: string;
   phone: string;
-  state: string;
+  state?: string;
   appointments?: AppointmentDomainModel[];
 
   constructor(data: IPatientDomain) {
@@ -19,6 +20,7 @@ export class PatientDomainModel implements IPatientDomain {
     this.birthDate = data.birthDate;
     this.gender = data.gender;
     this.email = data.email;
+    this.password = data.password;
     this.phone = data.phone;
     this.state = data.state;
     this.appointments = [];

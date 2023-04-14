@@ -25,6 +25,9 @@ export class HealthcareProviderSchemaMongo extends HealthcareProviderDomainModel
   email: string;
 
   @Prop({ required: true })
+  password: string;
+
+  @Prop({ required: true })
   phone: string;
 
   @Prop({ required: true })

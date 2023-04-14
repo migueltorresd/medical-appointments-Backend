@@ -7,9 +7,11 @@ export class HealthcareProviderDto {
   @IsString()
   email: string;
   @IsString()
+  password: string;
+  @IsString()
   phone: string;
   @IsString()
-  specialty: string;
+  specialty?: string;
 
   @IsArray()
   appointments: AppointmentDto[];

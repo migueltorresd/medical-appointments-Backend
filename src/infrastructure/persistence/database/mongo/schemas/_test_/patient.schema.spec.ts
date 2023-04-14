@@ -12,6 +12,7 @@ describe('PatientSchemaMongo', () => {
         birthDate: new Date(),
         gender: 'male',
         email: 'johndoe@example.com',
+        password: '123456',
         phone: '1234567890',
         state: 'CA',
         appointments: [],

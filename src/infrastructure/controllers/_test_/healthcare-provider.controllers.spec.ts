@@ -69,6 +69,7 @@ describe('HealthcareProvider Controller', () => {
         _id: '',
         name: '',
         email: '',
+        password: '123456',
         phone: '',
         specialty: '',
       };
@@ -99,6 +100,7 @@ describe('HealthcareProvider Controller', () => {
         _id: '',
         name: '',
         email: '',
+        password: '123456',
         phone: '',
         specialty: '',
       };

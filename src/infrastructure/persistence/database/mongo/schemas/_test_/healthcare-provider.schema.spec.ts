@@ -32,6 +32,7 @@ describe('HealthcareProviderSchemaMongo', () => {
         rol: 'healthcareProvider',
         name: 'John Doe',
         email: 'johndoe@example.com',
+        password: '123456',
         phone: '1234567890',
         specialty: 'Cardiology',
       };

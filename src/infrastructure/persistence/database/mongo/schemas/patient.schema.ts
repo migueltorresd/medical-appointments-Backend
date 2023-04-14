@@ -30,6 +30,9 @@ export class PatientSchemaMongo extends PatientDomainModel {
   email: string;
 
   @Prop({ required: true })
+  password: string;
+
+  @Prop({ required: true })
   phone: string;
 
   @Prop({ required: true })

@@ -117,6 +117,7 @@ describe('Patient Controller', () => {
         _id: '1',
         name: 'John Doe',
         email: 'johndoe@example.com',
+        password: '123456',
         rol: '',
         document: '',
         birthDate: undefined,
@@ -164,6 +165,7 @@ describe('Patient Controller', () => {
       const patientUpdates: Partial<PatientDto> = {
         name: 'John Smith',
         email: 'john@example.com',
+        password: '123456',
         gender: 'male',
         phone: '1234567890',
         };
@@ -171,6 +173,7 @@ describe('Patient Controller', () => {
         _id: '1',
         name: 'John Smith',
         email: 'john@example.com',
+        password: '123456',
         rol: '',
         document: '',
         birthDate: undefined,

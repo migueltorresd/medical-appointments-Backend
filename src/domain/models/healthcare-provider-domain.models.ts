@@ -8,6 +8,7 @@ export class HealthcareProviderDomainModel
   _id?: string;
   name: string;
   email: string;
+  password: string;
   phone: string;
   specialty: string;
   appointments?: AppointmentDomainModel[];

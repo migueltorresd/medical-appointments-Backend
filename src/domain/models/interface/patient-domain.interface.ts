@@ -5,10 +5,11 @@ export interface IPatientDomain {
   _id: string;
   name: string;
   document: string;
-  birthDate: Date;
-  gender: string;
+  birthDate?: Date;
+  gender?: string;
   email: string;
+  password: string;
   phone: string;
-  state: string;
+  state?: string;
   appointments?: AppointmentDomainModel[];
 }

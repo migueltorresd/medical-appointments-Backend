@@ -12,6 +12,7 @@ describe('PatientDomainModel', () => {
         birthDate: new Date('1990-01-01'),
         gender: 'Male',
         email: 'johndoe@example.com',
+        password: '123456',
         phone: '123-456-7890',
         state: 'Active',
       };
@@ -40,6 +41,7 @@ describe('PatientDomainModel', () => {
         birthDate: new Date('1990-01-01'),
         gender: 'Male',
         email: 'johndoe@example.com',
+        password: '123456',
         phone: '123-456-7890',
         state: 'Active',
       };

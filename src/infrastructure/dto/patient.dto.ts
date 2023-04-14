@@ -12,19 +12,22 @@ export class PatientDto {
   document: string;
 
   @IsDate()
-  birthDate: Date;
+  birthDate?: Date;
 
   @IsString()
-  gender: string;
+  gender?: string;
 
   @IsString()
   email: string;
 
   @IsString()
+  password: string;
+
+  @IsString()
   phone: string;
 
   @IsString()
-  state: string;
+  state?: string;
 
   @IsArray()
   appointments?: AppointmentDto[];
