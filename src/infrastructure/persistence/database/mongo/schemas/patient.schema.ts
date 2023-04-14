@@ -21,7 +21,7 @@ export class PatientSchemaMongo extends PatientDomainModel {
   document: string;
 
   @Prop({ required: true })
-  birthDate: Date;
+  birthDate?: Date;
 
   @Prop({ required: true })
   gender: string;
@@ -36,7 +36,7 @@ export class PatientSchemaMongo extends PatientDomainModel {
   phone: string;
 
   @Prop({ required: true })
-  state: string;
+  state?: string;
 
   @Prop({
     type: [{ type: SchemaTypes.ObjectId, ref: 'AppointmentSchemaMongo' }],

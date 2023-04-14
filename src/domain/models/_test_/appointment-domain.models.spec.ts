@@ -28,6 +28,7 @@ describe('AppointmentDomainModel', () => {
           rol: 'healthcareProvider',
           name: 'Dr. Jane Smith',
           email: 'janesmith@example.com',
+          password: '123456',
           phone: '987-654-3210',
           specialty: 'Family Medicine',
         }),

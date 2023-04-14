@@ -60,6 +60,7 @@ describe('HealthcareProvider Controller', () => {
       const healthcareProvider: HealthcareProviderDto = {
         name: 'John',
         email: '',
+        password: '123456',
         phone: '',
         specialty: '',
         appointments: [],
@@ -128,6 +129,7 @@ describe('HealthcareProvider Controller', () => {
         _id: '',
         name: '',
         email: '',
+        password: '123456',
         phone: '',
         specialty: '',
       };
