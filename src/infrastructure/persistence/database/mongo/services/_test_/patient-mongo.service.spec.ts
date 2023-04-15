@@ -133,7 +133,10 @@ describe('PatientMongoService', () => {
         .mockReturnValue(of(updatedPatient));
 
       // Act
-      const result = patientMongoService.updatepatient(patientId, updatedPatient);
+      const result = patientMongoService.updatepatient(
+        patientId,
+        updatedPatient,
+      );
 
       // Assert
       result.subscribe((response) => {

@@ -1,7 +1,7 @@
-import { Observable } from "rxjs";
-import { HealthcareProviderDomainModel } from "src/domain/models/healthcare-provider-domain.models";
-import { IHealthcareProviderDomainService } from "src/domain/services";
-import { GetHealthcareProviderUseCase } from "../../healthcare-provider/get-healthcare-provider.case";
+import { Observable } from 'rxjs';
+import { HealthcareProviderDomainModel } from 'src/domain/models/healthcare-provider-domain.models';
+import { IHealthcareProviderDomainService } from 'src/domain/services';
+import { GetHealthcareProviderUseCase } from '../../healthcare-provider/get-healthcare-provider.case';
 
 describe('GetHealthcareProviderUseCase', () => {
   let getHealthcareProviderUseCase: GetHealthcareProviderUseCase;
@@ -19,7 +19,9 @@ describe('GetHealthcareProviderUseCase', () => {
       findByEmail: jest.fn(),
     } as jest.Mocked<IHealthcareProviderDomainService>;
 
-    getHealthcareProviderUseCase = new GetHealthcareProviderUseCase(healthcareProviderServiceMock);
+    getHealthcareProviderUseCase = new GetHealthcareProviderUseCase(
+      healthcareProviderServiceMock,
+    );
   });
 
   afterEach(() => {
@@ -51,12 +53,15 @@ describe('GetHealthcareProviderUseCase', () => {
       );
 
       // Act
-      const observable = getHealthcareProviderUseCase.execute(healthcareProviderId);
+      const observable =
+        getHealthcareProviderUseCase.execute(healthcareProviderId);
 
       // Assert
       return observable.toPromise().then((healthcareProvider) => {
         expect(healthcareProvider).toEqual(expectedHealthcareProvider);
-        expect(healthcareProviderServiceMock.findById).toHaveBeenCalledWith(healthcareProviderId);
+        expect(healthcareProviderServiceMock.findById).toHaveBeenCalledWith(
+          healthcareProviderId,
+        );
       });
     });
 
@@ -70,7 +75,8 @@ describe('GetHealthcareProviderUseCase', () => {
       );
 
       // Act
-      const observable = getHealthcareProviderUseCase.execute(healthcareProviderId);
+      const observable =
+        getHealthcareProviderUseCase.execute(healthcareProviderId);
 
       // Assert
       return observable.toPromise().catch((error) => {

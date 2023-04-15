@@ -1,9 +1,9 @@
-import { IHealthcareProviderDomainService } from "src/domain/services";
-import { CreateHealthcareProviderUseCase } from "../use-case/healthcare-provider/create-healthcare-provider.case";
-import { DeleteHealthcareProviderUseCase } from "../use-case/healthcare-provider/delete-healthcare-provuder.case";
-import { GetHealthcareProviderUseCase } from "../use-case/healthcare-provider/get-healthcare-provider.case";
-import { UpdateHealthcareProviderUseCase } from "../use-case/healthcare-provider/update-healthcare-provider.case";
-import { HealthcareProviderDelegate } from  "../delegate/healthcare-provider.delegate"
+import { IHealthcareProviderDomainService } from 'src/domain/services';
+import { CreateHealthcareProviderUseCase } from '../use-case/healthcare-provider/create-healthcare-provider.case';
+import { DeleteHealthcareProviderUseCase } from '../use-case/healthcare-provider/delete-healthcare-provuder.case';
+import { GetHealthcareProviderUseCase } from '../use-case/healthcare-provider/get-healthcare-provider.case';
+import { UpdateHealthcareProviderUseCase } from '../use-case/healthcare-provider/update-healthcare-provider.case';
+import { HealthcareProviderDelegate } from '../delegate/healthcare-provider.delegate';
 
 describe('healthcareProviderDelegate', () => {
   let healthcareProviderDelegate: HealthcareProviderDelegate;

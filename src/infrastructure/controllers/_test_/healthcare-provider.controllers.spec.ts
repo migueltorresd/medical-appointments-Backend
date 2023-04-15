@@ -59,6 +59,7 @@ describe('HealthcareProvider Controller', () => {
     it('should return an observable of HealthcareProviderDomainModel', () => {
       // Arrange
       const healthcareProvider: HealthcareProviderDto = {
+        rol: '',
         name: 'John',
         email: '',
         password: '123456',

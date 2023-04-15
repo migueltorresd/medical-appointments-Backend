@@ -1,32 +1,6 @@
 import { AppointmentDelegate } from "../delegate/appointment.delegate";
-import { UpdateAppointmentUseCase } from "../use-case/appointment/Update-appointment-case";
 import { CreateAppointmentUseCase } from "../use-case/appointment/create-appointment-case";
 
-
-describe('appointmentDelegate', () => {
-  let appointmentDelegate;
-
-  beforeEach(() => {
-    appointmentDelegate = { patientService: null };
-  });
-
-  afterEach(() => {
-    appointmentDelegate = null;
-  });
-
-  describe('when patientService is null', () => {
-    test('should return null', () => {
-      // Arrange
-      expect(appointmentDelegate['patientService']).toBe(null);
-
-      // Act
-      const result = appointmentDelegate['patientService'];
-
-      // Assert
-      expect(result).toBeNull();
-    });
-  });
-});
 
 describe('AppointmentDelegate', () => {
   let appointmentDelegate: AppointmentDelegate;
@@ -46,7 +20,9 @@ describe('AppointmentDelegate', () => {
       appointmentDelegate.toCreateAppointment();
 
       // Assert
-      expect(appointmentDelegate['delegate']).toBeInstanceOf(CreateAppointmentUseCase);
+      expect(appointmentDelegate['delegate']).toBeInstanceOf(
+        CreateAppointmentUseCase,
+      );
       expect(appointmentDelegate['appointmentService']).toBe(null);
       expect(appointmentDelegate['patientService']).toBe(null);
       expect(appointmentDelegate['healthCareProviderService']).toBe(null);

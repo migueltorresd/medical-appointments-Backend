@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { AppointmentSchemaMongo } from './appointment.schema';
-import { HydratedDocument, SchemaTypes, Schema as newSchema } from 'mongoose';
+import mongoose, { HydratedDocument, SchemaTypes } from 'mongoose';
 import { PatientDomainModel } from '../../../../../domain/models/patient-domain.models';
 
 @Schema({ collection: 'PatientMongo', versionKey: false, strict: false })
@@ -44,5 +44,8 @@ export class PatientSchemaMongo extends PatientDomainModel {
   appointments?: AppointmentSchemaMongo[];
 }
 
-export const PatientSchema = SchemaFactory.createForClass(PatientSchemaMongo);
+const schema = SchemaFactory.createForClass(PatientSchemaMongo);
+
 export type patientDocument = HydratedDocument<PatientSchemaMongo>;
+
+export { schema as PatientSchema };

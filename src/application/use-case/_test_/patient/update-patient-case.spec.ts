@@ -1,8 +1,7 @@
-import { of } from "rxjs";
-import { PatientDomainModel } from "src/domain/models";
-import { IPatientDomainService } from "../../../../domain/services/patient-domain.service";
-import { UpdatePatientUseCase } from "../../patient/update-patient-case";
-
+import { of } from 'rxjs';
+import { PatientDomainModel } from 'src/domain/models';
+import { IPatientDomainService } from '../../../../domain/services/patient-domain.service';
+import { UpdatePatientUseCase } from '../../patient/update-patient-case';
 
 describe('UpdatePatientUseCase', () => {
   let updatePatientUseCase: UpdatePatientUseCase;
@@ -17,7 +16,11 @@ describe('UpdatePatientUseCase', () => {
       findAll: jest.fn(),
       findById: jest.fn(),
       updatepatient: jest.fn(),
+<<<<<<< HEAD
       findByEmail: jest.fn(),
+=======
+      findByDocument: jest.fn(),
+>>>>>>> 3fab1ef96ce9cac9b4b873592763d773fa2c2c79
     } as jest.Mocked<IPatientDomainService<PatientDomainModel>>;
     updatePatientUseCase = new UpdatePatientUseCase(patientService);
     updatedPatient = {
@@ -55,13 +58,18 @@ describe('UpdatePatientUseCase', () => {
 
     test('should update a patient', (done) => {
       // Arrange
-      patientService.updatepatient = jest.fn().mockReturnValueOnce(of(updatedPatient));
+      patientService.updatepatient = jest
+        .fn()
+        .mockReturnValueOnce(of(updatedPatient));
 
       // Act
       updatePatientUseCase.execute(patientId, patient).subscribe((result) => {
         // Assert
         expect(result).toEqual(updatedPatient);
-        expect(patientService.updatepatient).toHaveBeenCalledWith(patientId, patient);
+        expect(patientService.updatepatient).toHaveBeenCalledWith(
+          patientId,
+          patient,
+        );
         done();
       });
     });

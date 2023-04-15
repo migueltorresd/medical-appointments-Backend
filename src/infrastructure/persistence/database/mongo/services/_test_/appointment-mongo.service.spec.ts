@@ -41,7 +41,7 @@ describe('AppointmentMongoService', () => {
       },
       healthcareProviderSchemaMongo: '',
       Patient: undefined,
-    }as unknown as AppointmentSchemaMongo;
+    } as unknown as AppointmentSchemaMongo;
 
     it('should create an appointment successfully', (done) => {
       // Arrange
@@ -104,7 +104,7 @@ describe('AppointmentMongoService', () => {
       },
       healthcareProviderSchemaMongo: '',
       Patient: undefined,
-    }as unknown as AppointmentSchemaMongo;
+    } as unknown as AppointmentSchemaMongo;
 
     it('should update an appointment successfully', (done) => {
       // Arrange
@@ -232,7 +232,7 @@ describe('AppointmentMongoService', () => {
       },
       healthcareProviderSchemaMongo: '',
       Patient: undefined,
-    }as unknown as AppointmentSchemaMongo;
+    } as unknown as AppointmentSchemaMongo;
 
     it('should find an appointment by id successfully', (done) => {
       // Arrange

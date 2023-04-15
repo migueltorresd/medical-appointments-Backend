@@ -6,10 +6,9 @@ describe('AppointmentDomainModel', () => {
   describe('constructor', () => {
     test('should create an instance with the correct properties', () => {
       // Arrange
-      const appointmentData = {
+      const appointmentData: AppointmentDomainModel = {
         _id: null,
         appointmentDate: new Date('2023-04-10'),
-        hour: '10:00 AM',
         Patient: new PatientDomainModel({
           rol: 'patient',
           _id: 'mockId',
@@ -23,7 +22,7 @@ describe('AppointmentDomainModel', () => {
           state: 'Active',
         }),
         reason: 'General checkup',
-        status: 'Scheduled',
+        status: 'scheduled',
         healthcareProvider: new HealthcareProviderDomainModel({
           rol: 'healthcareProvider',
           name: 'Dr. Jane Smith',
@@ -38,12 +37,15 @@ describe('AppointmentDomainModel', () => {
       const appointment = new AppointmentDomainModel(appointmentData);
 
       // Assert
-      expect(appointment.appointmentDate).toEqual(appointmentData.appointmentDate);
-      expect(appointment.hour).toBe(appointmentData.hour);
+      expect(appointment.appointmentDate).toEqual(
+        appointmentData.appointmentDate,
+      );
       expect(appointment.Patient).toEqual(appointmentData.Patient);
       expect(appointment.reason).toBe(appointmentData.reason);
       expect(appointment.status).toBe(appointmentData.status);
-      expect(appointment.healthcareProvider).toEqual(appointmentData.healthcareProvider);
+      expect(appointment.healthcareProvider).toEqual(
+        appointmentData.healthcareProvider,
+      );
     });
   });
 });

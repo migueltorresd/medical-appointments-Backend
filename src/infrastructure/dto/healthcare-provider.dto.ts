@@ -44,7 +44,8 @@ export class HealthcareProviderDto {
   specialty?: string;
 
   @ApiProperty({
-    description: 'patient appointments this field will be filled when a patient is consulted',
+    description:
+      'patient appointments this field will be filled when a patient is consulted',
   })
   @IsArray()
   appointments: AppointmentDto[];

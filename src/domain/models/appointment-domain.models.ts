@@ -5,15 +5,13 @@ import { PatientDomainModel } from './patient-domain.models';
 export class AppointmentDomainModel implements IAppointmentDomain {
   _id: string;
   appointmentDate: Date;
-  hour: string;
   Patient: PatientDomainModel;
   reason: string;
-  status: string;
+  status: 'available' | 'pending' | 'canceled' | 'completed' | 'scheduled';
   healthcareProvider: HealthcareProviderDomainModel;
 
   constructor(data: IAppointmentDomain) {
     this.appointmentDate = data.appointmentDate;
-    this.hour = data.hour;
     this.Patient = data.Patient;
     this.reason = data.reason;
     this.status = data.status;

@@ -12,8 +12,7 @@ describe('PatientDto', () => {
       patient.birthDate = new Date('1990-01-01');
       patient.gender = 'Male';
       patient.email = 'johndoe@example.com';
-      patient.password = '123456',
-      patient.phone = '555-1234';
+      (patient.password = '123456'), (patient.phone = '555-1234');
       patient.state = 'Healthy';
       patient.appointments = [new AppointmentDto(), new AppointmentDto()];
 
@@ -33,8 +32,7 @@ describe('PatientDto', () => {
       patient.birthDate = new Date('1990-01-01');
       patient.gender = 'Male';
       patient.email = 'johndoe@example.com';
-      patient.password = '123456',
-      patient.phone = '555-1234';
+      (patient.password = '123456'), (patient.phone = '555-1234');
       patient.state = 'Healthy';
 
       // Act

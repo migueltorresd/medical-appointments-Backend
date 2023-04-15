@@ -12,6 +12,9 @@ export class UpdateHealthcareProviderUseCase implements IUseCase {
     _id: string,
     healthcareProvider: HealthcareProviderDomainModel,
   ): Observable<HealthcareProviderDomainModel> {
-    return this.healthcareProviderService.updateHealthcareProvider(_id, healthcareProvider)
+    return this.healthcareProviderService.updateHealthcareProvider(
+      _id,
+      healthcareProvider,
+    );
   }
 }

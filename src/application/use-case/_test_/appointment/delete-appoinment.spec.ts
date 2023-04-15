@@ -3,7 +3,6 @@ import { AppointmentDomainModel } from '../../../../domain/models';
 import { IAppointmentDomainService } from '../../../../domain/services/appointment-domain.service';
 import { DeleteAppointmentUseCase } from '../../appointment/delete.appointment';
 
-
 describe('DeleteAppointmentUseCase', () => {
   let deleteAppointmentUseCase: DeleteAppointmentUseCase;
   let appointmentService: IAppointmentDomainService;
@@ -19,22 +18,21 @@ describe('DeleteAppointmentUseCase', () => {
     } as jest.Mocked<IAppointmentDomainService>;
     deleteAppointmentUseCase = new DeleteAppointmentUseCase(appointmentService);
     deletedAppointment = {
-        _id: '1234',
-        appointmentDate: new Date(),
-        hour: '10:00',
-        reason: 'Consulta médica',
-        status: 'Scheduled',
-        healthcareProvider: {
-            rol: 'healthcareProvider',
-          name: 'John Doe',
-          email: 'johndoe@example.com',
-          password: '123456',
-          phone: '555-555-5555',
-          specialty: 'Cardiology',
-          appointments: [],
-        },
-        Patient: undefined,
-    }
+      _id: '1234',
+      appointmentDate: new Date(),
+      reason: 'Consulta médica',
+      status: 'scheduled',
+      healthcareProvider: {
+        rol: 'healthcareProvider',
+        name: 'John Doe',
+        email: 'johndoe@example.com',
+        password: '123456',
+        phone: '555-555-5555',
+        specialty: 'Cardiology',
+        appointments: [],
+      },
+      Patient: undefined,
+    };
   });
 
   afterEach(() => {

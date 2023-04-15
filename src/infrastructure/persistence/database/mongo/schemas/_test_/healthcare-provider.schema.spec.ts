@@ -1,7 +1,10 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
-import { healthcareProviderDocument, HealthcareProviderSchemaMongo } from '../healthcare-provider.schema';
+import {
+  healthcareProviderDocument,
+  HealthcareProviderSchemaMongo,
+} from '../healthcare-provider.schema';
 
 describe('HealthcareProviderSchemaMongo', () => {
   let healthcareProviderModel: Model<healthcareProviderDocument>;
@@ -22,7 +25,9 @@ describe('HealthcareProviderSchemaMongo', () => {
       ],
     }).compile();
 
-    healthcareProviderModel = moduleRef.get<Model<healthcareProviderDocument>>(getModelToken('HealthcareProvider'));
+    healthcareProviderModel = moduleRef.get<Model<healthcareProviderDocument>>(
+      getModelToken('HealthcareProvider'),
+    );
   });
 
   describe('constructor', () => {
@@ -38,13 +43,17 @@ describe('HealthcareProviderSchemaMongo', () => {
       };
 
       // Act
-      const healthcareProvider = new HealthcareProviderSchemaMongo(healthcareProviderData);
+      const healthcareProvider = new HealthcareProviderSchemaMongo(
+        healthcareProviderData,
+      );
 
       // Assert
       expect(healthcareProvider.name).toBe(healthcareProviderData.name);
       expect(healthcareProvider.email).toBe(healthcareProviderData.email);
       expect(healthcareProvider.phone).toBe(healthcareProviderData.phone);
-      expect(healthcareProvider.specialty).toBe(healthcareProviderData.specialty);
+      expect(healthcareProvider.specialty).toBe(
+        healthcareProviderData.specialty,
+      );
     });
   });
 

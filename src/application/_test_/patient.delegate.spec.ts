@@ -1,11 +1,10 @@
-import { IPatientDomainService } from "src/domain/services";
-import { AuthService } from "src/infrastructure";
-import { PatientDelegate } from "../delegate/patient-delegate";
-import { CreatePatientUseCase } from "../use-case/patient/create-patient-case";
-import { DeletePatientUseCase } from "../use-case/patient/delete.patient-case";
-import { GetPatientUseCase } from "../use-case/patient/get-patient-case";
-import { UpdatePatientUseCase } from "../use-case/patient/update-patient-case";
-
+import { IPatientDomainService } from 'src/domain/services';
+import { AuthService } from 'src/infrastructure';
+import { PatientDelegate } from '../delegate/patient-delegate';
+import { CreatePatientUseCase } from '../use-case/patient/create-patient-case';
+import { DeletePatientUseCase } from '../use-case/patient/delete.patient-case';
+import { GetPatientUseCase } from '../use-case/patient/get-patient-case';
+import { UpdatePatientUseCase } from '../use-case/patient/update-patient-case';
 
 describe('PatientDelegate', () => {
   let patientDelegate: PatientDelegate;
@@ -60,12 +59,15 @@ describe('PatientDelegate', () => {
 
   describe('execute', () => {
     beforeEach(() => {
-        const authServiceMock = {} as any;
-        const patientServiceMock = {} as any;
-      
-        patientDelegate = new PatientDelegate(patientServiceMock, authServiceMock);
-        patientDelegate.toCreatePatient();
-      });
+      const authServiceMock = {} as any;
+      const patientServiceMock = {} as any;
+
+      patientDelegate = new PatientDelegate(
+        patientServiceMock,
+        authServiceMock,
+      );
+      patientDelegate.toCreatePatient();
+    });
     it('should delegate execution to the current use case', () => {
       // Arrange
       const expectedResponse = 'some response';

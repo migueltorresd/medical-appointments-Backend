@@ -5,7 +5,6 @@ import { CreatePatientUseCase } from '../use-case/patient/create-patient-case';
 import { DeletePatientUseCase } from '../use-case/patient/delete.patient-case';
 import { UpdatePatientUseCase } from '../use-case/patient/update-patient-case';
 import { GetPatientUseCase } from '../use-case/patient/get-patient-case';
-import { IAuthService } from 'src/domain/services/auth.service';
 import { AuthService } from 'src/infrastructure/utils/service/auth.service';
 import { SearchByEmailUseCase } from '../use-case/patient/search-by-email-case';
 
@@ -14,14 +13,20 @@ export class PatientDelegate implements IUseCase {
     throw new Error('Method not implemented.');
   }
   private delegate: IUseCase;
-  constructor(private readonly patientService: IPatientDomainService, private readonly authService: AuthService) {}
+  constructor(
+    private readonly patientService: IPatientDomainService,
+    private readonly authService: AuthService,
+  ) {}
 
   execute<Response>(...args: any[]): Observable<Response> {
     return this.delegate.execute(...args);
   }
 
   toCreatePatient() {
-    this.delegate = new CreatePatientUseCase(this.patientService, this.authService);
+    this.delegate = new CreatePatientUseCase(
+      this.patientService,
+      this.authService,
+    );
   }
 
   toUpdatePatient() {
@@ -33,7 +38,10 @@ export class PatientDelegate implements IUseCase {
   }
 
   toGetPatient() {
-    this.delegate = new GetPatientUseCase(this.patientService, this.authService);
+    this.delegate = new GetPatientUseCase(
+      this.patientService,
+      this.authService,
+    );
   }
 
   toGetEmailPatient() {

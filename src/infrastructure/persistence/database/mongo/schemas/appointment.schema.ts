@@ -1,14 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { PatientSchemaMongo } from './patient.schema';
-import { HydratedDocument, SchemaType, SchemaTypeOptions, SchemaTypes, Schema as newSchema } from 'mongoose';
+import { HydratedDocument, Schema as newSchema, SchemaTypes } from 'mongoose';
 import { HealthcareProviderSchemaMongo } from './healthcare-provider.schema';
 import { AppointmentDomainModel } from '../../../../../domain/models/appointment-domain.models';
 
 @Schema({ collection: 'Appointments', versionKey: false })
 export class AppointmentSchemaMongo extends AppointmentDomainModel {
   @Prop({
-  type: SchemaTypes.ObjectId,
-  auto: true
+    type: SchemaTypes.ObjectId,
+    auto: true,
   })
   _id: string;
 
@@ -16,13 +16,10 @@ export class AppointmentSchemaMongo extends AppointmentDomainModel {
   appointmentDate: Date;
 
   @Prop({ required: true })
-  hour: string;
-
-  @Prop({ required: true })
   reason: string;
 
   @Prop({ required: true })
-  status: string;
+  status: 'available' | 'pending' | 'canceled' | 'completed' | 'scheduled';
 
   @Prop({
     type: newSchema.Types.ObjectId,
@@ -36,6 +33,7 @@ export class AppointmentSchemaMongo extends AppointmentDomainModel {
   })
   healthcareProviderSchemaMongo: HealthcareProviderSchemaMongo['_id'];
 }
+
 export const AppointmentSchema = SchemaFactory.createForClass(
   AppointmentSchemaMongo,
 );

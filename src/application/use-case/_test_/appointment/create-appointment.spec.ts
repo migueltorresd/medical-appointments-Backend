@@ -1,13 +1,13 @@
-import { of, throwError, forkJoin, map } from 'rxjs';
+import { forkJoin, map, of, throwError } from 'rxjs';
 import {
   AppointmentDomainModel,
-  PatientDomainModel,
   HealthcareProviderDomainModel,
+  PatientDomainModel,
 } from 'src/domain/models';
 import {
   IAppointmentDomainService,
-  IPatientDomainService,
   IHealthcareProviderDomainService,
+  IPatientDomainService,
 } from 'src/domain/services';
 import { CreateAppointmentUseCase } from '../../appointment/create-appointment-case';
 
@@ -32,7 +32,7 @@ describe('CreateAppointmentUseCase', () => {
       delete: jest.fn(),
       findAll: jest.fn(),
       findById: jest.fn(),
-      findByEmail: jest.fn(),
+      findByDocument: jest.fn(),
     };
     healthcareProviderService = {
       create: jest.fn(),
@@ -60,9 +60,8 @@ describe('CreateAppointmentUseCase', () => {
     const appointmentEntity: AppointmentDomainModel = {
       _id: 'dummy-appointment-id',
       appointmentDate: new Date(),
-      hour: '10:00',
       reason: 'Consulta médica',
-      status: 'Scheduled',
+      status: 'scheduled',
       healthcareProvider: {
         rol: 'healthcareProvider',
         name: 'John Doe',
@@ -98,9 +97,8 @@ describe('CreateAppointmentUseCase', () => {
     const appointmentCreated: AppointmentDomainModel = {
       _id: 'dummy-appointment-id',
       appointmentDate: new Date(),
-      hour: '10:00',
       reason: 'Consulta médica',
-      status: 'Scheduled',
+      status: 'scheduled',
       healthcareProvider: {
         rol: 'healthcareProvider',
         name: 'John Doe',
@@ -135,9 +133,8 @@ describe('CreateAppointmentUseCase', () => {
         {
           _id: 'dummy-appointment-id',
           appointmentDate: new Date(),
-          hour: '10:00',
           reason: 'Consulta médica',
-          status: 'Scheduled',
+          status: 'scheduled',
           healthcareProvider: {
             rol: 'healthcareProvider',
             name: 'John Doe',
@@ -153,50 +150,49 @@ describe('CreateAppointmentUseCase', () => {
         '456',
       );
 
-        expect(patientService.findById).toHaveBeenCalledTimes(1);
-        expect(patientService.findById).toHaveBeenCalledWith('123');
-        expect(healthcareProviderService.findById).toHaveBeenCalledTimes(1);
-        expect(healthcareProviderService.findById).toHaveBeenCalledWith(
-          '456'
-        );
-        expect(patientService.update).toHaveBeenCalledTimes(0);
-        expect(healthcareProviderService.update).toHaveBeenCalledTimes(0);
-        done();
-      });
-    });
-    test('should return an error if appointment creation fails', (done) => {
-      const error = new Error('Error creating appointment');
-      appointmentService.create = jest.fn().mockReturnValueOnce(throwError(error));
-
-      const result = createAppointmentUseCase.execute(
-        {
-          _id: 'dummy-appointment-id',
-          appointmentDate: new Date(),
-          hour: '10:00',
-          reason: 'Consulta médica',
-          status: 'Scheduled',
-          healthcareProvider: {
-            rol: 'healthcareProvider',
-            name: 'John Doe',
-            email: 'johndoe@example.com',
-            password: '123456',
-            phone: '555-555-5555',
-            specialty: 'Cardiology',
-            appointments: [],
-          },
-          Patient: undefined,
-        },
-        '123',
-        '456',
-      );
-
-      forkJoin(result).subscribe({
-        error: (err) => {
-          expect(appointmentService.create).toHaveBeenCalledTimes(0);
-          expect(patientService.update).not.toHaveBeenCalled();
-          expect(healthcareProviderService.update).not.toHaveBeenCalled();
-          done();
-        },
-      });
+      expect(patientService.findById).toHaveBeenCalledTimes(1);
+      expect(patientService.findById).toHaveBeenCalledWith('123');
+      expect(healthcareProviderService.findById).toHaveBeenCalledTimes(1);
+      expect(healthcareProviderService.findById).toHaveBeenCalledWith('456');
+      expect(patientService.update).toHaveBeenCalledTimes(0);
+      expect(healthcareProviderService.update).toHaveBeenCalledTimes(0);
+      done();
     });
   });
+  test('should return an error if appointment creation fails', (done) => {
+    const error = new Error('Error creating appointment');
+    appointmentService.create = jest
+      .fn()
+      .mockReturnValueOnce(throwError(error));
+
+    const result = createAppointmentUseCase.execute(
+      {
+        _id: 'dummy-appointment-id',
+        appointmentDate: new Date(),
+        reason: 'Consulta médica',
+        status: 'scheduled',
+        healthcareProvider: {
+          rol: 'healthcareProvider',
+          name: 'John Doe',
+          email: 'johndoe@example.com',
+          password: '123456',
+          phone: '555-555-5555',
+          specialty: 'Cardiology',
+          appointments: [],
+        },
+        Patient: undefined,
+      },
+      '123',
+      '456',
+    );
+
+    forkJoin(result).subscribe({
+      error: (err) => {
+        expect(appointmentService.create).toHaveBeenCalledTimes(0);
+        expect(patientService.update).not.toHaveBeenCalled();
+        expect(healthcareProviderService.update).not.toHaveBeenCalled();
+        done();
+      },
+    });
+  });
+});

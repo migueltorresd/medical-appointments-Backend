@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { HealthcareProviderDelegate } from '../../application/delegate/healthcare-provider.delegate';
 import { HealthcareProviderService } from '../services/healthcare-provider.service';
 import { HealthcareProviderDto } from '../dto/healthcare-provider.dto';
@@ -25,7 +33,7 @@ export class HealthcareProviderController {
     return this.useCase.execute(healthcareProvider);
   }
 
- @ApiOperation({ summary: 'Get healthcare provider by id' })
+  @ApiOperation({ summary: 'Get healthcare provider by id' })
   @Get(':id')
   findById(@Param('id') id: string): Observable<HealthcareProviderDomainModel> {
     this.useCase.toGetHealthcareProviderUseCase();
@@ -39,7 +47,7 @@ export class HealthcareProviderController {
     return this.useCase.execute(id);
   }
 
- @ApiOperation({ summary: 'Update healthcare provider by id' })
+  @ApiOperation({ summary: 'Update healthcare provider by id' })
   @Put(':id')
   updateHealthcareProvider(
     @Param('id') id: string,

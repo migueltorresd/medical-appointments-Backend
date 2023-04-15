@@ -1,5 +1,4 @@
-import { AppointmentService } from "../appointment.service";
-
+import { AppointmentService } from '../appointment.service';
 
 describe('AppointmentService', () => {
   let appointmentService: AppointmentService;
@@ -8,7 +7,7 @@ describe('AppointmentService', () => {
     appointmentService = new AppointmentService(null);
   });
 
-it('should be defined', () => {
+  it('should be defined', () => {
     expect(appointmentService).toBeDefined();
-    });
-    });
+  });
+});

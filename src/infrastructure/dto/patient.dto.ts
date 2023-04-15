@@ -17,9 +17,9 @@ export class PatientDto {
   @IsString()
   name: string;
 
- @ApiProperty({
+  @ApiProperty({
     example: '12345678',
-    description: 'patient document number'
+    description: 'patient document number',
   })
   @IsString()
   document: string;
@@ -68,7 +68,8 @@ export class PatientDto {
   state: string;
 
   @ApiProperty({
-    description: 'patient appointments this field will be filled when a patient is consulted',
+    description:
+      'patient appointments this field will be filled when a patient is consulted',
   })
   @IsArray()
   appointments?: AppointmentDto[];
