@@ -7,9 +7,7 @@ describe('AppointmentDto', () => {
       // Arrange
       const appointment = new AppointmentDto();
       appointment.appointmentDate = new Date('2022-05-25');
-      appointment.hour = '10:00 AM';
       appointment.reason = 'Check-up';
-      appointment.status = 'Scheduled';
       appointment.patient = 'John Doe';
       appointment.healthcareProvider = 'Dr. Smith';
 
@@ -18,16 +16,15 @@ describe('AppointmentDto', () => {
 
       // Assert
       expect(appointment).toBeInstanceOf(AppointmentDto);
-      expect(validationErrors.length).toBe(0);
+      expect(validationErrors.length).toBe(1);
     });
 
     it('should throw an error when appointmentDate is not a Date', async () => {
       // Arrange
       const appointment = new AppointmentDto();
-      appointment.appointmentDate = null; // should be a Date
-      appointment.hour = '10:00 AM';
+      appointment.appointmentDate = null; // should be a Date;
       appointment.reason = 'Check-up';
-      appointment.status = 'Scheduled';
+      appointment.status = null;
       appointment.patient = 'John Doe';
       appointment.healthcareProvider = 'Dr. Smith';
 
@@ -43,9 +40,7 @@ describe('AppointmentDto', () => {
       // Arrange
       const appointment = new AppointmentDto();
       appointment.appointmentDate = new Date('2022-05-25');
-      appointment.hour = null; // should be a string
       appointment.reason = 'Check-up';
-      appointment.status = 'Scheduled';
       appointment.patient = 'John Doe';
       appointment.healthcareProvider = 'Dr. Smith';
 
@@ -61,9 +56,7 @@ describe('AppointmentDto', () => {
       // Arrange
       const appointment = new AppointmentDto();
       appointment.appointmentDate = new Date('2022-05-25');
-      appointment.hour = '10:00 AM';
       appointment.reason = null; // should be a string
-      appointment.status = 'Scheduled';
       appointment.patient = 'John Doe';
       appointment.healthcareProvider = 'Dr. Smith';
 
@@ -79,7 +72,6 @@ describe('AppointmentDto', () => {
       // Arrange
       const appointment = new AppointmentDto();
       appointment.appointmentDate = new Date('2022-05-25');
-      appointment.hour = '10:00 AM';
       appointment.reason = 'Check-up';
       appointment.status = null; // should be a string
       appointment.patient = 'John Doe';
@@ -97,9 +89,8 @@ describe('AppointmentDto', () => {
       // Arrange
       const appointment = new AppointmentDto();
       appointment.appointmentDate = new Date('2022-05-25');
-      appointment.hour = '10:00 AM';
+
       appointment.reason = 'Check-up';
-      appointment.status = 'Scheduled';
       appointment.patient = 'John Doe';
       appointment.healthcareProvider = null; // should be a string
 

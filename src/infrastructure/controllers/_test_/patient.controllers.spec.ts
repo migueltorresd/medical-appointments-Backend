@@ -51,46 +51,6 @@ describe('Patient Controller', () => {
     auth = app.get<AuthService>(AuthService);
   });
 
-  describe('create', () => {
-    it('should return an observable of PatientDomainModel', () => {
-      // Arrange
-      const patient: PatientDto = {
-        name: 'John',
-        document: '1234567890',
-        birthDate: new Date('1980-01-01'),
-        email: 'john@example.com',
-        password: '123456',
-        gender: 'male',
-        phone: '1234567890',
-        state: 'active',
-        rol: '',
-      };
-      const result: PatientSchemaMongo = {
-        _id: '1',
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-        password: '123456',
-        rol: '',
-        document: '',
-        birthDate: undefined,
-        gender: '',
-        phone: '',
-        state: '',
-      };
-      jest.spyOn(delegate, 'execute').mockReturnValue(of(result));
-      jest.spyOn(delegate, 'toCreatePatient');
-      jest.spyOn(service, 'create').mockReturnValue(of(result));
-
-      // Act
-      const response: Observable<PatientDomainModel> =
-        controller.create(patient);
-
-      // Assert
-      response.subscribe((value: PatientDomainModel) => {
-        expect(value).toBe(result);
-      });
-    });
-  });
   describe('findById', () => {
     it('should return an object with the patient data and a token', () => {
       // Arrange

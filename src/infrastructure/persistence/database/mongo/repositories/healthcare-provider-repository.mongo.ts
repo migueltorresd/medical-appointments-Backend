@@ -21,12 +21,8 @@ export class HealthcareProviderRepository
     _id: string,
     entity: HealthcareProviderSchemaMongo,
   ): Observable<HealthcareProviderSchemaMongo> {
-<<<<<<< HEAD
-    return from(this.healthcareProviderRepository.findOneAndUpdate({_id},{appointments: entity.appointments}, {new: true })
-      .exec());
-=======
     return from(
-      this.appointmentRepository
+      this.healthcareProviderRepository
         .findOneAndUpdate(
           { _id },
           { appointments: entity.appointments },
@@ -34,19 +30,14 @@ export class HealthcareProviderRepository
         )
         .exec(),
     );
->>>>>>> 3fab1ef96ce9cac9b4b873592763d773fa2c2c79
   }
   updateHealthcareProvider(
     _id: string,
     entity: HealthcareProviderSchemaMongo,
   ): Observable<HealthcareProviderSchemaMongo> {
-<<<<<<< HEAD
-return from(this.healthcareProviderRepository.findByIdAndUpdate(_id, entity, {new: true }));
-=======
     return from(
-      this.appointmentRepository.findByIdAndUpdate(_id, entity, { new: true }),
+      this.healthcareProviderRepository.findByIdAndUpdate(_id, entity, { new: true }),
     );
->>>>>>> 3fab1ef96ce9cac9b4b873592763d773fa2c2c79
   }
 
   delete(_id: string): Observable<HealthcareProviderSchemaMongo> {

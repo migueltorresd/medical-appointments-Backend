@@ -33,6 +33,7 @@ describe('CreateAppointmentUseCase', () => {
       findAll: jest.fn(),
       findById: jest.fn(),
       findByDocument: jest.fn(),
+      findByEmail: jest.fn(),
     };
     healthcareProviderService = {
       create: jest.fn(),

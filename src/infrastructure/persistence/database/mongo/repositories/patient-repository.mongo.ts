@@ -61,12 +61,8 @@ export class PatientRepository
   findAll(): Observable<PatientSchemaMongo[]> {
     return from(this.patientRepository.find().exec());
   }
-<<<<<<< HEAD
-
   findByEmail(email: string): Observable<PatientSchemaMongo> {
     const query = this.patientRepository.where({ email: email });
     return from(query.findOne().exec());
   }
-=======
->>>>>>> 3fab1ef96ce9cac9b4b873592763d773fa2c2c79
 }

@@ -3,7 +3,6 @@ import { IHealthcareProviderDomainService } from '../../../../../domain/services
 import { HealthcareProviderSchemaMongo } from '../schemas/healthcare-provider.schema';
 import { HealthcareProviderRepository } from '../repositories/healthcare-provider-repository.mongo';
 import { Injectable } from '@nestjs/common';
-import { HealthcareProviderDomainModel } from 'src/domain/models';
 @Injectable()
 export class HealthcareProviderMongoService
   implements IHealthcareProviderDomainService

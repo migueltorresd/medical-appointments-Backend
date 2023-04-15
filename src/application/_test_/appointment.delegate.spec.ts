@@ -1,4 +1,5 @@
 import { AppointmentDelegate } from "../delegate/appointment.delegate";
+import { UpdateAppointmentUseCase } from "../use-case/appointment/Update-appointment-case";
 import { CreateAppointmentUseCase } from "../use-case/appointment/create-appointment-case";
 
 

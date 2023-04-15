@@ -1,7 +1,8 @@
-import { of, throwError, Observable } from 'rxjs';
-import { HealthcareProviderRepository } from '../../repositories/healthcare-provider-repository.mongo';
-import { HealthcareProviderSchemaMongo } from '../../schemas/healthcare-provider.schema';
-import { HealthcareProviderMongoService } from '../healthcare-provider-mongo.service';
+import { of, Observable, throwError } from "rxjs";
+import { HealthcareProviderRepository } from "../../repositories";
+import { HealthcareProviderSchemaMongo } from "../../schemas";
+import { HealthcareProviderMongoService } from "../healthcare-provider-mongo.service";
+
 describe('HealthcareProviderMongoService', () => {
   let healthcareProviderRepository: HealthcareProviderRepository;
   let healthcareProviderMongoService: HealthcareProviderMongoService;
@@ -13,6 +14,7 @@ describe('HealthcareProviderMongoService', () => {
       delete: jest.fn(),
       findById: jest.fn(),
       findAll: jest.fn(),
+      findByEmail: jest.fn(),
       updateHealthcareProvider: jest.fn(),
     } as unknown as HealthcareProviderRepository;
     healthcareProviderMongoService = new HealthcareProviderMongoService(

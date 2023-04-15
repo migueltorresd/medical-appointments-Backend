@@ -66,7 +66,6 @@ describe('HealthcareProvider Controller', () => {
         phone: '',
         specialty: '',
         appointments: [],
-        rol: ''
       };
       const expectedHealthcareProvider: HealthcareProviderSchemaMongo = {
         rol: '',
