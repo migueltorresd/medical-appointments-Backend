@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
-import { Observable, of } from "rxjs";
-import { IPatientDomain } from "../../../domain/models/interface/patient-domain.interface";
-import { IAuthService } from "../../../domain/services/auth.service";
+import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { Observable, of } from 'rxjs';
+import { IPatientDomain } from '../../../domain/models/interface/patient-domain.interface';
+import { IAuthService } from '../../../domain/services/auth.service';
 
 @Injectable()
 export class AuthService implements IAuthService {

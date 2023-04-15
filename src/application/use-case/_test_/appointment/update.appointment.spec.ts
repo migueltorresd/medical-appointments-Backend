@@ -3,7 +3,6 @@ import { AppointmentDomainModel } from '../../../../domain/models';
 import { IAppointmentDomainService } from '../../../../domain/services/appointment-domain.service';
 import { UpdateAppointmentUseCase } from '../../appointment/Update-appointment-case';
 
-
 describe('UpdateAppointmentUseCase', () => {
   let updateAppointmentUseCase: UpdateAppointmentUseCase;
   let appointmentService: IAppointmentDomainService;
@@ -23,11 +22,10 @@ describe('UpdateAppointmentUseCase', () => {
     updatedAppointment = {
       _id: 'dummy-appointment-id',
       appointmentDate: new Date(),
-      hour: '10:00',
       reason: 'Consulta médica',
-      status: 'Scheduled',
+      status: 'scheduled',
       healthcareProvider: {
-          rol: 'healthcareProvider',
+        rol: 'healthcareProvider',
         name: 'John Doe',
         email: 'johndoe@example.com',
         password: '123456',
@@ -44,15 +42,14 @@ describe('UpdateAppointmentUseCase', () => {
   });
 
   describe('execute', () => {
-    const appointmentId: string = 'dummy-appointment-id';
+    const appointmentId = 'dummy-appointment-id';
     const appointment: AppointmentDomainModel = {
       _id: 'dummy-appointment-id',
       appointmentDate: new Date(),
-      hour: '10:00',
       reason: 'Consulta médica',
-      status: 'Scheduled',
+      status: 'scheduled',
       healthcareProvider: {
-          rol: 'healthcareProvider',
+        rol: 'healthcareProvider',
         name: 'John Doe',
         email: 'johndoe@example.com',
         password: '123456',
@@ -65,15 +62,22 @@ describe('UpdateAppointmentUseCase', () => {
 
     test('should update an appointment', (done) => {
       // Arrange
-      appointmentService.update = jest.fn().mockReturnValueOnce(of(updatedAppointment));
+      appointmentService.update = jest
+        .fn()
+        .mockReturnValueOnce(of(updatedAppointment));
 
       // Act
-      updateAppointmentUseCase.execute(appointmentId, appointment).subscribe((result) => {
-        // Assert
-        expect(result).toEqual(updatedAppointment);
-        expect(appointmentService.update).toHaveBeenCalledWith(appointmentId, appointment);
-        done();
-      });
+      updateAppointmentUseCase
+        .execute(appointmentId, appointment)
+        .subscribe((result) => {
+          // Assert
+          expect(result).toEqual(updatedAppointment);
+          expect(appointmentService.update).toHaveBeenCalledWith(
+            appointmentId,
+            appointment,
+          );
+          done();
+        });
     });
   });
 });

@@ -21,14 +21,23 @@ export class HealthcareProviderRepository
     _id: string,
     entity: HealthcareProviderSchemaMongo,
   ): Observable<HealthcareProviderSchemaMongo> {
-    return from(this.appointmentRepository.findOneAndUpdate({_id},{appointments: entity.appointments}, {new: true })
-      .exec());
+    return from(
+      this.appointmentRepository
+        .findOneAndUpdate(
+          { _id },
+          { appointments: entity.appointments },
+          { new: true },
+        )
+        .exec(),
+    );
   }
-updateHealthcareProvider(
+  updateHealthcareProvider(
     _id: string,
     entity: HealthcareProviderSchemaMongo,
   ): Observable<HealthcareProviderSchemaMongo> {
-return from(this.appointmentRepository.findByIdAndUpdate(_id, entity, {new: true }));
+    return from(
+      this.appointmentRepository.findByIdAndUpdate(_id, entity, { new: true }),
+    );
   }
 
   delete(_id: string): Observable<HealthcareProviderSchemaMongo> {

@@ -1,11 +1,17 @@
 {
-"version": "0.2.0",
-"configurations": [
-  {
-    "command": "npm run star:medical-appointment",
-    "name": "Run npm start medical-appointment",
-    "request": "launch",
-    "type": "node-terminal"
-  }
-]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "command": "npm run start:medical-appointment",
+      "name": "Run npm start medical-appointment",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "npm run start:debug",
+      "name": "Debug",
+      "request": "launch",
+      "type": "node-terminal"
+    }
+  ]
 }

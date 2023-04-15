@@ -156,7 +156,7 @@ describe('Patient Controller', () => {
       );
     });
   });
-   describe('updatePatient', () => {
+  describe('updatePatient', () => {
     it('should call toUpdatePatient and return a PatientDomainModel', () => {
       // Arrange
       const patient: Partial<PatientDto> = {
@@ -170,8 +170,8 @@ describe('Patient Controller', () => {
         password: '123456',
         gender: 'male',
         phone: '1234567890',
-        };
-        const result: PatientSchemaMongo = {
+      };
+      const result: PatientSchemaMongo = {
         _id: '1',
         name: 'John Smith',
         email: 'john@example.com',
@@ -182,19 +182,21 @@ describe('Patient Controller', () => {
         gender: '',
         phone: '',
         state: '',
-        };
-        jest.spyOn(delegate, 'toUpdatePatient');
-        jest.spyOn(delegate, 'execute').mockReturnValue(of(result));
-        jest.spyOn(service, 'findById').mockReturnValue(of(result));
-        jest.spyOn(service, 'update').mockReturnValue(of(result));
-          // Act
-  const response: Observable<PatientDomainModel> =
-  controller.updatePatient('1', patientUpdates);
+      };
+      jest.spyOn(delegate, 'toUpdatePatient');
+      jest.spyOn(delegate, 'execute').mockReturnValue(of(result));
+      jest.spyOn(service, 'findById').mockReturnValue(of(result));
+      jest.spyOn(service, 'update').mockReturnValue(of(result));
+      // Act
+      const response: Observable<PatientDomainModel> = controller.updatePatient(
+        '1',
+        patientUpdates,
+      );
 
-// Assert
-response.subscribe((value: PatientDomainModel) => {
-  expect(value).toBe(result);
-});
-});
-});
+      // Assert
+      response.subscribe((value: PatientDomainModel) => {
+        expect(value).toBe(result);
+      });
+    });
+  });
 });

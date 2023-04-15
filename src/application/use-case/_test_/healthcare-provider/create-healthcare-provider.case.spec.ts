@@ -27,23 +27,23 @@ describe('CreateHealthcareProviderUseCase', () => {
 
   describe('execute', () => {
     const healthcareProviderEntity: HealthcareProviderDomainModel = {
-        rol: 'healthcareProvider',
-        name: 'John Doe',
-        specialty: 'cardiologist',
-        email: 'johndoe@example.com',
-        password: '123456',
-        phone: '555-555-5555',
-        appointments: [],
-      };
+      rol: 'healthcareProvider',
+      name: 'John Doe',
+      specialty: 'cardiologist',
+      email: 'johndoe@example.com',
+      password: '123456',
+      phone: '555-555-5555',
+      appointments: [],
+    };
 
     const healthcareProviderCreated: HealthcareProviderDomainModel = {
-        rol: 'healthcareProvider',
-        name: 'John Doe',
-        specialty: 'cardiologist',
-        email: 'johndoe@example.com',
-        password: '123456',
-        phone: '555-555-5555',
-        appointments: [],
+      rol: 'healthcareProvider',
+      name: 'John Doe',
+      specialty: 'cardiologist',
+      email: 'johndoe@example.com',
+      password: '123456',
+      phone: '555-555-5555',
+      appointments: [],
     };
 
     test('should create a healthcare provider', (done) => {

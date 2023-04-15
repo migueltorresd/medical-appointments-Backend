@@ -10,7 +10,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "set SCOPE=prod & nest start",
     "start:dev": "set SCOPE=prod & nest start --watch",
-    "start:debug": "set SCOPE=prod & nest start --debug --watch",
+    "start:debug": "set SCOPE=prod & nest start medical-appointment --debug --watch",
     "star:medical-appointment": "set SCOPE=prod & nest start medical-appointment --watch",
     "start:prod": "set SCOPE=produ & node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",

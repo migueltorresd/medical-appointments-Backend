@@ -1,6 +1,4 @@
-import { IsString, IsDate, IsArray } from 'class-validator';
-import { PatientDto } from './patient.dto';
-import { HealthcareProviderDto } from './healthcare-provider.dto';
+import { IsDate, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class AppointmentDto {
@@ -10,13 +8,6 @@ export class AppointmentDto {
   })
   @IsDate()
   appointmentDate: Date;
-
-  @ApiProperty({
-    example: '8:00',
-    description: 'appointment time',
-  })
-  @IsString()
-  hour: string;
 
   @ApiProperty({
     example: 'consulta general',
@@ -30,16 +21,16 @@ export class AppointmentDto {
     description: 'appointment status',
   })
   @IsString()
-  status: string;
-  
-@ApiProperty({
+  status: 'available' | 'pending' | 'canceled' | 'completed' | 'scheduled';
+
+  @ApiProperty({
     example: 'e985851c-c3a5-4e57-930f-e7882d2af6fe',
     description: 'patient id',
   })
   @IsString()
   patient: string;
 
-@ApiProperty({
+  @ApiProperty({
     example: 'e985851c-c3a5-4e57-930f-e7882d2af6fe',
     description: 'health professional id',
   })

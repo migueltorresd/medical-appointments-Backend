@@ -1,5 +1,4 @@
-import { PatientService } from "../patient.service";
-
+import { PatientService } from '../patient.service';
 
 describe('PatientService', () => {
   let patientService: PatientService;

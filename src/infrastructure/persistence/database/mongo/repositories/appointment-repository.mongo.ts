@@ -22,7 +22,13 @@ export class AppointmentRepository implements IBase<AppointmentSchemaMongo> {
     _id: string,
     entity: AppointmentDomainModel,
   ): Observable<AppointmentSchemaMongo> {
-    return from(this.appointmentRepository.findOneAndUpdate({ _id }, { $set: entity }, { new: true }));
+    return from(
+      this.appointmentRepository.findOneAndUpdate(
+        { _id },
+        { $set: entity },
+        { new: true },
+      ),
+    );
   }
 
   delete(_id: string): Observable<AppointmentSchemaMongo> {

@@ -1,4 +1,4 @@
-import { HealthcareProviderService } from "../healthcare-provider.service";
+import { HealthcareProviderService } from '../healthcare-provider.service';
 
 describe('HealthcareProviderService', () => {
   let healthcareProviderService: HealthcareProviderService;
@@ -9,7 +9,6 @@ describe('HealthcareProviderService', () => {
 
   describe('constructor', () => {
     test('should be defined', () => {
-     
       expect(healthcareProviderService).toBeDefined();
     });
   });

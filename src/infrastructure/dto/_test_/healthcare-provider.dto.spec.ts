@@ -1,4 +1,3 @@
-
 import { validate } from 'class-validator';
 import { AppointmentDto } from '../appointments.dto';
 import { HealthcareProviderDto } from '../healthcare-provider.dto';
@@ -10,8 +9,8 @@ describe('HealthcareProviderDto', () => {
       const healthcareProvider = new HealthcareProviderDto();
       healthcareProvider.name = null; // should be a string
       healthcareProvider.email = 'drsmith@example.com';
-      healthcareProvider.password= '123456',
-      healthcareProvider.phone = '555-1234';
+      (healthcareProvider.password = '123456'),
+        (healthcareProvider.phone = '555-1234');
       healthcareProvider.specialty = 'Pediatrics';
       healthcareProvider.appointments = [];
 
@@ -28,7 +27,7 @@ describe('HealthcareProviderDto', () => {
       const healthcareProvider = new HealthcareProviderDto();
       healthcareProvider.name = 'Dr. Smith';
       healthcareProvider.email = null;
-      healthcareProvider.password= '123456'
+      healthcareProvider.password = '123456';
       healthcareProvider.phone = '555-1234';
       healthcareProvider.specialty = 'Pediatrics';
       healthcareProvider.appointments = [];
@@ -46,7 +45,7 @@ describe('HealthcareProviderDto', () => {
       const healthcareProvider = new HealthcareProviderDto();
       healthcareProvider.name = 'Dr. Smith';
       healthcareProvider.email = 'drsmith@example.com';
-      healthcareProvider.password= '123456'
+      healthcareProvider.password = '123456';
       healthcareProvider.phone = null; // should be a string
       healthcareProvider.specialty = 'Pediatrics';
       healthcareProvider.appointments = [];
@@ -64,7 +63,7 @@ describe('HealthcareProviderDto', () => {
       const healthcareProvider = new HealthcareProviderDto();
       healthcareProvider.name = 'Dr. Smith';
       healthcareProvider.email = 'drsmith@example.com';
-      healthcareProvider.password= '123456'
+      healthcareProvider.password = '123456';
       healthcareProvider.phone = '555-1234';
       healthcareProvider.specialty = null; // should be a string
       healthcareProvider.appointments = [];
@@ -81,7 +80,7 @@ describe('HealthcareProviderDto', () => {
       const healthcareProvider = new HealthcareProviderDto();
       healthcareProvider.name = 'Dr. Smith';
       healthcareProvider.email = 'drsmith@example.com';
-      healthcareProvider.password= '123456'
+      healthcareProvider.password = '123456';
       healthcareProvider.phone = '555-1234';
       healthcareProvider.specialty = 'Pediatrics';
       healthcareProvider.appointments = null; // should be an array
@@ -99,7 +98,7 @@ describe('HealthcareProviderDto', () => {
       const healthcareProvider = new HealthcareProviderDto();
       healthcareProvider.name = 'Dr. Smith';
       healthcareProvider.email = 'drsmith@example.com';
-      healthcareProvider.password= '123456'
+      healthcareProvider.password = '123456';
       healthcareProvider.phone = '555-1234';
       healthcareProvider.specialty = 'Pediatrics';
       // Act

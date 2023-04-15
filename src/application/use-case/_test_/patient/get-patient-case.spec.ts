@@ -18,6 +18,7 @@ describe('GetPatientUseCase', () => {
       updatepatient: jest.fn(),
       delete: jest.fn(),
       findAll: jest.fn(),
+      findByDocument: jest.fn(),
     } as jest.Mocked<IPatientDomainService<PatientDomainModel>>;
 
     authServiceMock = {
@@ -96,7 +97,6 @@ describe('GetPatientUseCase', () => {
       // Assert
       return observable.toPromise().catch((error) => {
         expect(patientServiceMock.findById).toHaveBeenCalledWith(patientId);
-
       });
     });
   });

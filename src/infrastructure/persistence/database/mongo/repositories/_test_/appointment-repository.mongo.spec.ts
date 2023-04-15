@@ -1,9 +1,9 @@
 import { getModelToken } from '@nestjs/mongoose';
-import { TestingModule, Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
 import { AppointmentSchemaMongo } from '../../schemas/appointment.schema';
 import { AppointmentRepository } from '../appointment-repository.mongo';
-import { from, of } from 'rxjs';
+import { of } from 'rxjs';
 import { AppointmentDomainModel } from 'src/domain/models';
 
 describe('AppointmentRepository', () => {
@@ -39,13 +39,12 @@ describe('AppointmentRepository', () => {
   describe('create', () => {
     it('should create a new appointment and return it', async () => {
       // Arrange
-      const appointmentModelData = {
+      const appointmentModelData: AppointmentSchemaMongo = {
         _id: '1234',
         appointmentDate: new Date(),
-        hour: '10:00',
         patient: '1245',
         reason: 'Consulta médica',
-        status: 'Scheduled',
+        status: 'scheduled',
         healthcareProvider: {
           rol: 'healthcareProvider',
           name: 'John Doe',
@@ -82,13 +81,12 @@ describe('AppointmentRepository', () => {
       it('should update an appointment and return it', async () => {
         // Arrange
         const appointmentId = '123';
-        const updatedAppointment = {
+        const updatedAppointment: AppointmentSchemaMongo = {
           _id: '1234',
           appointmentDate: new Date(),
-          hour: '10:00',
           patient: '1245',
           reason: 'Consulta médica',
-          status: 'Scheduled',
+          status: 'scheduled',
           healthcareProvider: {
             rol: 'healthcareProvider',
             name: 'John Doe',

@@ -16,6 +16,7 @@ describe('CreatePatientUseCase', () => {
       findAll: jest.fn(),
       findById: jest.fn(),
       updatepatient: jest.fn(),
+      findByDocument: jest.fn(),
     };
     authService = {
       generateToken: jest.fn(),
@@ -70,7 +71,7 @@ describe('CreatePatientUseCase', () => {
         authService.generateToken as jest.MockedFunction<
           typeof authService.generateToken
         >
-        ).mockReturnValueOnce(of({ data: patientCreated, token }));
+      ).mockReturnValueOnce(of({ data: patientCreated, token }));
 
       // Act
       createPatientUseCase.execute(patientEntity).subscribe((result) => {

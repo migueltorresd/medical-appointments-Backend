@@ -1,4 +1,3 @@
-
 import { validate } from 'class-validator';
 import { AppointmentDto } from '../appointments.dto';
 
@@ -95,21 +94,21 @@ describe('AppointmentDto', () => {
     });
 
     it('should throw an error when healthcareProvider is not a string', async () => {
-        // Arrange
-        const appointment = new AppointmentDto();
-        appointment.appointmentDate = new Date('2022-05-25');
-        appointment.hour = '10:00 AM';
-        appointment.reason = 'Check-up';
-        appointment.status = 'Scheduled';
-        appointment.patient = 'John Doe';
-        appointment.healthcareProvider = null; // should be a string
-      
-        // Act
-        const validationErrors = await validate(appointment);
-      
-        // Assert
-        expect(validationErrors.length).toBeGreaterThan(0);
-        expect(validationErrors[0].constraints).toHaveProperty('isString');
-      });
+      // Arrange
+      const appointment = new AppointmentDto();
+      appointment.appointmentDate = new Date('2022-05-25');
+      appointment.hour = '10:00 AM';
+      appointment.reason = 'Check-up';
+      appointment.status = 'Scheduled';
+      appointment.patient = 'John Doe';
+      appointment.healthcareProvider = null; // should be a string
+
+      // Act
+      const validationErrors = await validate(appointment);
+
+      // Assert
+      expect(validationErrors.length).toBeGreaterThan(0);
+      expect(validationErrors[0].constraints).toHaveProperty('isString');
     });
-    });
+  });
+});

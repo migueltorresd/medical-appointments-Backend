@@ -1,6 +1,5 @@
-import { AppointmentDelegate } from "../delegate/appointment.delegate";
-import { CreateAppointmentUseCase } from "../use-case/appointment/create-appointment-case";
-
+import { AppointmentDelegate } from '../delegate/appointment.delegate';
+import { CreateAppointmentUseCase } from '../use-case/appointment/create-appointment-case';
 
 describe('AppointmentDelegate', () => {
   let appointmentDelegate: AppointmentDelegate;
@@ -20,7 +19,9 @@ describe('AppointmentDelegate', () => {
       appointmentDelegate.toCreateAppointment();
 
       // Assert
-      expect(appointmentDelegate['delegate']).toBeInstanceOf(CreateAppointmentUseCase);
+      expect(appointmentDelegate['delegate']).toBeInstanceOf(
+        CreateAppointmentUseCase,
+      );
       expect(appointmentDelegate['appointmentService']).toBe(null);
       expect(appointmentDelegate['patientService']).toBe(null);
       expect(appointmentDelegate['healthCareProviderService']).toBe(null);

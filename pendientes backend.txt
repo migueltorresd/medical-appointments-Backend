@@ -1,0 +1,6 @@
+- [] validacion de cuando se registra paciente queda activo
+- [] validar fecha y hora de que no existan citas repetidas al momento de crearla
+- [] cuando se actualiza una cita mostrar actualizada la cita tanto en el paciente como en el doctor
+- [x] validar que no se puedan crear usuarios con el mismo nombre
+- [] guards
+- [x] exception filter

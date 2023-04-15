@@ -15,10 +15,12 @@ import { AppointmentService } from '../services/appointment.service';
 import { PatientService } from '../services/patient.service';
 import { HealthcareProviderService } from '../services/healthcare-provider.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+
 @ApiTags('Appointment')
 @Controller('Appointment')
 export class AppointmentController {
   private readonly useCase: AppointmentDelegate;
+
   constructor(
     private readonly appointmentService: AppointmentService,
     private readonly patientService: PatientService,
@@ -30,13 +32,18 @@ export class AppointmentController {
       healthCareProviderService,
     );
   }
+
   @ApiOperation({ summary: 'Create appointment' })
   @Post()
   create(
     @Body() appointment: AppointmentDto,
   ): Observable<AppointmentDomainModel> {
     this.useCase.toCreateAppointment();
-    return this.useCase.execute(appointment, appointment.patient, appointment.healthcareProvider);
+    return this.useCase.execute(
+      appointment,
+      appointment.patient,
+      appointment.healthcareProvider,
+    );
   }
 
   @ApiOperation({ summary: 'Get appointment by id' })
@@ -46,7 +53,7 @@ export class AppointmentController {
     return this.useCase.execute(id);
   }
 
- @ApiOperation({ summary: 'Delete appointment by id' })
+  @ApiOperation({ summary: 'Delete appointment by id' })
   @Delete(':id')
   delete(@Param('id') id: string): Observable<AppointmentDomainModel> {
     this.useCase.toDeleteAppointment();

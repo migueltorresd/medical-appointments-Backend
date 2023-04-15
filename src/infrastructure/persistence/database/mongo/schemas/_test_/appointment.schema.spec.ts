@@ -1,7 +1,10 @@
-import { getModelToken } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { appointmentDocument, AppointmentSchemaMongo } from "../appointment.schema";
-import { Test, TestingModule } from "@nestjs/testing";
+import { getModelToken } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import {
+  appointmentDocument,
+  AppointmentSchemaMongo,
+} from '../appointment.schema';
+import { Test, TestingModule } from '@nestjs/testing';
 
 describe('AppointmentSchemaMongo', () => {
   let appointmentModel: Model<appointmentDocument>;

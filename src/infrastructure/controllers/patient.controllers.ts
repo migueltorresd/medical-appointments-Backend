@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  UseFilters,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { PatientDomainModel } from '../../domain/models/patient-domain.models';
@@ -14,8 +15,11 @@ import { PatientService } from '../services/patient.service';
 import { PatientDelegate } from '../../application/delegate/patient-delegate';
 import { AuthService } from '../utils/service/auth.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { HttpBusinessExceptionFilter } from '../utils/exception-filters/business.exception-filter';
+
 @ApiTags('Patient')
 @Controller('patient')
+@UseFilters(HttpBusinessExceptionFilter)
 export class PatientController {
   private readonly useCase: PatientDelegate;
 
@@ -30,6 +34,7 @@ export class PatientController {
   @Post()
   create(@Body() patient: PatientDto): Observable<PatientDomainModel> {
     this.useCase.toCreatePatient();
+
     return this.useCase.execute(patient);
   }
 
@@ -57,10 +62,4 @@ export class PatientController {
     this.useCase.toUpdatePatient();
     return this.useCase.execute(id, patientUpdates);
   }
-
-  @Get('google/:email')
-  findByEmail(@Param('email') email: string): Observable<PatientDomainModel> {
-    return this.patientService.findByEmail(email);
-  }
-
 }

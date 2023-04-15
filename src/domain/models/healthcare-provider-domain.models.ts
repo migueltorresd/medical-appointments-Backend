@@ -19,6 +19,6 @@ export class HealthcareProviderDomainModel
     this.email = data.email;
     this.phone = data.phone;
     this.specialty = data.specialty;
-    this.appointments = []
+    this.appointments = [];
   }
 }
