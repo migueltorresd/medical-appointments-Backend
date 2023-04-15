@@ -32,6 +32,7 @@ describe('CreateAppointmentUseCase', () => {
       delete: jest.fn(),
       findAll: jest.fn(),
       findById: jest.fn(),
+      findByEmail: jest.fn(),
     };
     healthcareProviderService = {
       create: jest.fn(),
@@ -40,6 +41,7 @@ describe('CreateAppointmentUseCase', () => {
       delete: jest.fn(),
       findAll: jest.fn(),
       findById: jest.fn(),
+      findByEmail: jest.fn(),
     };
     createAppointmentUseCase = new CreateAppointmentUseCase(
       appointmentService,

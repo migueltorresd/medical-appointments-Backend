@@ -10,36 +10,40 @@ export class HealthcareProviderRepository
 {
   constructor(
     @InjectModel(HealthcareProviderSchemaMongo.name)
-    private readonly appointmentRepository: Model<HealthcareProviderSchemaMongo>,
+    private readonly healthcareProviderRepository: Model<HealthcareProviderSchemaMongo>,
   ) {}
   create(
     entity: HealthcareProviderSchemaMongo,
   ): Observable<HealthcareProviderSchemaMongo> {
-    return from(this.appointmentRepository.create(entity));
+    return from(this.healthcareProviderRepository.create(entity));
   }
   update(
     _id: string,
     entity: HealthcareProviderSchemaMongo,
   ): Observable<HealthcareProviderSchemaMongo> {
-    return from(this.appointmentRepository.findOneAndUpdate({_id},{appointments: entity.appointments}, {new: true })
+    return from(this.healthcareProviderRepository.findOneAndUpdate({_id},{appointments: entity.appointments}, {new: true })
       .exec());
   }
 updateHealthcareProvider(
     _id: string,
     entity: HealthcareProviderSchemaMongo,
   ): Observable<HealthcareProviderSchemaMongo> {
-return from(this.appointmentRepository.findByIdAndUpdate(_id, entity, {new: true }));
+return from(this.healthcareProviderRepository.findByIdAndUpdate(_id, entity, {new: true }));
   }
 
   delete(_id: string): Observable<HealthcareProviderSchemaMongo> {
-    return from(this.appointmentRepository.findByIdAndDelete(_id));
+    return from(this.healthcareProviderRepository.findByIdAndDelete(_id));
   }
 
   findById(_id: string): Observable<HealthcareProviderSchemaMongo> {
-    return from(this.appointmentRepository.findById(_id));
+    return from(this.healthcareProviderRepository.findById(_id));
   }
 
   findAll(): Observable<HealthcareProviderSchemaMongo[]> {
-    return from(this.appointmentRepository.find().exec());
+    return from(this.healthcareProviderRepository.find().exec());
+  }
+  findByEmail(email: string): Observable<HealthcareProviderSchemaMongo> {
+    const query = this.healthcareProviderRepository.where({email: email});
+    return from(query.findOne().exec());
   }
 }

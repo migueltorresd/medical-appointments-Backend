@@ -16,6 +16,7 @@ describe('GetHealthcareProviderUseCase', () => {
       updateHealthcareProvider: jest.fn(),
       delete: jest.fn(),
       findAll: jest.fn(),
+      findByEmail: jest.fn(),
     } as jest.Mocked<IHealthcareProviderDomainService>;
 
     getHealthcareProviderUseCase = new GetHealthcareProviderUseCase(healthcareProviderServiceMock);

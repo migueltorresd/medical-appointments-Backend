@@ -47,6 +47,7 @@ export class PatientRepository implements IBase<PatientSchemaMongo> {
   }
 
   findByEmail(email: string): Observable<PatientSchemaMongo> {
-    return from(this.patientRepository.findById( email ).exec())
+    const query = this.patientRepository.where({ email: email });
+    return from(query.findOne().exec());
   }
 }

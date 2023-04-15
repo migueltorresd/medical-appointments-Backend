@@ -16,6 +16,7 @@ describe('CreatePatientUseCase', () => {
       findAll: jest.fn(),
       findById: jest.fn(),
       updatepatient: jest.fn(),
+      findByEmail: jest.fn(),
     };
     authService = {
       generateToken: jest.fn(),

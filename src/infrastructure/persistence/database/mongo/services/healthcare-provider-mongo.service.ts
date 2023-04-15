@@ -41,4 +41,7 @@ export class HealthcareProviderMongoService
   findAll(): Observable<HealthcareProviderSchemaMongo[]> {
     return this.healthcareProviderRepository.findAll();
   }
+  findByEmail(email: string): Observable<HealthcareProviderSchemaMongo> {
+    return this.healthcareProviderRepository.findByEmail(email);
+  }
 }

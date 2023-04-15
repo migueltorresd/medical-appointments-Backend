@@ -60,7 +60,8 @@ export class PatientController {
 
   @Get('google/:email')
   findByEmail(@Param('email') email: string): Observable<PatientDomainModel> {
-    return this.patientService.findByEmail(email);
+    this.useCase.toGetEmailPatient();
+    return this.useCase.execute(email);
   }
 
 }

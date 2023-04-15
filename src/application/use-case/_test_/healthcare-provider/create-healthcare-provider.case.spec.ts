@@ -15,6 +15,7 @@ describe('CreateHealthcareProviderUseCase', () => {
       delete: jest.fn(),
       findAll: jest.fn(),
       findById: jest.fn(),
+      findByEmail: jest.fn(),
     };
     createHealthcareProviderUseCase = new CreateHealthcareProviderUseCase(
       healthcareProviderService,

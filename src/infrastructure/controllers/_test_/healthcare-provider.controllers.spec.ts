@@ -36,6 +36,7 @@ describe('HealthcareProvider Controller', () => {
             updateHealthcareProvider: jest.fn(),
             findById: jest.fn(),
             findAll: jest.fn(),
+            findByEmail: jest.fn(),
           },
         },
       ],
@@ -64,6 +65,7 @@ describe('HealthcareProvider Controller', () => {
         phone: '',
         specialty: '',
         appointments: [],
+        rol: ''
       };
       const expectedHealthcareProvider: HealthcareProviderSchemaMongo = {
         rol: '',

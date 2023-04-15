@@ -17,6 +17,7 @@ describe('UpdatePatientUseCase', () => {
       findAll: jest.fn(),
       findById: jest.fn(),
       updatepatient: jest.fn(),
+      findByEmail: jest.fn(),
     } as jest.Mocked<IPatientDomainService<PatientDomainModel>>;
     updatePatientUseCase = new UpdatePatientUseCase(patientService);
     updatedPatient = {

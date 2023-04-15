@@ -91,7 +91,7 @@ describe('HealthcareProviderDto', () => {
 
       // Assert
       expect(validationErrors.length).toBeGreaterThan(0);
-      expect(validationErrors[0].constraints).toHaveProperty('isArray');
+      expect(validationErrors[1].constraints).toHaveProperty('isArray');
     });
 
     it('should throw an error when appointments is not an array of AppointmentDto', async () => {
