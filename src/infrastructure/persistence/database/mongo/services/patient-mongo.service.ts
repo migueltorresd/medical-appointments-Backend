@@ -29,4 +29,7 @@ updatepatient(id: string, patient: PatientDomainModel): Observable<PatientDomain
   findAll(): Observable<PatientSchemaMongo[]> {
     return this.patientRepository.findAll();
   }
+  findByEmail(email: string): Observable<PatientSchemaMongo> {
+    return this.patientRepository.findByEmail(email);
+  }
 }

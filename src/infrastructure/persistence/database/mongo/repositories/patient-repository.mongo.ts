@@ -6,8 +6,7 @@ import { Observable, from, map, of } from 'rxjs';
 import { IBase } from './interface/base.interface';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { patientDocument } from '../schemas/patient.schema';
-import { catchError, mergeMap } from 'rxjs/operators';
-import { AppointmentSchemaMongo } from '../schemas/appointment.schema';
+
 @Injectable()
 export class PatientRepository implements IBase<PatientSchemaMongo> {
   constructor(
@@ -34,7 +33,7 @@ export class PatientRepository implements IBase<PatientSchemaMongo> {
     entity: PatientDomainModel,
   ): Observable<PatientSchemaMongo> {
     return from(this.patientRepository.findByIdAndUpdate({_id}, entity, {new: true}))
-  }
+  } 
   delete(_id: string): Observable<PatientSchemaMongo> {
     return from(this.patientRepository.findByIdAndDelete(_id));
   }
@@ -45,5 +44,9 @@ export class PatientRepository implements IBase<PatientSchemaMongo> {
 
   findAll(): Observable<PatientSchemaMongo[]> {
     return from(this.patientRepository.find().exec());
+  }
+
+  findByEmail(email: string): Observable<PatientSchemaMongo> {
+    return from(this.patientRepository.findById( email ).exec())
   }
 }
