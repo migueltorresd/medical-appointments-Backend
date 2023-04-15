@@ -20,7 +20,7 @@ export class PatientSchemaMongo extends PatientDomainModel {
   @Prop({ required: true })
   document: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   birthDate?: Date;
 
   @Prop({ required: true })
@@ -35,7 +35,7 @@ export class PatientSchemaMongo extends PatientDomainModel {
   @Prop({ required: true })
   phone: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   state?: string;
 
   @Prop({

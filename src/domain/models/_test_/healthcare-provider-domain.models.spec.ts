@@ -11,6 +11,7 @@ describe('HealthcareProviderDomainModel', () => {
         _id: '123456',
         name: 'Dr. Jane Doe',
         email: 'janedoe@example.com',
+        password: '123456',
         phone: '123-456-7890',
         specialty: 'Pediatrics',
       };

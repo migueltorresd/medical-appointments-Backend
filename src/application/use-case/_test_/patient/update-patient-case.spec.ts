@@ -27,6 +27,7 @@ describe('UpdatePatientUseCase', () => {
       birthDate: undefined,
       gender: '',
       email: '',
+      password: '123456',
       phone: '',
       state: '',
     };
@@ -46,6 +47,7 @@ describe('UpdatePatientUseCase', () => {
       birthDate: undefined,
       gender: '',
       email: '',
+      password: '123456',
       phone: '',
       state: '',
     };

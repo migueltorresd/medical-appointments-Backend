@@ -23,6 +23,7 @@ describe('DeleteHealthcareProviderUseCase', () => {
         _id: '1234',
         name: 'John Doe',
         email: 'johndoe@example.com',
+        password: '123456',
         phone: '555-555-5555',
         specialty: 'Cardiology',
         appointments: [],

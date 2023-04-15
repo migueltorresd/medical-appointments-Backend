@@ -38,6 +38,7 @@ describe('GetHealthcareProviderUseCase', () => {
         rol: 'healthcareProvider',
         name: 'Test Healthcare Provider',
         email: '@jefe.com',
+        password: '123456',
         phone: '555-555-5555',
         specialty: 'Test',
       };

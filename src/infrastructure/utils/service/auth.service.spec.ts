@@ -23,6 +23,7 @@ describe('AuthService', () => {
         document: '12345678',
         name: 'John Doe',
         email: 'john.doe@example.com',
+        password: '123456',
         birthDate: new Date('2023-04-12T06:42:15.891Z'),
         gender: 'male',
         phone: '',

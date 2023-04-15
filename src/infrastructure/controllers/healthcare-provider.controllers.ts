@@ -4,7 +4,9 @@ import { HealthcareProviderService } from '../services/healthcare-provider.servi
 import { HealthcareProviderDto } from '../dto/healthcare-provider.dto';
 import { Observable } from 'rxjs';
 import { HealthcareProviderDomainModel } from '../../domain/models/healthcare-provider-domain.models';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Healthcare-Provider')
 @Controller('Healthcare-Provider')
 export class HealthcareProviderController {
   private readonly useCase: HealthcareProviderDelegate;
@@ -14,7 +16,7 @@ export class HealthcareProviderController {
   ) {
     this.useCase = new HealthcareProviderDelegate(healthcareProviderService);
   }
-
+  @ApiOperation({ summary: 'Create healthcare provider' })
   @Post()
   create(
     @Body() healthcareProvider: HealthcareProviderDto,
@@ -23,18 +25,21 @@ export class HealthcareProviderController {
     return this.useCase.execute(healthcareProvider);
   }
 
+ @ApiOperation({ summary: 'Get healthcare provider by id' })
   @Get(':id')
   findById(@Param('id') id: string): Observable<HealthcareProviderDomainModel> {
     this.useCase.toGetHealthcareProviderUseCase();
     return this.useCase.execute(id);
   }
 
+  @ApiOperation({ summary: 'Delete healthcare provider by id' })
   @Delete(':id')
   delete(@Param('id') id: string): Observable<HealthcareProviderDomainModel> {
     this.useCase.toDeleteHealthcareProviderUseCase();
     return this.useCase.execute(id);
   }
 
+ @ApiOperation({ summary: 'Update healthcare provider by id' })
   @Put(':id')
   updateHealthcareProvider(
     @Param('id') id: string,

@@ -48,6 +48,7 @@ describe('GetPatientUseCase', () => {
         _id: '123',
         name: 'Test Patient',
         email: 'test@test.com',
+        password: '123456',
         phone: '555-555-5555',
         document: '123456789',
         birthDate: new Date(),

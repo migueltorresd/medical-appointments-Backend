@@ -44,6 +44,7 @@ describe('HealthcareProviderRepository', () => {
         name: 'John Doe',
         specialty: 'cardiologist',
         email: 'johndoe@example.com',
+        password: '123456',
         phone: '555-555-5555',
         appointments: [],
       });
@@ -84,6 +85,7 @@ describe('HealthcareProviderRepository', () => {
         name: 'John Doe',
         specialty: 'cardiologist',
         email: 'johndoe@example.com',
+        password: '123456',
         phone: '555-555-5555',
         appointments: [],
       });
@@ -94,6 +96,7 @@ describe('HealthcareProviderRepository', () => {
         name: 'Jane Doe',
         specialty: 'neurologist',
         email: 'janedoe@example.com',
+        password: '123456',
         phone: '555-555-5555',
         appointments: [
           {
@@ -138,6 +141,7 @@ describe('HealthcareProviderRepository', () => {
         name: 'John Doe',
         specialty: 'cardiologist',
         email: 'johndoe@example.com',
+        password: '123456',
         phone: '555-555-5555',
         appointments: [],
       });
@@ -174,6 +178,7 @@ describe('HealthcareProviderRepository', () => {
         name: 'John Doe',
         specialty: 'cardiologist',
         email: 'johndoe@example.com',
+        password: '123456',
         phone: '555-555-5555',
         appointments: [],
       };

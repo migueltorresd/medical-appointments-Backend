@@ -26,6 +26,7 @@ describe('DeletePatientUseCase', () => {
       birthDate: undefined,
       gender: '',
       email: '',
+      password: '123456',
       phone: '',
       state: '',
     };

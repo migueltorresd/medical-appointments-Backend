@@ -31,6 +31,7 @@ describe('CreateHealthcareProviderUseCase', () => {
         name: 'John Doe',
         specialty: 'cardiologist',
         email: 'johndoe@example.com',
+        password: '123456',
         phone: '555-555-5555',
         appointments: [],
       };
@@ -40,6 +41,7 @@ describe('CreateHealthcareProviderUseCase', () => {
         name: 'John Doe',
         specialty: 'cardiologist',
         email: 'johndoe@example.com',
+        password: '123456',
         phone: '555-555-5555',
         appointments: [],
     };
