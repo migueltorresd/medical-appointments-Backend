@@ -62,7 +62,7 @@ export class PatientController {
     this.useCase.toUpdatePatient();
     return this.useCase.execute(id, patientUpdates);
   }
-  @Post('google/:email')
+  @Get('google/:email')
   findByEmail(@Param('email') email: string): Observable<PatientDomainModel> {
     this.useCase.toGetEmailPatient();
     return this.useCase.execute(email);
