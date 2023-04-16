@@ -6,6 +6,7 @@ import { SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   const config = new DocumentBuilder()
     .setTitle('Medical-Appointments')
     .setDescription('The Medical-Appointments API description')
