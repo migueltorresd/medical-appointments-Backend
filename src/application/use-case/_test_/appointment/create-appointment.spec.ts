@@ -26,6 +26,7 @@ describe('CreateAppointmentUseCase', () => {
       findById: jest.fn(),
     };
     patientService = {
+      
       create: jest.fn(),
       update: jest.fn(),
       updatepatient: jest.fn(),
@@ -54,7 +55,12 @@ describe('CreateAppointmentUseCase', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-
+describe('is defined', () => {
+    test('should be defined', () => {
+      expect(createAppointmentUseCase).toBeDefined();
+    });
+  });
+   
   describe('execute', () => {
     const patientId = 'patient-id';
     const healthcareProviderId = 'healthcare-provider-id';

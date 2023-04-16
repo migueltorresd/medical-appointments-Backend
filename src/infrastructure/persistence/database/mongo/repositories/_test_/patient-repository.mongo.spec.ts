@@ -106,6 +106,37 @@ describe('PatientRepository', () => {
       expect(patientModel.findByIdAndUpdate).toHaveBeenCalledTimes(1);
     });
   });
+  describe('findByDocument', () => {
+    it('should find a patient by document and return the patient', async () => {
+      // Arrange
+      const document = '123456789';
+      const expectedPatient = new PatientDomainModel({
+        rol: 'patient',
+        _id: '11233',
+        name: 'John Doe',
+        document,
+        birthDate: new Date('1990-01-01'),
+        gender: 'male',
+        email: 'johndoe@example.com',
+        password: '123456',
+        phone: '555-555-5555',
+        state: 'active',
+        appointments: [],
+      });
+
+      jest.spyOn(patientModel, 'findOne').mockReturnValueOnce({
+        exec: jest.fn().mockResolvedValueOnce(expectedPatient),
+      } as any);
+
+      // Act
+      const result = patientRepository.findByDocument(document).toPromise();
+
+      // Assert
+      expect(result).toEqual(expectedPatient);
+      expect(patientModel.findOne).toHaveBeenCalledTimes(1);
+      expect(patientModel.findOne).toHaveBeenCalledWith({ document });
+    });
+  });
   describe('update', () => {
     it('should update a patient and return the updated patient', async () => {
       // Arrange

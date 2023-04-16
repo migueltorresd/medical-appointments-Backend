@@ -4,6 +4,7 @@ import { AppointmentDomainModel } from '../models';
 export interface IAppointmentDomainService<
   Entity extends AppointmentDomainModel = AppointmentDomainModel,
 > {
+  [x: string]: any;
   create(entity: Entity): Observable<Entity>;
   update(id: string, patient: Entity): Observable<Entity>;
   delete(id: string): Observable<Entity>;
