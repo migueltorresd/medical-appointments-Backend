@@ -24,15 +24,7 @@ describe('UpdateAppointmentUseCase', () => {
       appointmentDate: new Date(),
       reason: 'Consulta médica',
       status: 'scheduled',
-      healthcareProvider: {
-        rol: 'healthcareProvider',
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-        password: '123456',
-        phone: '555-555-5555',
-        specialty: 'Cardiology',
-        appointments: [],
-      },
+      healthcareProvider: '',
       Patient: undefined,
     };
   });
@@ -48,16 +40,9 @@ describe('UpdateAppointmentUseCase', () => {
       appointmentDate: new Date(),
       reason: 'Consulta médica',
       status: 'scheduled',
-      healthcareProvider: {
-        rol: 'healthcareProvider',
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-        password: '123456',
-        phone: '555-555-5555',
-        specialty: 'Cardiology',
-        appointments: [],
-      },
+
       Patient: undefined,
+      healthcareProvider: ''
     };
 
     test('should update an appointment', (done) => {

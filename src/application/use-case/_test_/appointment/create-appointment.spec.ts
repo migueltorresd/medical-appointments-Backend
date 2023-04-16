@@ -63,16 +63,8 @@ describe('CreateAppointmentUseCase', () => {
       appointmentDate: new Date(),
       reason: 'Consulta médica',
       status: 'scheduled',
-      healthcareProvider: {
-        rol: 'healthcareProvider',
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-        password: '123456',
-        phone: '555-555-5555',
-        specialty: 'Cardiology',
-        appointments: [],
-      },
-      Patient: undefined,
+      healthcareProvider: '',
+      Patient: ''
     };
     const patientEntity: PatientDomainModel = {
       rol: '',
@@ -100,16 +92,8 @@ describe('CreateAppointmentUseCase', () => {
       appointmentDate: new Date(),
       reason: 'Consulta médica',
       status: 'scheduled',
-      healthcareProvider: {
-        rol: 'healthcareProvider',
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-        password: '123456',
-        phone: '555-555-5555',
-        specialty: 'Cardiology',
-        appointments: [],
-      },
-      Patient: undefined,
+      Patient: '',
+      healthcareProvider: ''
     };
 
     test('should create an appointment and update patient and healthcareProvider', (done) => {
@@ -136,16 +120,8 @@ describe('CreateAppointmentUseCase', () => {
           appointmentDate: new Date(),
           reason: 'Consulta médica',
           status: 'scheduled',
-          healthcareProvider: {
-            rol: 'healthcareProvider',
-            name: 'John Doe',
-            email: 'johndoe@example.com',
-            password: '123456',
-            phone: '555-555-5555',
-            specialty: 'Cardiology',
-            appointments: [],
-          },
-          Patient: undefined,
+          Patient: '',
+          healthcareProvider: ''
         },
         '123',
         '456',
@@ -172,16 +148,8 @@ describe('CreateAppointmentUseCase', () => {
         appointmentDate: new Date(),
         reason: 'Consulta médica',
         status: 'scheduled',
-        healthcareProvider: {
-          rol: 'healthcareProvider',
-          name: 'John Doe',
-          email: 'johndoe@example.com',
-          password: '123456',
-          phone: '555-555-5555',
-          specialty: 'Cardiology',
-          appointments: [],
-        },
-        Patient: undefined,
+        healthcareProvider: '',
+        Patient: ''
       },
       '123',
       '456',

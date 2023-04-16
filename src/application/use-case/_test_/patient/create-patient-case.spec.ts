@@ -42,8 +42,7 @@ describe('CreatePatientUseCase', () => {
       password: '123456',
       gender: '',
       email: '',
-      phone: '',
-      state: '',
+      phone: ''
     };
 
     const patientCreated: PatientDomainModel = {

@@ -1,6 +1,9 @@
 import { of } from 'rxjs';
 import { AppointmentDelegate } from '../../../application/delegate/appointment.delegate';
-import { AppointmentDomainModel } from '../../../domain/models';
+import {
+  AppointmentDomainModel,
+  PatientDomainModel,
+} from '../../../domain/models';
 import { AppointmentDto } from '../../../infrastructure/dto';
 import {
   AppointmentService,
@@ -26,8 +29,9 @@ describe('AppointmentController', () => {
       updateHealthcareProvider: jest.fn(),
       findById: jest.fn(),
       findAll: jest.fn(),
-      
-    } as PatientService;
+      findByEmail: jest.fn(),
+      findByDocument: jest.fn(),
+    } as unknown as PatientService;
     healthCareProviderService = {
       // Mock healthCareProviderService methods here
     } as HealthcareProviderService;
@@ -47,24 +51,37 @@ describe('AppointmentController', () => {
     test('should create an appointment', async () => {
       // Arrange
       const patientId = '12345';
-      const patient = { id: patientId, name: 'John Doe' };
+      const patient = {
+        rol: '',
+        _id: '',
+        name: '',
+        document: '',
+        birthDate: undefined,
+        password: '123456',
+        gender: '',
+        email: '',
+        phone: '',
+        state: '',
+      };
       jest
         .spyOn(patientService, 'findById')
         .mockImplementation(() => of(patient));
 
-        const appointment: AppointmentDto = {
-          appointmentDate: undefined,
-          reason: "",
-          status: "available",
-          patient: "",
-          healthcareProvider: ""
-        };
+      const appointment: AppointmentDto = {
+        appointmentDate: undefined,
+        reason: '',
+        status: 'available',
+        patient: '',
+        healthcareProvider: ''
+      };
       const expectedAppointment: AppointmentDomainModel = {
         appointmentDate: undefined,
-          reason: "",
-          status: "available",
-          patient: "",
-          healthcareProvider: ""
+        reason: '',
+
+        healthcareProvider: '',
+        _id: '',
+        Patient: '',
+        status: 'available',
       };
       jest
         .spyOn(appointmentDelegate, 'execute')

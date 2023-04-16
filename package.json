@@ -81,7 +81,8 @@
       "main.ts",
       "index.ts",
       "config.ts",
-      "secret.ts"
+      "secret.ts",
+      "filter.ts"
     ],
     "roots": [
       "<rootDir>"

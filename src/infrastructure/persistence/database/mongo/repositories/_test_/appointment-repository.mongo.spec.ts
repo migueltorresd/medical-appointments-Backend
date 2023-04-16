@@ -45,17 +45,9 @@ describe('AppointmentRepository', () => {
         patient: '1245',
         reason: 'Consulta médica',
         status: 'scheduled',
-        healthcareProvider: {
-          rol: 'healthcareProvider',
-          name: 'John Doe',
-          email: 'johndoe@example.com',
-          password: '123456',
-          phone: '555-555-5555',
-          specialty: 'Cardiology',
-          appointments: [],
-        },
-        healthcareProviderSchemaMongo: '',
         Patient: undefined,
+        healthcareProvider: '',
+        healthcareProviderSchemaMongo: ''
       };
       const mockAppointmentModel = new AppointmentSchemaMongo(
         appointmentModelData,
@@ -87,17 +79,9 @@ describe('AppointmentRepository', () => {
           patient: '1245',
           reason: 'Consulta médica',
           status: 'scheduled',
-          healthcareProvider: {
-            rol: 'healthcareProvider',
-            name: 'John Doe',
-            email: 'johndoe@example.com',
-            password: '123456',
-            phone: '555-555-5555',
-            specialty: 'Cardiology',
-            appointments: [],
-          },
           healthcareProviderSchemaMongo: '',
           Patient: undefined,
+          healthcareProvider: ''
         };
         const expectedUpdatedAppointment = {
           ...updatedAppointment,

@@ -9,28 +9,10 @@ describe('AppointmentDomainModel', () => {
       const appointmentData: AppointmentDomainModel = {
         _id: null,
         appointmentDate: new Date('2023-04-10'),
-        Patient: new PatientDomainModel({
-          rol: 'patient',
-          _id: 'mockId',
-          name: 'John Doe',
-          document: '123456',
-          birthDate: new Date('1990-01-01'),
-          gender: 'Male',
-          email: 'johndoe@example.com',
-          password: '123456',
-          phone: '123-456-7890',
-          state: 'Active',
-        }),
-        reason: 'General checkup',
-        status: 'scheduled',
-        healthcareProvider: new HealthcareProviderDomainModel({
-          rol: 'healthcareProvider',
-          name: 'Dr. Jane Smith',
-          email: 'janesmith@example.com',
-          password: '123456',
-          phone: '987-654-3210',
-          specialty: 'Family Medicine',
-        }),
+        Patient: '',
+        reason: '',
+        status: 'available',
+        healthcareProvider: ''
       };
 
       // Act

@@ -46,7 +46,7 @@ export class CreateAppointmentUseCase implements IUseCase {
               endDate,
             ),
         );
-        // TODO Si está disponible, asignar la cita al profesional de la salud
+        // TODO Si está disponible, asignar la cita al profesional de la salud 
 
         if (isNotAvailable)
           throw new BadRequestException('Healthcare provider not available');

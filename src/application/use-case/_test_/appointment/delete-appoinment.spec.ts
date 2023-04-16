@@ -22,15 +22,7 @@ describe('DeleteAppointmentUseCase', () => {
       appointmentDate: new Date(),
       reason: 'Consulta médica',
       status: 'scheduled',
-      healthcareProvider: {
-        rol: 'healthcareProvider',
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-        password: '123456',
-        phone: '555-555-5555',
-        specialty: 'Cardiology',
-        appointments: [],
-      },
+     healthcareProvider: '',
       Patient: undefined,
     };
   });
