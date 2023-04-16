@@ -7,6 +7,7 @@ import { UpdatePatientUseCase } from '../use-case/patient/update-patient-case';
 import { GetPatientUseCase } from '../use-case/patient/get-patient-case';
 import { AuthService } from 'src/infrastructure/utils/service/auth.service';
 import { SearchByEmailUseCase } from '../use-case/patient/search-by-email-case';
+import { LoginPatientUseCase } from '../use-case/patient/login-patient-case';
 
 export class PatientDelegate implements IUseCase {
   static execute(execute: any) {
@@ -46,5 +47,9 @@ export class PatientDelegate implements IUseCase {
 
   toGetEmailPatient() {
     this.delegate = new SearchByEmailUseCase(this.patientService);
+  }
+
+  toLoginPatient() {
+    this.delegate = new LoginPatientUseCase(this.patientService);
   }
 }

@@ -17,6 +17,8 @@ export interface IPatientDomainService<
   findAll(): Observable<Entity[]>;
 
   findByDocument(document: string): Observable<Entity>;
-  
+
   findByEmail(email: string): Observable<Entity>;
+
+  login(email: string, password: string): Observable<Entity>;
 }

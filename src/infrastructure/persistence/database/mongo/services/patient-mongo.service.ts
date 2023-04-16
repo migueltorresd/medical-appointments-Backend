@@ -46,4 +46,8 @@ export class PatientMongoService implements IPatientDomainService {
   findByEmail(email: string): Observable<PatientDomainModel> {
     return this.patientRepository.findByEmail(email);
   }
+
+  login(email: string, password: string): Observable<PatientDomainModel> {
+    return this.patientRepository.login(email, password);
+  }
 }

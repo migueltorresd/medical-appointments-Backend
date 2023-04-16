@@ -6,6 +6,7 @@ import { SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe({ disableErrorMessages: false }));
   app.enableCors();
   const config = new DocumentBuilder()
     .setTitle('Medical-Appointments')

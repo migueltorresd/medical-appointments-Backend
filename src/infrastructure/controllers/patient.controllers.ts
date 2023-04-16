@@ -16,6 +16,7 @@ import { PatientDelegate } from '../../application/delegate/patient-delegate';
 import { AuthService } from '../utils/service/auth.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { HttpBusinessExceptionFilter } from '../utils/exception-filters/business.exception-filter';
+import { CredentialsDto } from '../dto/credentials.dto';
 
 @ApiTags('Patient')
 @Controller('patient')
@@ -67,6 +68,11 @@ export class PatientController {
     this.useCase.toGetEmailPatient();
     return this.useCase.execute(email);
   }
+
+  @Post('login')
+  login(@Body() credentials: CredentialsDto): Observable<PatientDomainModel> {
+    this.useCase.toLoginPatient();
+
+    return this.useCase.execute(credentials.email, credentials.password);
+  }
 }
-
-

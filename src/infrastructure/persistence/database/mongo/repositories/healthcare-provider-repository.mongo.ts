@@ -36,7 +36,9 @@ export class HealthcareProviderRepository
     entity: HealthcareProviderSchemaMongo,
   ): Observable<HealthcareProviderSchemaMongo> {
     return from(
-      this.healthcareProviderRepository.findByIdAndUpdate(_id, entity, { new: true }),
+      this.healthcareProviderRepository.findByIdAndUpdate(_id, entity, {
+        new: true,
+      }),
     );
   }
 
@@ -51,8 +53,9 @@ export class HealthcareProviderRepository
   findAll(): Observable<HealthcareProviderSchemaMongo[]> {
     return from(this.healthcareProviderRepository.find().exec());
   }
+
   findByEmail(email: string): Observable<HealthcareProviderSchemaMongo> {
-    const query = this.healthcareProviderRepository.where({email: email});
+    const query = this.healthcareProviderRepository.where({ email: email });
     return from(query.findOne().exec());
   }
 }
