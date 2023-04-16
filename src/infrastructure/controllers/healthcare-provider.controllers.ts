@@ -13,6 +13,7 @@ import { HealthcareProviderDto } from '../dto/healthcare-provider.dto';
 import { Observable } from 'rxjs';
 import { HealthcareProviderDomainModel } from '../../domain/models/healthcare-provider-domain.models';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { CredentialsDto } from '../dto/credentials.dto';
 
 @ApiTags('Healthcare-Provider')
 @Controller('Healthcare-Provider')
@@ -55,5 +56,12 @@ export class HealthcareProviderController {
   ): Observable<HealthcareProviderDomainModel> {
     this.useCase.toUpdateHealthcareProviderUseCase();
     return this.useCase.execute(id, healthcareProviderUpdates);
+  }
+
+  @ApiOperation({ summary: 'Login healthcare provider' })
+  @Post('login')
+  login(@Body() credentials: CredentialsDto): Observable<HealthcareProviderDomainModel> {
+    this.useCase.toLoginHealthcareProviderUseCase();
+    return this.useCase.execute(credentials);
   }
 }

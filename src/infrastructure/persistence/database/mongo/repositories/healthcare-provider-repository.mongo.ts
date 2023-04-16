@@ -58,4 +58,9 @@ export class HealthcareProviderRepository
     const query = this.healthcareProviderRepository.where({ email: email });
     return from(query.findOne().exec());
   }
+
+  login(email: string, password: string): Observable<HealthcareProviderSchemaMongo> {
+    const query = this.healthcareProviderRepository.find({email}).where({password});
+    return from(query.findOne().exec());
+}
 }

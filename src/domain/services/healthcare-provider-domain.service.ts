@@ -11,4 +11,5 @@ export interface IHealthcareProviderDomainService<
   findById(id: string): Observable<Entity>;
   findAll(): Observable<Entity[]>;
   findByEmail(email: string): Observable<Entity>;
+  login(email: string, password: string): Observable<Entity>;
 }

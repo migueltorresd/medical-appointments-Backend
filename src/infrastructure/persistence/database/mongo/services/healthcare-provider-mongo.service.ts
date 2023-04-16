@@ -3,6 +3,7 @@ import { IHealthcareProviderDomainService } from '../../../../../domain/services
 import { HealthcareProviderSchemaMongo } from '../schemas/healthcare-provider.schema';
 import { HealthcareProviderRepository } from '../repositories/healthcare-provider-repository.mongo';
 import { Injectable } from '@nestjs/common';
+import { HealthcareProviderDomainModel } from 'src/domain/models';
 @Injectable()
 export class HealthcareProviderMongoService
   implements IHealthcareProviderDomainService
@@ -10,6 +11,9 @@ export class HealthcareProviderMongoService
   constructor(
     private readonly healthcareProviderRepository: HealthcareProviderRepository,
   ) {}
+  login(email: string, password: string): Observable<HealthcareProviderDomainModel> {
+    return this.healthcareProviderRepository.login(email, password);
+  }
   create(
     entity: HealthcareProviderSchemaMongo,
   ): Observable<HealthcareProviderSchemaMongo> {

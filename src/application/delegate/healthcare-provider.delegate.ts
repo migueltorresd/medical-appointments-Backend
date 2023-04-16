@@ -5,6 +5,7 @@ import { CreateHealthcareProviderUseCase } from '../use-case/healthcare-provider
 import { GetHealthcareProviderUseCase } from '../use-case/healthcare-provider/get-healthcare-provider.case';
 import { UpdateHealthcareProviderUseCase } from '../use-case/healthcare-provider/update-healthcare-provider.case';
 import { DeleteHealthcareProviderUseCase } from '../use-case/healthcare-provider/delete-healthcare-provuder.case';
+import { LoginHealthcareUseCase } from '../use-case/healthcare-provider/login-Healthcare-provider.case';
 
 export class HealthcareProviderDelegate implements IUseCase {
   private delegate: IUseCase;
@@ -35,6 +36,11 @@ export class HealthcareProviderDelegate implements IUseCase {
   }
   toDeleteHealthcareProviderUseCase() {
     this.delegate = new DeleteHealthcareProviderUseCase(
+      this.healthcareproviderService,
+    );
+  }
+  toLoginHealthcareProviderUseCase() {
+    this.delegate = new LoginHealthcareUseCase(
       this.healthcareproviderService,
     );
   }
