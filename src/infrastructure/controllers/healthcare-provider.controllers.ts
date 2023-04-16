@@ -62,6 +62,6 @@ export class HealthcareProviderController {
   @Post('login')
   login(@Body() credentials: CredentialsDto): Observable<HealthcareProviderDomainModel> {
     this.useCase.toLoginHealthcareProviderUseCase();
-    return this.useCase.execute(credentials);
+    return this.useCase.execute(credentials.email, credentials.password);
   }
 }

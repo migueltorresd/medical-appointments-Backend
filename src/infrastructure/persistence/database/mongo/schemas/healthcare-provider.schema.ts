@@ -38,8 +38,10 @@ export class HealthcareProviderSchemaMongo extends HealthcareProviderDomainModel
   })
   appointments?: AppointmentSchemaMongo[];
 }
-export const HealthcareProviderSchema = SchemaFactory.createForClass(
+export const healthcareProviderSchema = SchemaFactory.createForClass(
   HealthcareProviderSchemaMongo,
 );
 export type healthcareProviderDocument =
   HydratedDocument<HealthcareProviderSchemaMongo>;
+
+  export { healthcareProviderSchema as HealthcareProviderSchema };
