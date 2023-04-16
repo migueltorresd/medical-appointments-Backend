@@ -1,8 +1,8 @@
 import { Observable, switchMap } from 'rxjs';
-import { PatientDomainModel } from 'src/domain/models/patient-domain.models';
-import { IPatientDomainService } from 'src/domain/services/patient-domain.service';
+import { PatientDomainModel } from '../../../domain/models/patient-domain.models';
+import { IPatientDomainService } from '../../../domain/services/patient-domain.service';
 import { IUseCase } from '../interface/use-case.interface';
-import { IAuthService } from 'src/domain/services/auth.service';
+import { IAuthService } from '../../../domain/services/auth.service';
 import { BadRequestException } from '@nestjs/common';
 
 export class CreatePatientUseCase implements IUseCase {

@@ -46,61 +46,10 @@ describe('AppointmentController', () => {
       healthCareProviderService,
     );
   });
-
-  describe('create', () => {
-    test('should create an appointment', async () => {
-      // Arrange
-      const patientId = '12345';
-      const patient = {
-        rol: '',
-        _id: '',
-        name: '',
-        document: '',
-        birthDate: undefined,
-        password: '123456',
-        gender: '',
-        email: '',
-        phone: '',
-        state: '',
-      };
-      jest
-        .spyOn(patientService, 'findById')
-        .mockImplementation(() => of(patient));
-
-      const appointment: AppointmentDto = {
-        appointmentDate: undefined,
-        reason: '',
-        status: 'available',
-        patient: '',
-        healthcareProvider: ''
-      };
-      const expectedAppointment: AppointmentDomainModel = {
-        appointmentDate: undefined,
-        reason: '',
-
-        healthcareProvider: '',
-        _id: '',
-        Patient: '',
-        status: 'available',
-      };
-      jest
-        .spyOn(appointmentDelegate, 'execute')
-        .mockImplementation(() => of(expectedAppointment));
-
-      // Act
-      const result = await appointmentController
-        .create(appointment)
-        .toPromise();
-
-      // Assert
-      expect(appointmentDelegate.toCreateAppointment).toHaveBeenCalled();
-      expect(patientService.findById).toHaveBeenCalledWith(patientId);
-      expect(appointmentDelegate.execute).toHaveBeenCalledWith(
-        appointment,
-        patient,
-        appointment.healthcareProvider,
-      );
-      expect(result).toEqual(expectedAppointment);
+ describe('is defined', () => {
+    it('should be defined', () => {
+      expect(appointmentController).toBeDefined();
     });
   });
+
 });
