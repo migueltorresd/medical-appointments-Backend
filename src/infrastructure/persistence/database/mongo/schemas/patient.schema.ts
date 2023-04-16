@@ -39,7 +39,7 @@ export class PatientSchemaMongo extends PatientDomainModel {
   state?: string;
 
   @Prop({
-    type: [{ type: SchemaTypes.ObjectId, ref: 'AppointmentSchemaMongo' }],
+   required: false
   })
   appointments?: AppointmentSchemaMongo[];
 }

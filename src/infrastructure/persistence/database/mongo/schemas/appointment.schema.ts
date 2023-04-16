@@ -21,14 +21,10 @@ export class AppointmentSchemaMongo extends AppointmentDomainModel {
   @Prop({ required: true })
   status: 'available' | 'pending' | 'canceled' | 'completed' | 'scheduled';
 
-  @Prop({
-   required: true,
-  })
+  @Prop({})
   patient: string;
 
-  @Prop({
-   required: true,
-  })
+  @Prop({})
   healthcareProviderSchemaMongo: string;
 }
 

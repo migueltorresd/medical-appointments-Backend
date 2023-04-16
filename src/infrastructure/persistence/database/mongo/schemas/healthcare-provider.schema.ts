@@ -34,7 +34,7 @@ export class HealthcareProviderSchemaMongo extends HealthcareProviderDomainModel
   specialty: string;
 
   @Prop({
-    type: [{ type: newSchema.Types.ObjectId, ref: 'AppointmentSchemaMongo' }],
+    required: false
   })
   appointments?: AppointmentSchemaMongo[];
 }
