@@ -4,8 +4,8 @@ import { PatientDomainModel } from '../patient-domain.models';
 export interface IAppointmentDomain {
   _id: string;
   appointmentDate: Date;
-  Patient: PatientDomainModel;
+  Patient: string;
   status: 'available' | 'pending' | 'canceled' | 'completed' | 'scheduled';
   reason: string;
-  healthcareProvider: HealthcareProviderDomainModel;
+  healthcareProvider: string;
 }

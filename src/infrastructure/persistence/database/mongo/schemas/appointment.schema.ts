@@ -22,16 +22,14 @@ export class AppointmentSchemaMongo extends AppointmentDomainModel {
   status: 'available' | 'pending' | 'canceled' | 'completed' | 'scheduled';
 
   @Prop({
-    type: newSchema.Types.ObjectId,
-    ref: 'PatientSchemaMongo',
+   required: true,
   })
-  patient: PatientSchemaMongo['_id'];
+  patient: string;
 
   @Prop({
-    type: newSchema.Types.ObjectId,
-    ref: 'HealthcareProviderSchemaMongo',
+   required: true,
   })
-  healthcareProviderSchemaMongo: HealthcareProviderSchemaMongo['_id'];
+  healthcareProviderSchemaMongo: string;
 }
 
 export const AppointmentSchema = SchemaFactory.createForClass(

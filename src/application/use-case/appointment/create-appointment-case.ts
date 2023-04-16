@@ -20,6 +20,7 @@ export class CreateAppointmentUseCase implements IUseCase {
     patientId: string,
     healthcareProviderId: string,
   ): Observable<AppointmentDomainModel> {
+    appointmentEntity.appointmentDate = new Date(appointmentEntity.appointmentDate);
     const patient = this.patientService.findById(patientId);
     const healthcareProvider =
       this.healthcareProviderService.findById(healthcareProviderId);
@@ -30,7 +31,8 @@ export class CreateAppointmentUseCase implements IUseCase {
         if (!healthcareProviderEntity)
           throw new Error('Healthcare provider not found');
 
-        appointmentEntity.Patient = patientEntity;
+        appointmentEntity.Patient = patientEntity._id;
+        appointmentEntity.healthcareProvider = healthcareProviderEntity._id;
 
         const endDate = new Date(appointmentEntity.appointmentDate);
         endDate.setHours(endDate.getHours() + 1);
@@ -53,11 +55,11 @@ export class CreateAppointmentUseCase implements IUseCase {
         return this.appointmentService.create(appointmentEntity).pipe(
           map((Entity) => {
             // Guardar la cita en la entidad del paciente
-            patientEntity.appointments.push(Entity);
+            patientEntity.appointments.push(appointmentEntity);
             this.patientService.update(patientId, patientEntity);
 
             // Guardar la cita en la entidad del profesional de la salud
-            healthcareProviderEntity.appointments.push(Entity);
+            healthcareProviderEntity.appointments.push(appointmentEntity);
             this.healthcareProviderService.update(
               healthcareProviderId,
               healthcareProviderEntity,

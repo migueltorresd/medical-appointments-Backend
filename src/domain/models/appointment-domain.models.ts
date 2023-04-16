@@ -5,10 +5,10 @@ import { PatientDomainModel } from './patient-domain.models';
 export class AppointmentDomainModel implements IAppointmentDomain {
   _id: string;
   appointmentDate: Date;
-  Patient: PatientDomainModel;
+  Patient: string;
   reason: string;
   status: 'available' | 'pending' | 'canceled' | 'completed' | 'scheduled';
-  healthcareProvider: HealthcareProviderDomainModel;
+  healthcareProvider: string;
 
   constructor(data: IAppointmentDomain) {
     this.appointmentDate = data.appointmentDate;
