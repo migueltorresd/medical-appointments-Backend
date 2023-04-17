@@ -37,7 +37,7 @@ export class AppointmentController {
 
   @ApiOperation({ summary: 'Create appointment' })
   @Post('/create')
-  @UseGuards(DateGuard)
+ 
   create(
     @Body() appointment: AppointmentDto,
   ): Observable<AppointmentDomainModel> {
@@ -62,7 +62,7 @@ export class AppointmentController {
     this.useCase.toDeleteAppointment();
     return this.useCase.execute(id);
   }
-
+  @UseGuards(DateGuard)
   @ApiOperation({ summary: 'Update appointment by id' })
   @Put(':id')
   updateAppointment(
