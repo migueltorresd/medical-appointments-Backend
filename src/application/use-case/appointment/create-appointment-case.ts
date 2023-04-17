@@ -1,5 +1,5 @@
 import { forkJoin, map, Observable, switchMap } from 'rxjs';
-import { AppointmentDomainModel } from 'src/domain/models';
+import { AppointmentDomainModel } from '../../../domain/models';
 import { IAppointmentDomainService } from '../../../domain/services/appointment-domain.service';
 import { IUseCase } from '../interface/use-case.interface';
 import {

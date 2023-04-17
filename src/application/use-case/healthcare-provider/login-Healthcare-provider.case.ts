@@ -1,8 +1,8 @@
 import { NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Observable, switchMap, map } from "rxjs";
-import { HealthcareProviderDomainModel } from "src/domain/models";
+import { HealthcareProviderDomainModel } from "../../../domain/models";
 import { IUseCase } from "../interface/use-case.interface";
-import { IHealthcareProviderDomainService } from "src/domain/services";
+import { IHealthcareProviderDomainService } from "../../../domain/services";
 
 export class LoginHealthcareUseCase implements IUseCase {
     constructor(private readonly healthcareService: IHealthcareProviderDomainService) {}

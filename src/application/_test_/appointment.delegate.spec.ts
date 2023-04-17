@@ -5,6 +5,7 @@ import { CreateAppointmentUseCase } from "../use-case/appointment/create-appoint
 
 describe('AppointmentDelegate', () => {
   let appointmentDelegate: AppointmentDelegate;
+  let appointmentServiceMock: any;
 
   beforeEach(() => {
     appointmentDelegate = new AppointmentDelegate(null, null, null);
@@ -64,6 +65,51 @@ describe('AppointmentDelegate', () => {
       // Assert
       expect(appointmentDelegate['delegate']).toBeInstanceOf(UpdateAppointmentUseCase);
       expect(appointmentDelegate['appointmentService']).toBe(null);
+    });
+  });
+});
+
+describe('AppointmentDelegate', () => {
+  let appointmentDelegate: AppointmentDelegate;
+
+  beforeEach(() => {
+    const appointmentServiceMock = {} as any;
+    const patientServiceMock = {} as any;
+    const healthCareProviderServiceMock = {} as any;
+    appointmentDelegate = new AppointmentDelegate(
+      appointmentServiceMock,
+      patientServiceMock,
+      healthCareProviderServiceMock,
+    );
+  });
+
+  describe('toDeleteAppointment', () => {
+    it('should set delegate to DeleteAppointmentUseCase', () => {
+      // Arrange
+      const appointmentServiceMock = {} as any;
+
+      // Act
+      appointmentDelegate.toDeleteAppointment();
+
+      // Assert
+      expect(appointmentDelegate['appointmentService']).not.toBe(null);
+      expect(appointmentDelegate['patientService']).not.toBe(null);
+      expect(appointmentDelegate['healthCareProviderService']).not.toBe(null);
+    });
+  });
+
+  describe('toGetAppointment', () => {
+    it('should set delegate to GetAppointmentUseCase', () => {
+      // Arrange
+      const appointmentServiceMock = {} as any;
+
+      // Act
+      appointmentDelegate.toGetAppointment();
+
+      // Assert
+      expect(appointmentDelegate['appointmentService']).not.toBe(null);
+      expect(appointmentDelegate['patientService']).not.toBe(null);
+      expect(appointmentDelegate['healthCareProviderService']).not.toBe(null);
     });
   });
 });

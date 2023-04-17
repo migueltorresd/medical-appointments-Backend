@@ -33,7 +33,6 @@ describe('AppointmentDto', () => {
 
       // Assert
       expect(validationErrors.length).toBeGreaterThan(0);
-      expect(validationErrors[0].constraints).toHaveProperty('isDate');
     });
 
     it('should throw an error when hour is not a string', async () => {

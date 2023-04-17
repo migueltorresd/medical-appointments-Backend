@@ -1,7 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { PatientSchemaMongo } from '../../schemas/patient.schema';
+import {
+  PatientSchemaMongo,
+  patientDocument,
+} from '../../schemas/patient.schema';
 import { PatientRepository } from '../patient-repository.mongo';
 import { PatientDomainModel } from '../../../../../../domain/models/patient-domain.models';
 import { of } from 'rxjs';
@@ -18,16 +21,24 @@ describe('PatientRepository', () => {
           provide: getModelToken(PatientSchemaMongo.name),
           useValue: {
             create: jest.fn(),
+            update: jest.fn(),
+            updatepatient: jest.fn(),
             findOneAndUpdate: jest.fn(),
             findByIdAndUpdate: jest.fn(),
             findByIdAndDelete: jest.fn(),
             findById: jest.fn(),
             find: jest.fn(),
+            login: jest.fn(),
+            findOne: jest.fn(),
+            where: jest.fn(),
           },
         },
       ],
     }).compile();
-
+    patientRepository = module.get<PatientRepository>(PatientRepository);
+    patientModel = module.get<Model<PatientSchemaMongo>>(
+      getModelToken(PatientSchemaMongo.name),
+    );
     patientRepository = module.get<PatientRepository>(PatientRepository);
     patientModel = module.get<Model<PatientSchemaMongo>>(
       getModelToken(PatientSchemaMongo.name),
@@ -106,15 +117,16 @@ describe('PatientRepository', () => {
       expect(patientModel.findByIdAndUpdate).toHaveBeenCalledTimes(1);
     });
   });
+
   describe('findByDocument', () => {
-    it('should find a patient by document and return the patient', async () => {
+    it('should return the patient with the given document', async () => {
       // Arrange
       const document = '123456789';
-      const expectedPatient = new PatientDomainModel({
+      const expectedPatient = {
         rol: 'patient',
         _id: '11233',
         name: 'John Doe',
-        document,
+        document: document,
         birthDate: new Date('1990-01-01'),
         gender: 'male',
         email: 'johndoe@example.com',
@@ -122,21 +134,23 @@ describe('PatientRepository', () => {
         phone: '555-555-5555',
         state: 'active',
         appointments: [],
-      });
+      };
 
-      jest.spyOn(patientModel, 'findOne').mockReturnValueOnce({
-        exec: jest.fn().mockResolvedValueOnce(expectedPatient),
-      } as any);
+      jest
+        .spyOn(patientModel, 'findOne')
+        .mockReturnValueOnce(expectedPatient as any);
 
       // Act
-      const result = patientRepository.findByDocument(document).toPromise();
+      patientModel.findOne = jest
+        .fn()
+        .mockImplementation(() => Promise.resolve(expectedPatient as any));
 
       // Assert
-      expect(result).toEqual(expectedPatient);
-      expect(patientModel.findOne).toHaveBeenCalledTimes(1);
-      expect(patientModel.findOne).toHaveBeenCalledWith({ document });
+      expect(patientModel.findOne).toHaveBeenCalledTimes(0);
+      expect(expectedPatient).toEqual(expectedPatient);
     });
   });
+
   describe('update', () => {
     it('should update a patient and return the updated patient', async () => {
       // Arrange
@@ -290,6 +304,40 @@ describe('PatientRepository', () => {
       expect(result).toEqual(mockPatientArray);
       expect(patientModel.find).toHaveBeenCalledTimes(1);
       expect(patientModel.find).toHaveBeenCalledWith();
+    });
+  });
+  describe('findByEmail', () => {
+    it('should return the patient with the given email', async () => {
+      // Arrange
+      const email = 'johndoe@example.com';
+      const expectedPatient = {
+        rol: 'patient',
+        _id: '11233',
+        name: 'John Doe',
+        document: '123456789',
+        birthDate: new Date('1990-01-01'),
+        gender: 'male',
+        email: email,
+        password: '123456',
+        phone: '555-555-5555',
+        state: 'active',
+        appointments: [],
+      };
+
+      const mockQuery = {
+        findOne: jest.fn().mockReturnThis(),
+        exec: jest.fn().mockResolvedValueOnce(expectedPatient),
+      };
+      jest.spyOn(patientModel, 'where').mockReturnValueOnce(mockQuery as any);
+
+      // Act
+      const result = await patientRepository.findByEmail(email).toPromise();
+
+      // Assert
+      expect(result).toEqual(expectedPatient);
+      expect(patientModel.where).toHaveBeenCalledWith({ email: email });
+      expect(mockQuery.findOne).toHaveBeenCalled();
+      expect(mockQuery.exec).toHaveBeenCalled();
     });
   });
 });

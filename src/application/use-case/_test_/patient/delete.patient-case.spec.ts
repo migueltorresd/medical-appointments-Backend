@@ -18,6 +18,7 @@ describe('DeletePatientUseCase', () => {
       updatepatient: jest.fn(),
       findByEmail: jest.fn(),
       findByDocument: jest.fn(),
+      login: jest.fn(),
     } as jest.Mocked<IPatientDomainService<PatientDomainModel>>;
     deletePatientUseCase = new DeletePatientUseCase(patientService);
     deletedPatient = {
