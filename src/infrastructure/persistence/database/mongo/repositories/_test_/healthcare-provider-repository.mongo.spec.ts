@@ -281,3 +281,79 @@ describe('HealthcareProviderRepository', () => {
     });
   });
 });
+
+describe('HealthcareProviderRepository', () => {
+  let healthcareProviderRepository: HealthcareProviderRepository;
+  let mockModel: jest.Mocked<Model<HealthcareProviderSchemaMongo>>;
+
+  beforeEach(() => {
+    mockModel = {
+      where: jest.fn().mockReturnThis(),
+      findOne: jest.fn(),
+      find: jest.fn().mockReturnThis(),
+    } as any;
+
+    healthcareProviderRepository = new HealthcareProviderRepository(
+      mockModel,
+    );
+  });
+
+  describe('findByEmail', () => {
+
+    it('should return the healthcare provider with the given email', (done) => {
+      // Arrange
+      const email = 'example@example.com';
+      const healthcareProvider: HealthcareProviderSchemaMongo = {
+        _id: '123',
+        name: 'Test Healthcare Provider',
+        email,
+        password: 'password',
+        rol: '',
+        phone: '',
+        specialty: ''
+      };
+      mockModel.findOne.mockReturnValueOnce({
+        exec: jest.fn().mockReturnValueOnce(of(healthcareProvider)),
+      } as any);
+
+      // Act
+      healthcareProviderRepository
+        .findByEmail(email)
+        .subscribe((result) => {
+          // Assert
+          expect(result).toEqual(healthcareProvider);
+          done();
+        });
+    });
+  });
+
+  describe('login', () => {
+
+    it('should return the healthcare provider with the given email and password', (done) => {
+      // Arrange
+      const email = 'example@example.com';
+      const password = 'password';
+      const healthcareProvider: HealthcareProviderSchemaMongo = {
+        _id: '123',
+        name: 'Test Healthcare Provider',
+        email,
+        password,
+        rol: '',
+        phone: '',
+        specialty: ''
+      };
+      mockModel.findOne.mockReturnValueOnce({
+        exec: jest.fn().mockReturnValueOnce(of(healthcareProvider)),
+      } as any);
+
+      // Act
+      healthcareProviderRepository
+        .login(email, password)
+        .subscribe((result) => {
+          // Assert
+          expect(result).toEqual(healthcareProvider);
+          done();
+        });
+    });
+  });
+});

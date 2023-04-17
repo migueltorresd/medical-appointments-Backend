@@ -34,7 +34,7 @@ export class AppointmentController {
   }
 
   @ApiOperation({ summary: 'Create appointment' })
-  @Post()
+  @Post('/create')
   create(
     @Body() appointment: AppointmentDto,
   ): Observable<AppointmentDomainModel> {

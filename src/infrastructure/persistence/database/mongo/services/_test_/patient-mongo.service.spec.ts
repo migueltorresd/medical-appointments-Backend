@@ -421,3 +421,115 @@ describe('PatientMongoService', () => {
     });
   });
 });
+
+describe('PatientMongoService', () => {
+  let patientRepositoryMock: jest.Mocked<PatientRepository>;
+  let patientMongoService: PatientMongoService;
+
+  beforeEach(() => {
+    patientRepositoryMock = {
+      updatepatient: jest.fn(),
+      findByDocument: jest.fn(),
+      findByEmail: jest.fn(),
+      login: jest.fn(),
+      create: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
+      findById: jest.fn(),
+      findAll: jest.fn(),
+    } as unknown as jest.Mocked<PatientRepository>;
+
+    patientMongoService = new PatientMongoService(patientRepositoryMock);
+  });
+
+  describe('updatepatient', () => {
+    it('should return the updated patient', (done) => {
+      // Arrange
+      const id = 'patient_id';
+      const patient: PatientSchemaMongo = {
+        name: 'John Doe',
+        document: '1234567890',
+        email: 'johndoe@example.com',
+        password: 'password',
+        rol: '',
+        _id: '',
+        phone: '',
+        gender: '',
+      };
+      const updatedPatient: PatientSchemaMongo = {
+        ...patient,
+        name: 'Jane Doe',
+      };
+      patientRepositoryMock.updatepatient.mockReturnValue(of(updatedPatient));
+
+      // Act
+      patientMongoService.updatepatient(id, patient).subscribe((result) => {
+        // Assert
+        expect(result).toEqual(updatedPatient);
+        done();
+      });
+    });
+  });
+
+  describe('findByDocument', () => {
+    it('should return the patient with the given document', (done) => {
+      // Arrange
+      const document = '1234567890';
+      const patient: PatientSchemaMongo = {
+        name: 'John Doe',
+        document,
+        email: 'johndoe@example.com',
+        password: 'password',
+        rol: '',
+        _id: '',
+        phone: '',
+        gender: '',
+      };
+      patientRepositoryMock.findByDocument.mockReturnValue(of(patient));
+
+      // Act
+      patientMongoService.findByDocument(document).subscribe((result) => {
+        // Assert
+        expect(result).toEqual(patient);
+        done();
+      });
+    });
+  });
+
+  describe('findByEmail', () => {
+    it('should return the patient with the given email', (done) => {
+      // Arrange
+      const email = 'johndoe@example.com';
+      const patient: PatientSchemaMongo = {
+        name: 'John Doe',
+        document: '1234567890',
+        email,
+        password: 'password',
+        rol: '',
+        _id: '',
+        phone: '',
+        gender: '',
+      };
+      patientRepositoryMock.findByEmail.mockReturnValue(of(patient));
+
+      // Act
+      patientMongoService.findByEmail(email).subscribe((result) => {
+        //
+        expect(result).toEqual(patient);
+        done();
+      });
+    });
+    it('should return undefined if the patient is not found', (done) => {
+      // Arrange
+      const email = 'nonexistent@example.com';
+      patientRepositoryMock.findByEmail.mockReturnValue(of(undefined));
+
+      // Act
+      patientMongoService.findByEmail(email).subscribe((result) => {
+        // Assert
+        expect(result).toBeUndefined();
+        done();
+      });
+    });
+  });
+});

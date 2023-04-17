@@ -10,6 +10,8 @@ import {
   IPatientDomainService,
 } from 'src/domain/services';
 import { CreateAppointmentUseCase } from '../../appointment/create-appointment-case';
+import { AppointmentDelegate } from 'src/application/delegate/appointment.delegate';
+import { IUseCase } from '../../interface/use-case.interface';
 
 describe('CreateAppointmentUseCase', () => {
   let createAppointmentUseCase: CreateAppointmentUseCase;
@@ -299,4 +301,5 @@ describe('CreateAppointmentUseCase', () => {
 
   });
 });
+
 

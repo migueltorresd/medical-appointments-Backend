@@ -7,7 +7,7 @@ import {
 } from '../../schemas/patient.schema';
 import { PatientRepository } from '../patient-repository.mongo';
 import { PatientDomainModel } from '../../../../../../domain/models/patient-domain.models';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 describe('PatientRepository', () => {
   let patientRepository: PatientRepository;
@@ -338,6 +338,82 @@ describe('PatientRepository', () => {
       expect(patientModel.where).toHaveBeenCalledWith({ email: email });
       expect(mockQuery.findOne).toHaveBeenCalled();
       expect(mockQuery.exec).toHaveBeenCalled();
+    });
+  });
+});
+describe('PatientRepository', () => {
+  let patientRepository: PatientRepository;
+  let patientModel: Model<PatientSchemaMongo>;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        PatientRepository,
+        {
+          provide: getModelToken(PatientSchemaMongo.name),
+          useValue: {
+            findOne: jest.fn(),
+            findByIdAndUpdate: jest.fn(),
+            find: jest.fn(),
+          },
+        },
+      ],
+    }).compile();
+
+    patientRepository = module.get<PatientRepository>(PatientRepository);
+    patientModel = module.get<Model<PatientSchemaMongo>>(
+      getModelToken(PatientSchemaMongo.name),
+    );
+  });
+
+  describe('findByDocument', () => {
+    it('should return an Observable with a PatientSchemaMongo object when the document exists', () => {
+      // Arrange
+      const document = '1234567890';
+      const expectedPatient = new PatientDomainModel({
+        rol: 'patient',
+        _id: '11233',
+        name: 'John Doe',
+        document: '123456789',
+        birthDate: new Date('1990-01-01'),
+        gender: 'male',
+        email: 'johndoe@example.com',
+        password: '123456',
+        phone: '555-555-5555',
+        state: 'active',
+        appointments: [],
+      });
+
+      jest
+        .spyOn(patientModel, 'findOne')
+        .mockReturnValueOnce({ exec: () => Promise.resolve(expectedPatient) } as any);
+
+      // Act
+      const result = patientRepository.findByDocument(document);
+
+      // Assert
+      expect(result).toBeInstanceOf(Observable);
+      result.subscribe((patient) => {
+        expect(patient).toEqual(expectedPatient);
+      });
+    });
+
+    it('should return an empty Observable when the document does not exist', () => {
+      // Arrange
+      const document = '1234567890';
+
+      jest
+      .spyOn(patientModel, 'findOne')
+      .mockReturnValueOnce({ exec: () => Promise.resolve(document) } as any);
+
+      // Act
+      const result = patientRepository.findByDocument(document);
+
+      // Assert
+      expect(result).toBeInstanceOf(Observable);
+      result.subscribe((patient) => {
+        expect(patient).toBeNull();
+      });
     });
   });
 });
