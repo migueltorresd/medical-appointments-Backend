@@ -422,6 +422,7 @@ describe('PatientMongoService', () => {
   });
 });
 
+
 describe('PatientMongoService', () => {
   let patientRepositoryMock: jest.Mocked<PatientRepository>;
   let patientMongoService: PatientMongoService;
@@ -442,6 +443,11 @@ describe('PatientMongoService', () => {
     patientMongoService = new PatientMongoService(patientRepositoryMock);
   });
 
+  describe('is definied', () => {
+    it('should be defined', () => {
+      expect(patientMongoService).toBeDefined();
+    });
+  });
   describe('updatepatient', () => {
     it('should return the updated patient', (done) => {
       // Arrange

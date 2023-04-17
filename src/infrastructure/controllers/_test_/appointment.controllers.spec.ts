@@ -13,6 +13,7 @@ import {
 import { AppointmentController } from '../appointment.controllers';
 import { AppointmentSchemaMongo } from 'src/infrastructure/persistence';
 import { Test, TestingModule } from '@nestjs/testing';
+import { request } from 'express';
 
 describe('AppointmentController', () => {
   let controller: AppointmentController;
@@ -34,6 +35,7 @@ describe('AppointmentController', () => {
       update: jest.fn(),
       findById: jest.fn(),
       findAll: jest.fn(),
+      deleteById: jest.fn(),
     } as any;
 
     const controllerMock = {

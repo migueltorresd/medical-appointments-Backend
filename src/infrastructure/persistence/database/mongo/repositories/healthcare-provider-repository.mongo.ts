@@ -8,6 +8,7 @@ import { HealthcareProviderSchemaMongo } from '../schemas/healthcare-provider.sc
 export class HealthcareProviderRepository
   implements IBase<HealthcareProviderSchemaMongo>
 {
+  static findByEmail: any;
   constructor(
     @InjectModel(HealthcareProviderSchemaMongo.name)
     private readonly healthcareProviderRepository: Model<HealthcareProviderSchemaMongo>,
@@ -59,8 +60,13 @@ export class HealthcareProviderRepository
     return from(query.findOne().exec());
   }
 
-  login(email: string, password: string): Observable<HealthcareProviderSchemaMongo> {
-    const query = this.healthcareProviderRepository.find({email}).where({password});
+  login(
+    email: string,
+    password: string,
+  ): Observable<HealthcareProviderSchemaMongo> {
+    const query = this.healthcareProviderRepository
+      .find({ email })
+      .where({ password });
     return from(query.findOne().exec());
-}
+  }
 }

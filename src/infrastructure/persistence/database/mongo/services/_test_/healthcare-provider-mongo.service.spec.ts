@@ -26,6 +26,11 @@ describe('HealthcareProviderMongoService', () => {
     jest.clearAllMocks();
   });
 
+  describe('is defined', () => {
+    it('should be defined', () => {
+      expect(healthcareProviderMongoService).toBeDefined();
+    });
+  });
   describe('create', () => {
     const healthcareProvider: HealthcareProviderSchemaMongo = {
       rol: 'healthcareProvider',
@@ -392,4 +397,7 @@ describe('HealthcareProviderMongoService', () => {
       expect(healthcareProviderRepository.findAll).toHaveBeenCalledTimes(1);
     });
   });
+
 });
+
+

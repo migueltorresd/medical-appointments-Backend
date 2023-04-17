@@ -8,10 +8,16 @@ import { HealthcareProviderDomainModel } from 'src/domain/models';
 export class HealthcareProviderMongoService
   implements IHealthcareProviderDomainService
 {
+  static findByEmail(email: string) {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     private readonly healthcareProviderRepository: HealthcareProviderRepository,
   ) {}
-  login(email: string, password: string): Observable<HealthcareProviderDomainModel> {
+  login(
+    email: string,
+    password: string,
+  ): Observable<HealthcareProviderDomainModel> {
     return this.healthcareProviderRepository.login(email, password);
   }
   create(
