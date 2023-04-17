@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { AppointmentDelegate } from '../../application/delegate/appointment.delegate';
@@ -15,6 +16,7 @@ import { AppointmentService } from '../services/appointment.service';
 import { PatientService } from '../services/patient.service';
 import { HealthcareProviderService } from '../services/healthcare-provider.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { DateGuard } from '../utils/guards/validation-auth.guard';
 
 @ApiTags('Appointment')
 @Controller('Appointment')
@@ -35,6 +37,7 @@ export class AppointmentController {
 
   @ApiOperation({ summary: 'Create appointment' })
   @Post('/create')
+  @UseGuards(DateGuard)
   create(
     @Body() appointment: AppointmentDto,
   ): Observable<AppointmentDomainModel> {
